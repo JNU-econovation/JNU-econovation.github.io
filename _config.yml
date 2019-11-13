@@ -47,7 +47,7 @@ lsi: false
 username: jekyller
 repo: jasper
 branch: master
-relative_source: ../jasper/
+relative_source: ../
 destination: ../jasper-pages/
 production_url: https://JNU-econovation.github.io/
 source_url: https://github.com/jekyller/jasper/
