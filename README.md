@@ -29,7 +29,6 @@ banner: **홈화면에 비디오 혹은 이미지를 추가하려면 작성**
   heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
   subheading_style: "color: gold"
 tags: **태그 작성, 띄어쓰기 단위로 분리됨**
-top: 1
 sidebar: []
 ---
 ```
