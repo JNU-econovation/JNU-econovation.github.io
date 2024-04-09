@@ -247,3 +247,5 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-spaceship
+
+timezone: Asia/Seoul
