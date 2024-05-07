@@ -3,7 +3,7 @@ layout: post
 title: 4월 12일, 1차 Let's git it started를 진행했습니다.
 subtitle: 에코노베이션만의 깃행사를 소개합니다!
 author: baegyeong
-categories: etc
+categories: Let's git it started
 banner:
   image: https://bit.ly/3wvZC5y
   opacity: 0.618
