@@ -237,9 +237,9 @@ lang: "ko" # default lang is en
 
 # Build settings
 # highlighter: none
-markdown: GFM
+markdown: kramdown
 kramdown:
-  input: GFM
+  input: kramdown
 
 plugins:
   - jekyll-feed
