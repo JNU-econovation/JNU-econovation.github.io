@@ -237,7 +237,7 @@ lang: "ko" # default lang is en
 
 # Build settings
 # highlighter: none
-markdown: kramdown
+markdown: GFM
 kramdown:
   input: GFM
 
