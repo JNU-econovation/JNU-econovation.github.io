@@ -18,6 +18,7 @@ sidebar: []
 
 ## 4월 12일, 1차 Let's git it started를 진행했습니다.
 
+<br/>
 지난 4월 12일, 에코노베이션에서 'Let's git it started'(깃행사)를 진행했습니다. 💻
 
 1차 git 행사에서는 add, commit, push 등 git을 사용하기 위한 기본적인 명령어를 학습합니다.
@@ -26,11 +27,16 @@ sidebar: []
 
 그렇다면, 어떤 프로세스로 행사가 이뤄졌는지 알아볼까요? 👀
 
+<br/>
+<br/>
+
 ## 행사 자료 준비
 
 회장단과 git 행사 TF 3~4명(머지요정)이 행사를 준비합니다.
 
 [1차 Let's git it started 레포지토리](<https://github.com/JNU-econovation/Let-s-git-it-started/tree/2024-1/1st_Let_s_git_it_started(Git_tutorial)>)
+
+<br/>
 
 **준비 자료**
 
@@ -39,6 +45,8 @@ sidebar: []
 3. 발표 자료: 행사 시간에 발표에 사용할 자료
 
 위의 자료들은 위의 레포지토리에서 모두 확인할 수 있습니다.
+
+<br/>
 
 ## 행사 당일
 
@@ -52,7 +60,9 @@ sidebar: []
 
 | <img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/102566546/30c7ab3c-3cc3-4a41-bb08-84247d7b88cd"> | <img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/102566546/22863b19-c92d-48f0-90b9-0cae505da532"> |
 
-<p style="font-size:0.9rem">부회장님의 이론 설명 시간!</p>
+<p>부회장님의 이론 설명 시간!</p>
+
+<br/>
 
 ### 실습 시간
 
@@ -64,7 +74,7 @@ git 명령어에 대한 학습이 끝났다면, 미리 작성해온 자기소개
 
 <img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/102566546/06350727-c5aa-4f91-9720-5f8c9d7ac436">
 
-<p style="font-size:0.9rem">열심히 참여하는 에코노베이션 회원들😎</p>
+<p>열심히 참여하는 에코노베이션 회원들😎</p>
 
 ### git 행사의 규칙
 
@@ -76,6 +86,9 @@ git 명령어에 대한 학습이 끝났다면, 미리 작성해온 자기소개
 <img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/102566546/a5ba7ed8-71b1-4609-af2f-ea7e09104890">
 
 자기소개에 코멘트를 달며 회원들끼리 자유롭게 이야기하고, 친해지는 시간을 가집니다😊
+
+<br/>
+<br/>
 
 ## 2차 git 행사 to be continued ...
 
