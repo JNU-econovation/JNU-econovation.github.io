@@ -6,12 +6,6 @@ author: baegyeong
 categories: Let's_git_it_started
 banner:
   image: https://bit.ly/3wvZC5y
-  opacity: 0.618
-  background: "#000"
-  height: "100vh"
-  min_height: "38vh"
-  heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
-  subheading_style: "color: gold"
 tags: git github event
 sidebar: []
 ---
