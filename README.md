@@ -15,19 +15,9 @@ layout: post
 title: **title 작성**
 subtitle: **subtitle 작성**
 author: **작성자 작성**
-categories: **카테고리 작성**
+categories: **카테고리 작성, 띄어쓰기가 있는 경우 언더바(_)로 작성**
 banner: **홈화면에 비디오 혹은 이미지를 추가하려면 작성**
-  video: https://vjs.zencdn.net/v/oceans.mp4
-  loop: true
-  volume: 0.8
-  start_at: 8.5
   image: https://bit.ly/3xTmdUP
-  opacity: 0.618
-  background: "#000"
-  height: "100vh"
-  min_height: "38vh"
-  heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
-  subheading_style: "color: gold"
 tags: **태그 작성, 띄어쓰기 단위로 분리됨**
 sidebar: []
 ---
