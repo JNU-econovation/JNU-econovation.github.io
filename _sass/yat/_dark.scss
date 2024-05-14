@@ -136,9 +136,9 @@ html[data-theme="dark"] {
     }
 
     .post-content {
-      img:not(.emoji):not([raw]) {
-        background-color: #ffffff33;
-      }
+      // img:not(.emoji):not([raw]) {
+      //   background-color: #ffffff33;
+      // }
 
       hr {
         background-color: #555;
