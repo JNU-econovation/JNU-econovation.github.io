@@ -16,12 +16,12 @@ sidebar:
     if banner == nil and result.size == 0 -%} {%- include views/post-header.html
     -%} {%- endif -%} {%- include views/article.html -%} {%- assign result =
     hidden | where_exp: "item", "item == 'navigator'" -%} {%- if result.size ==
-    0 -%}
+    0 -%}{% assign medium_url = post.medium_url | default: post_url %}
     <div class="post-nav">
       {%- if page.previous -%}
       <a
         class="previous"
-        href="{{ page.previous.url | relative_url }}"
+        href="{{ medium_url }}"
         title="{{
           page.previous.title | escape }}"
         >{{ page.previous.title | escape | truncatewords: 6 }}</a
@@ -46,11 +46,12 @@ sidebar:
       <ul>
         {% assign posts = site[page.collection] | sample:4 %} {%- for post in
         posts -%} {%- assign post_item_class = "" -%} {%- if post.top -%} {%-
-        assign post_item_class = "top-post" -%} {%- endif -%}
+        assign post_item_class = "top-post" -%} {%- endif -%}{% assign
+        medium_url = post.medium_url | default: post_url %}
         <li class="{{ post_item_class }}">
           <a
             class="post-link"
-            href="{{ post.url | relative_url }}"
+            href="{{ medium_url }}"
             title="{{ post.title | escape }}"
           >
             {{ post.title | escape | truncatewords: 12 }} {%- include
