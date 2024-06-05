@@ -21,7 +21,7 @@ sidebar:
       {%- if page.previous -%}
       <a
         class="previous"
-        href="{{ medium_url }}"
+        href="{{ page.previous.url | relative_url }}"
         title="{{
           page.previous.title | escape }}"
         >{{ page.previous.title | escape | truncatewords: 6 }}</a
