@@ -1,9 +1,9 @@
 <style type="text/css" media="screen">
-.post-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  .post-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 </style>
 
 <div class="post-menu">
@@ -14,27 +14,35 @@
 <script>
   function generateContent() {
     var menu = document.querySelector(".post-menu");
-    var menuContent =  menu.querySelector(".post-menu-content");
-    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+    var menuContent = menu.querySelector(".post-menu-content");
+    var headings = document
+      .querySelector(".post-content")
+      .querySelectorAll("h1, h2, h3, h4, h5, h6");
 
     // Hide menu when no headings
     if (headings.length === 0) {
-      return menu.style.display = "none";
+      return (menu.style.display = "none");
     }
 
     // Generate post menu
-    var menuHTML = '';
+    var menuHTML = "";
     for (var i = 0; i < headings.length; i++) {
       var h = headings[i];
-      menuHTML += (
-        '<li class="h-' + h.tagName.toLowerCase() + '">'
-        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+      menuHTML +=
+        '<li class="h-' +
+        h.tagName.toLowerCase() +
+        '">' +
+        '<a href="#h-' +
+        h.getAttribute("id") +
+        '">' +
+        h.textContent +
+        "</a></li>";
     }
 
-    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+    menuContent.innerHTML = "<ul>" + menuHTML + "</ul>";
 
     // The header element
-    var header = document.querySelector('header.site-header');
+    var header = document.querySelector("header.site-header");
 
     function doMenuCollapse(index, over_items) {
       var items = menuContent.firstChild.children;
@@ -48,34 +56,35 @@
       }
 
       var activeItem = items[index];
-      var beginItem = activeItem
-      var endItem = activeItem
+      var beginItem = activeItem;
+      var endItem = activeItem;
       var beginIndex = index;
       var endIndex = index + 1;
-      while (beginIndex >= 0
-        && !items[beginIndex].classList.contains('h-h2')) {
+      while (beginIndex >= 0 && !items[beginIndex].classList.contains("h-h1")) {
         beginIndex -= 1;
       }
-      while (endIndex < items.length
-        && !items[endIndex].classList.contains('h-h2')) {
+      while (
+        endIndex < items.length &&
+        !items[endIndex].classList.contains("h-h1")
+      ) {
         endIndex += 1;
       }
       for (var i = 0; i < beginIndex; i++) {
-        item = items[i]
-        if (!item.classList.contains('h-h2')) {
-          item.style.display = 'none';
+        item = items[i];
+        if (!item.classList.contains("h-h1")) {
+          item.style.display = "none";
         }
       }
       for (var i = beginIndex + 1; i < endIndex; i++) {
-        item = items[i]
-        // if (!item.classList.contains('h-h2')) {
-          item.style.display = '';
+        item = items[i];
+        // if (!item.classList.contains('h-h1')) {
+        item.style.display = "";
         // }
       }
       for (var i = endIndex; i < items.length; i++) {
-        item = items[i]
-        if (!item.classList.contains('h-h2')) {
-          item.style.display = 'none';
+        item = items[i];
+        if (!item.classList.contains("h-h1")) {
+          item.style.display = "none";
         }
       }
     }
@@ -84,8 +93,8 @@
     doMenuCollapse(-1);
 
     // Active the menu item
-    window.addEventListener('scroll', function (event) {
-      var lastActive = menuContent.querySelector('.active');
+    window.addEventListener("scroll", function (event) {
+      var lastActive = menuContent.querySelector(".active");
       var changed = true;
       var activeIndex = -1;
       for (var i = headings.length - 1; i >= 0; i--) {
@@ -96,11 +105,11 @@
         var headerHeight = Math.floor(headerRect.height);
         var headerHeight = headerTop + headerHeight + 20;
         if (headingRect.top <= headerHeight) {
-          var id = 'h-' + h.getAttribute('id');
-          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var id = "h-" + h.getAttribute("id");
+          var a = menuContent.querySelector('a[href="#' + id + '"]');
           var curActive = a.parentNode;
           if (curActive) {
-            curActive.classList.add('active');
+            curActive.classList.add("active");
             activeIndex = i;
           }
           if (lastActive == curActive) {
@@ -111,7 +120,7 @@
       }
       if (changed) {
         if (lastActive) {
-          lastActive.classList.remove('active');
+          lastActive.classList.remove("active");
         }
         doMenuCollapse(activeIndex);
       }

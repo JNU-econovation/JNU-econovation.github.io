@@ -443,6 +443,14 @@ html {
     word-wrap: normal;
     word-break: normal;
 
+    h1 {
+      @include relative-font-size(2.4);
+
+      @include media-query($on-laptop) {
+        @include relative-font-size(2);
+      }
+    }
+
     h2 {
       @include relative-font-size(2);
 
@@ -481,6 +489,7 @@ html {
       max-height: 50vh;
     }
 
+    h1,
     h2,
     h3,
     h4,
