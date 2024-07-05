@@ -37,6 +37,30 @@ sidebar: []
 
 4. 표를 추가 하고 싶다면, `| 내용 | 내용 |` 이런식으로 하시면 됩니다. 예를들어 사진들을 표 안에 넣고 싶다면 `| <img ...> | <img ... > |` 이렇게 하시면 되고, `|` 앞뒤로 공백을 꼭 넣어주세요!
 
+## 로컬에서 실행하기
+
+> main으로 merge 되기 전에 글을 확인하고 싶다면, 로컬에서 실행해보세요.
+
+- 루비 설치
+- jekyll 설치
+  ```
+  gem install jekyll bundler
+  ```
+- 저장소 clone
+  ```
+  git clone https://github.com/JNU-econovation/JNU-econovation.github.io.git
+  ```
+- 실행
+  ```
+  jekyll serve
+  ```
+  또는
+  ```
+  bundle exec jekyll serve
+  ```
+
 ## 관련 문의
 
 문의사항이 있다면 에코노베이션 홍보부에게 문의주세요!
+
+블로그 설정 코드 변경이 필요하다면 `jekyll` `liquid 템플릿` 등을 서칭하시면 됩니다.
