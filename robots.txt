@@ -1,0 +1,1 @@
+Sitemap: https://jnu-econovation.github.io/jekyll-theme-yat/sitemap.xml
