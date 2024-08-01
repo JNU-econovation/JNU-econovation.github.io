@@ -12,7 +12,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.0" # 또는 프로젝트에서 사용하는 Ruby 버전
+          ruby-version: "3.2"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
 
       - name: Install Bundler
         run: gem install bundler
