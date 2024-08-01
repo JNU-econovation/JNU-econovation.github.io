@@ -9,6 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0" # 또는 프로젝트에서 사용하는 Ruby 버전
+
+      - name: Install Bundler
+        run: gem install bundler
+
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
