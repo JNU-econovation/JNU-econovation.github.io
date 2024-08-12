@@ -2,7 +2,7 @@
 
 // Define defaults for each variable.
 
-$base-font-family: Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$base-font-family: "Gowun Dodum", Helvetica Neue, Helvetica, Arial, sans-serif !default;
 $base-font-size: 15px !default;
 $base-font-weight: 400 !default;
 $small-font-size: $base-font-size * 0.875 !default;
@@ -14,9 +14,9 @@ $spacing-unit: 30px !default;
 $text-color: #1d1d1f !default;
 $background-color: #fff !default;
 
-$grey-color: #777 !default;
-$grey-color-light: lighten($grey-color, 40%) !default;
-$grey-color-dark: darken($grey-color, 25%) !default;
+$grey-color: #f4f4f4 !default;
+$grey-color-light: lighten($grey-color, 10%) !default;
+$grey-color-dark: darken($grey-color, 50%) !default;
 
 $white-color: #fdfdfd !default;
 
