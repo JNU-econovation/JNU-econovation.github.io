@@ -297,7 +297,7 @@ html {
   }
 
   .post-meta {
-    color: $grey-color;
+    color: $grey-color-dark;
     font-size: $base-font-size;
     margin-bottom: $spacing-unit * 0.5;
   }
@@ -352,7 +352,7 @@ html {
   }
 
   .post-text {
-    color: $grey-color;
+    color: $grey-color-dark;
     word-break: break-word;
     overflow-wrap: break-word;
     flex: 1;
@@ -432,7 +432,7 @@ html {
     }
 
     .post-meta {
-      color: $grey-color;
+      color: $grey-color-dark;
       padding-bottom: 15px;
     }
   }
@@ -523,7 +523,7 @@ html {
 
     .post-link {
       @include relative-font-size(1.075);
-      color: $grey-color;
+      color: $grey-color-dark;
 
       &:hover {
         color: darken($grey-color, 50%);
@@ -547,7 +547,7 @@ html {
 
   a {
     @include relative-font-size(1.125);
-    color: $grey-color;
+    color: $grey-color-dark;
     line-height: 15px;
     max-width: 50%;
   }
@@ -595,7 +595,7 @@ html {
 
   .post-meta {
     font-size: $small-font-size;
-    color: $grey-color;
+    color: $grey-color-dark;
   }
 }
 
@@ -682,7 +682,7 @@ html {
     }
 
     .post-meta {
-      color: #ffffffcc;
+      color: $grey-color-dark;
       padding-bottom: 1em;
     }
 
@@ -768,7 +768,7 @@ html {
 
   .post-meta {
     font-size: $small-font-size;
-    color: $grey-color;
+    color: $grey-color-dark;
   }
 
   li a {

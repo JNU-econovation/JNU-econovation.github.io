@@ -1,5 +1,5 @@
 $dark-background-color: #0e0e0e !default;
-$dark-text-color: #f3f3f3 !default;
+$dark-text-color: #ffffff !default;
 
 html[data-theme="dark"] {
   &[data-scroll-status="top"] {
@@ -36,7 +36,7 @@ html[data-theme="dark"] {
   }
 
   table {
-    color: #9d9d9d;
+    color: #d2d2d2;
 
     th {
       background-color: #050505;
@@ -108,7 +108,7 @@ html[data-theme="dark"] {
     }
 
     .post-excerpt {
-      color: $grey-color;
+      color: $grey-color-light;
     }
 
     .post-list {
@@ -125,7 +125,7 @@ html[data-theme="dark"] {
   .page-segments {
     li {
       a {
-        color: #ddd;
+        color: #b0b0b0;
       }
     }
   }
@@ -136,6 +136,8 @@ html[data-theme="dark"] {
     }
 
     .post-content {
+      color: $grey-color;
+
       // img:not(.emoji):not([raw]) {
       //   background-color: #ffffff33;
       // }
@@ -147,11 +149,17 @@ html[data-theme="dark"] {
 
     .post-related {
       & > *:first-child {
-        color: #d7d7d7;
+        color: $grey-color;
       }
 
       a:hover {
-        color: #aaa;
+        color: $grey-color-light;
+      }
+    }
+
+    .post-nav {
+      a {
+        color: $grey-color-light;
       }
     }
   }
