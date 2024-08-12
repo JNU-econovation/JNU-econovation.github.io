@@ -5,4 +5,3 @@ gemspec
 
 gem 'tzinfo'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'google-protobuf', '~> 3.25.1'
