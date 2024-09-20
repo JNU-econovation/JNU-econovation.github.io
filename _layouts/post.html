@@ -16,7 +16,7 @@ sidebar:
     if banner == nil and result.size == 0 -%} {%- include views/post-header.html
     -%} {%- endif -%} {%- include views/article.html -%} {%- assign result =
     hidden | where_exp: "item", "item == 'navigator'" -%} {%- if result.size ==
-    0 -%}{% assign medium_url = post.medium_url | default: post_url %}
+    0 -%}{% assign medium_url = post.medium_url | default: post.url %}
     <div class="post-nav">
       {%- if page.previous -%}
       <a
@@ -47,7 +47,7 @@ sidebar:
         {% assign posts = site[page.collection] | sample:4 %} {%- for post in
         posts -%} {%- assign post_item_class = "" -%} {%- if post.top -%} {%-
         assign post_item_class = "top-post" -%} {%- endif -%}{% assign
-        medium_url = post.medium_url | default: post_url %}
+        medium_url = post.medium_url | default: post.url %}
         <li class="{{ post_item_class }}">
           <a
             class="post-link"

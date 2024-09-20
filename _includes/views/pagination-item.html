@@ -11,7 +11,7 @@ assign name = 'excerpt.default_image' -%} {%- include functions.html
 func='get_value' -%} {%- assign default_image = return -%} {%- assign post_image
 = post.excerpt_image | default: post.banner.image | default: post.banner |
 default: default_image | default: '/assets/images/default-image.jpeg' -%} {%
-assign medium_url = post.medium_url | default: post_url %}
+assign medium_url = post.medium_url | default: post.url %}
 
 <li class="post-item {{ post_item_class }}">
   <h2 class="post-title">
