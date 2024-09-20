@@ -6,7 +6,7 @@ author: baegyeong
 categories: Let's_git_it_started
 banner:
   image: https://bit.ly/3wvZC5y
-tags: git github event
+tags: git github
 sidebar: []
 ---
 
