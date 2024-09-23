@@ -1,6 +1,6 @@
 {%- if include.item -%} {%- assign item = include.item -%} {%- endif -%} {%-
 assign post = item -%} {% assign date_format = site.yat.date_format | default:
-"%b %-d, %Y" %}{% assign medium_url = post.medium_url | default: post_url %}
+"%b %-d, %Y" %}{% assign medium_url = post.medium_url | default: post.url %}
 <span class="post-meta">{{ post.date | date: date_format }}</span>
 <span>
   <a class="post-link" href="{{ medium_url }}">
