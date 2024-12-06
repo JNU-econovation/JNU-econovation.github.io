@@ -10,11 +10,11 @@ IT 개발동아리 에코노베이션의 블로그입니다.
 
 **가이드**
 
-[글 작성 방법](/JNU-econovation.github.io/docs/글%20작성%20방법.md)
+[글 작성 방법](/docs/글%20작성%20방법.md)
 
-[로컬에서 실행하기](/JNU-econovation.github.io/docs/로컬에서%20실행하기.md)
+[로컬에서 실행하기](/docs/로컬에서%20실행하기.md)
 
-[블로그 설정 변경하기](/JNU-econovation.github.io/docs/블로그%20설정%20변경하기.md)
+[블로그 설정 변경하기](/docs/블로그%20설정%20변경하기.md)
 
 <br/>
 
