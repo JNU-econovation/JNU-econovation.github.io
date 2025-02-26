@@ -10,11 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 'latest'
-          bundler-cache: true
-      # Use GitHub Actions' cache to cache dependencies on servers
+      
+      - run: ruby -v  # 현재 시스템의 Ruby 버전 확인
+      - run: bundle install || bundle update
+      
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
