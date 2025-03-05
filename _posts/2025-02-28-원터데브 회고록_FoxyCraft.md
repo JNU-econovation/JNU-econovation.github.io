@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임, FoxyCraft팀"
-subtitle: "[2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임, FoxyCraft팀"
+title: "[2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임 'The Way Home', FoxyCraft팀"
+subtitle: "[2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임 'The Way Home', FoxyCraft팀"
 author: suin
 categories: "SUMMER/WINTER_DEV"
 banner:
@@ -10,7 +10,7 @@ tags: "dev"
 sidebar: []
 ---
 
-## [2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임, FoxyCraft팀
+## [2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임 'The Way Home', FoxyCraft팀
 
 ### 프로젝트 소개
 
