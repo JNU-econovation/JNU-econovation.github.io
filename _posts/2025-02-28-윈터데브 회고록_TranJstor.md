@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 웹서비스, TranJstor팀"
-subtitle: "[2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 웹서비스, TranJstor팀"
+title: "[2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 서비스 '펫브릿지', TranJstor팀"
+subtitle: "[2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 서비스 '펫브릿지', TranJstor팀"
 author: suin
 categories: "SUMMER/WINTER_DEV"
 banner:
@@ -10,7 +10,7 @@ tags: "dev"
 sidebar: []
 ---
 
-## [2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 웹서비스, TranJstor팀
+## [2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 서비스 '펫브릿지', TranJstor팀
 
 ### 프로젝트 소개
 
