@@ -2,7 +2,7 @@
 layout: post
 title: 제5회 Hello, ECONO! 리뷰
 subtitle: 지난 2월 23일에 진행되었던 5회차 Hello, ECONO!를 리뷰합니다.
-author: westzeroright
+author: westzeroright, seokho
 categories: HELLO_ECONO
 banner:
   image: https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea
