@@ -12,11 +12,7 @@ sidebar: []
 
 # 제5회 Hello, ECONO! 리뷰
 
-<img src="https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea" alt="제5회 Hello, ECONO! 썸네일" />
-
-
-
-<img src="https://github.com/user-attachments/assets/1b15e7d2-18fa-4b2c-b791-4c96d53b233c" alt="제5회 Hello, ECONO! 소개"/>
+<img src="https://github.com/user-attachments/assets/1b15e7d2-18fa-4b2c-b791-4c96d53b233c" alt="제5회 Hello, ECONO! 썸네일"/>
 
 `Hello, ECONO!`👋는 에코노 피플들이 자신의 경험을 교류하고 소통하면서, 에코노베이션으로 맺어진 인연을 이어나가고자하는 행사입니다.
 
@@ -145,3 +141,5 @@ Hello, ECONO!에서 소중한 경험 나누어주신 에코노베이션 회원�
 이를 끝으로 제5회 Hello, ECONO!에 대한 리뷰를 마치도록 하겠습니다.
 
 읽어주셔서 감사합니다!
+
+<img src="https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea" alt="제5회 Hello, ECONO! 포스터" />
