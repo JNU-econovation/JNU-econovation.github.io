@@ -2,7 +2,7 @@
 layout: post
 title: 제5회 Hello, ECONO! 리뷰
 subtitle: 지난 2월 23일에 진행되었던 5회차 Hello, ECONO!를 리뷰합니다.
-author: westzeroright
+author: westzeroright, seokho
 categories: HELLO_ECONO
 banner:
   image: https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea
@@ -12,11 +12,7 @@ sidebar: []
 
 # 제5회 Hello, ECONO! 리뷰
 
-<img src="https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea" alt="제5회 Hello, ECONO! 썸네일" width="1000" />
-
-
-
-<img src="https://github.com/user-attachments/assets/1b15e7d2-18fa-4b2c-b791-4c96d53b233c" alt="제5회 Hello, ECONO! 소개" width="1000" />
+<img src="https://github.com/user-attachments/assets/1b15e7d2-18fa-4b2c-b791-4c96d53b233c" alt="제5회 Hello, ECONO! 썸네일"/>
 
 `Hello, ECONO!`👋는 에코노 피플들이 자신의 경험을 교류하고 소통하면서, 에코노베이션으로 맺어진 인연을 이어나가고자하는 행사입니다.
 
@@ -28,7 +24,7 @@ sidebar: []
 ## 1부
 1부에는 오랜만에 만난 에코노 피플들이 에코노베이션 근황에 대해 알아가는 시간을 가졌습니다.
 
-<img src="https://github.com/user-attachments/assets/87817d48-170d-4b29-81e5-ea8ecc195989" alt="제5회 Hello, ECONO! 1부" width="1000" />
+<img src="https://github.com/user-attachments/assets/87817d48-170d-4b29-81e5-ea8ecc195989" alt="제5회 Hello, ECONO! 1부" />
 
 에코노 뉴스에서 에코노베이션의 최근 소식들을 공유하는 시간을 가졌습니다! 이어서 에코노 퀴즈에서는 에코노베이션에 관한 다양한 질문을 통해 정답자를 선정하고, 에코노 굿즈를 경품으로 제공하는 즐거운 시간을 보냈습니다.
 
@@ -39,7 +35,7 @@ sidebar: []
 
 ### 생성형 AI, 기업들은 어떻게 활용하고 있을까?
 
-<img src="https://github.com/user-attachments/assets/4b944666-a050-4bda-b081-c1ffce15ca74" alt="제5회 Hello, ECONO! 박경준" width="1000" />
+<img src="https://github.com/user-attachments/assets/4b944666-a050-4bda-b081-c1ffce15ca74" alt="제5회 Hello, ECONO! 박경준"/>
 
 에코노베이션에서 AI 분야로 활동하시면서 많은 도움을 주셨던 경준님은 최근에 생성형 AI를 활용한 프로젝트인 EATCEED를 출시하셨습니다. 🎉  프로젝트를 진행 중 기술 블로그를 정리하고 다양한 밋업 행사에 참석하면서 얻은 인사이트를 이번 발표에서 공유해주셨습니다. 경준은 특히 기업들이 생성형 AI를 창의적으로 활용해 업무 효율과 생산성을 크게 향상시키는 사례들을 소개하며, 앞으로 AI가 단순한 도구를 넘어서 비즈니스 전반에 혁신을 가져올 것임을 강조했습니다.
 
@@ -74,7 +70,7 @@ AI 이미지 검수 요청 과정을 두어 운영자 검수 이전에 이미지
 
 ### 개발 실력 != 취업, 이력서 250개를 쓰고 후배들에게 하려는 뼈아픈 한마디
 
-<img src="https://github.com/user-attachments/assets/47f42682-a9cf-4227-92cd-45234714f182" alt="제5회 Hello, ECONO! 이서현" width="1000" />
+<img src="https://github.com/user-attachments/assets/47f42682-a9cf-4227-92cd-45234714f182" alt="제5회 Hello, ECONO! 이서현"/>
 
 
 서현님은 에코노베이션에서 인공지능으로 시작해 백엔드, 디자인까지 다양한 경험을 쌓으셨는데요, 자신이 겪은 취업 준비의 어려움과 깨달음을 공유해주셨습니다.  
@@ -107,7 +103,7 @@ AI 이미지 검수 요청 과정을 두어 운영자 검수 이전에 이미지
 
 
 ## 3부
-<img src="https://github.com/user-attachments/assets/f4b16d9f-037f-4da6-8e76-e9fc42106728" alt="제5회 Hello, ECONO! 3부" width="1000" />
+<img src="https://github.com/user-attachments/assets/f4b16d9f-037f-4da6-8e76-e9fc42106728" alt="제5회 Hello, ECONO! 3부"/>
 
 3부에는 에코노베이션 회원분들이 서로 이야기를 많이 나눌 수 있는 시간들을 가졌는데요. 활동 회원과 졸업 회원 모두가 어울려져 네트워킹할 수 있는 프로그램들이 있었습니다. 오랜만에 에코노베이션 회원들이 한 자리에 모인지라 처음 보는 사이도, 오랜만에 보는 사이도 있었습니다.
 
@@ -124,19 +120,19 @@ AI 이미지 검수 요청 과정을 두어 운영자 검수 이전에 이미지
 
 
 
-<img src="https://github.com/user-attachments/assets/d029765d-b2cf-4ec6-b247-7ff9102ea7a6" alt="제5회 Hello, ECONO! 3부" width="1000" />
+<img src="https://github.com/user-attachments/assets/d029765d-b2cf-4ec6-b247-7ff9102ea7a6" alt="제5회 Hello, ECONO! 3부"/>
 
 
 ## 단체 사진 촬영
 
-<img src="https://github.com/user-attachments/assets/ea6d109b-883e-4173-b119-e5272610bd2c" alt="제5회 Hello, ECONO! 단체사진" width="1000" />
+<img src="https://github.com/user-attachments/assets/ea6d109b-883e-4173-b119-e5272610bd2c" alt="제5회 Hello, ECONO! 단체사진"/>
 
 행사를 마무리하고 다 같이 단체사진을 촬영하였습니다!
 에코노베이션의 활동 회원과 졸업 회원이 모여 있는 귀한 사진이네요 ㅎㅎ
 다들 알죠? 에코노 포즈~
 
 
-<img src="https://github.com/user-attachments/assets/86c3f1a6-0d78-4f34-a5a0-764d3b88c51b" alt="제5회 Hello, ECONO! 마지막" width="1000" />
+<img src="https://github.com/user-attachments/assets/86c3f1a6-0d78-4f34-a5a0-764d3b88c51b" alt="제5회 Hello, ECONO! 마지막"/>
 
 ---
 
@@ -145,3 +141,5 @@ Hello, ECONO!에서 소중한 경험 나누어주신 에코노베이션 회원�
 이를 끝으로 제5회 Hello, ECONO!에 대한 리뷰를 마치도록 하겠습니다.
 
 읽어주셔서 감사합니다!
+
+<img src="https://github.com/user-attachments/assets/a492ff99-9b8e-4b59-988d-66ced5c6d6ea" alt="제5회 Hello, ECONO! 포스터" />
