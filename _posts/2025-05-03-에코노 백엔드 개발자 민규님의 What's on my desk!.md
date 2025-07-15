@@ -14,7 +14,7 @@ sidebar: []
 <img src="https://media.discordapp.net/attachments/1394302045053517867/1394310501235949568/f85db6afb404ab82.jpg?ex=68765858&is=687506d8&hm=d547141282c5ce24f0fb7f8c17eb0894132432e6532256067399c93f47329332&=&format=webp&width=1350&height=923" alt="표지" />
 
 <br/>
-여러분의 책상은 어떤가요?
+여러분의 책상은 어떤가요? 
 
 프로젝트 할 때는 잘하고, 놀때는 잘 노는 에코노베이션 회원들의 책상을 소개합니다. 
 
