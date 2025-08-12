@@ -5,13 +5,13 @@ subtitle: 에코노 민규님의 책상을 소개합니다.
 author: sein
 categories: What's_on_my_desk
 banner:
-  image: "https://media.discordapp.net/attachments/1394302045053517867/1394310501235949568/f85db6afb404ab82.jpg?ex=68765858&is=687506d8&hm=d547141282c5ce24f0fb7f8c17eb0894132432e6532256067399c93f47329332&=&format=webp&width=1350&height=923"
+  image: "https://velog.velcdn.com/images/sseinn/post/a871e0ca-5393-46c6-8e47-9e2ff0ba2d3d/image.jpg"
 tags: What's_on_my_desk contents
 sidebar: []
 ---
 ## 에코노 백엔드 개발자 민규님의 What's on my desk!
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310501235949568/f85db6afb404ab82.jpg?ex=68765858&is=687506d8&hm=d547141282c5ce24f0fb7f8c17eb0894132432e6532256067399c93f47329332&=&format=webp&width=1350&height=923" alt="표지" />
+<img src="https://velog.velcdn.com/images/sseinn/post/a871e0ca-5393-46c6-8e47-9e2ff0ba2d3d/image.jpg" alt="표지" />
 
 <br/>
 여러분의 책상은 어떤가요?
@@ -32,7 +32,7 @@ sidebar: []
 
 ### 민규님의 책상 컨셉을 소개해주세요.
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310664645906442/KakaoTalk_20241202_161706676_03.png?ex=6876587f&is=687506ff&hm=0ae0f379f639aaa6a88bb7fe490f372d8a54a4384f7da3e8fd678a835108fec5&=&format=webp&quality=lossless&width=1350&height=911" alt="desk info" />
+<img src="https://velog.velcdn.com/images/sseinn/post/a4f84852-83eb-41ab-a821-58aef9458dd5/image.png" alt="desk info" width = "80%" />
 
 제 책상에는 대빵만한 모니터 2대가 있는데요.
 
@@ -42,7 +42,7 @@ sidebar: []
 
 ## 큰 모니터가 시선을 사로잡네요! 👀 책상 위의 추천 아이템 3가지를 소개해주세요.
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310676444483625/KakaoTalk_20241202_161706676-removebg-preview_2.png?ex=68765882&is=68750702&hm=a1c624edb7b7c4062a9abaff002f433693514fb9cdcaff9f846139a0aa06460a&=&format=webp&quality=lossless&width=1098&height=1143" alt="모니터암" width = "30%" />
+<img src="https://velog.velcdn.com/images/sseinn/post/10f0cb68-238a-4f21-b7ad-5668d1246743/image.png" alt="모니터암" width = "50%" />
 
 먼저 **듀얼모니터**와 **모니터암**을 소개할게요.
 
@@ -50,14 +50,14 @@ sidebar: []
 또한 책상 바로 뒤의 침대에서 큰 화면으로 유튜브나 넷플릭스를 보기 위해 가까이 보거나 각도를 조절하고 싶어서 모니터암을 샀는데 대만족중입니다.
 <br/>
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310686661808248/1_-removebg-preview_1.png?ex=68765884&is=68750704&hm=030dd8711e914f78eae53acb53d4f9fd66865ff22eeceef380e311fd4074da29&=&format=webp&quality=lossless&width=1046&height=1143" alt="클립보드" width = "30%" />
+<img src="https://velog.velcdn.com/images/sseinn/post/c126b0d8-cea7-425f-864c-67ca8ba5441b/image.png" alt="클립보드" width = "50%" />
 
 **클립보드**는 진짜 잘 쓰고 있어요!
 
 문제를 풀 때나 과제를 할 때 손으로 직접 푸는 스타일이라서 종이에 글씨 쓸 일이 많은데 a4 클립보드에 용지 몇 장만 끼워서 사용하고 있습니다. 
 <br/>
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310697130918000/image_1432__1_-removebg-preview_3.png?ex=68765887&is=68750707&hm=78c80eb7675e3c5cbeafb3ced5660e8afe0dfc7989490105a33b38664f937178&=&format=webp&quality=lossless&width=540&height=682" alt="스위치봇" />
+<img src="https://velog.velcdn.com/images/sseinn/post/3480817c-d7a6-44f3-bb2a-69705c4bde0f/image.png" alt="스위치봇" />
 
 **스위치봇** 은 정말 정말 비싸게 주고 샀다고 생각했는데 너무(x100) 잘 쓰고 있습니다. 
 
@@ -68,7 +68,7 @@ sidebar: []
 
 ### 민규님이 앞으로 구매할 아이템도 알고 싶어요!
 
-<img src="https://media.discordapp.net/attachments/1394302045053517867/1394310712683135106/KakaoTalk_20241202_161706676_02_2.png?ex=6876588a&is=6875070a&hm=dedadc293936711c029c90e0c203f85d553c1ef5aa4a51240d27d90f964543c8&=&format=webp&quality=lossless&width=1208&height=1143" alt="액자" width = "30%"/>
+<img src="https://velog.velcdn.com/images/sseinn/post/0d4aa83b-6d3e-4cee-8915-88257e9e6dea/image.png" alt="액자" width = "50%"/>
 
 이런 **액자** 하나 사려고 합니다! 
 예전에 친구 집에서 봤는데 이런 액자 몇 개로 책상을 꾸며놓으니까 너무 예쁘더라구요.
