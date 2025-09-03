@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Let’s play Minecraft with Docker | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="Let’s play Minecraft with Docker">
+<meta name="author" content="capDoYeonLee">
+<meta property="og:locale" content="ko">
+<meta name="description" content="Let’s play Minecraft with Docker">
+<meta property="og:description" content="Let’s play Minecraft with Docker">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/08/31/Let-s-play-Minecraft-with-Docker.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/08/31/Let-s-play-Minecraft-with-Docker.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-08-31T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Let’s play Minecraft with Docker">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"capDoYeonLee"},"dateModified":"2024-08-31T00:00:00+09:00","datePublished":"2024-08-31T00:00:00+09:00","description":"Let’s play Minecraft with Docker","headline":"Let’s play Minecraft with Docker","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/08/31/Let-s-play-Minecraft-with-Docker.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/08/31/Let-s-play-Minecraft-with-Docker.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://github.com/user-attachments/assets/ac46f789-ab9f-4568-993f-ae25c5101d10)"></div>
+    <img class="img-placeholder" src="https://github.com/user-attachments/assets/ac46f789-ab9f-4568-993f-ae25c5101d10" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Let’s play Minecraft with Docker</h1>
+  <h2 class="post-subtitle">Let’s play Minecraft with Docker</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2024-08-31T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Aug 31, 2024
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> capDoYeonLee</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#TECH">#TECH</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h1 id="lets-play-minecraft-with-docker">Let’s play Minecraft with Docker</h1>
+
+<p>안녕하세요, 에코노베이션에서 백엔드와 인프라를 공부하는 이도연입니다.
+이번 기술 블로그는 조금 라이트하게 흥미를 유발할 수 있는 주제이니 재밌게 읽어주시면 감사하겠습니다.</p>
+
+<p>에코노베이션의 성과공유회 SUMMER DEV가 끝난 직후 회원들은 조금 여유로워져 그동안 하지 못한 게임을 다 같이 즐겨 하는 중인데요. 이 게임은 바로 어릴 적 모두가 한 번씩(?) 즐겨 해보았던 마인크래프트입니다.</p>
+
+<p>그런데 마인크래프트를 하는데 왜 Docker가 등장했을까요? 잠시 뒤 이유가 나옵니다!</p>
+
+<p>마인크래프트는 싱글 플레이와 멀티 플레이가 있습니다. 싱글 플레이는 혼자 게임을 진행하지만, 멀티플레이는 다수의 플레이어가 하나의 서버에서 함께 게임을 진행합니다.</p>
+
+<p>즉, 누군가는 서버를 호스팅해야 멀티플레이가 가능합니다. 아래 사진은 서버 호스트에게 마인크래프트 서버 오픈을 요청하는 사진입니다.</p>
+
+<ul>
+  <li>!여기서 잠깐! ‘서버는 게임을 할 수 있는 공간’, ‘호스팅은 공간을 열다’라는 느낌으로 이해하시면 편할 듯합니다.</li>
+</ul>
+
+<p><img src="https://github.com/user-attachments/assets/ff6607ea-2c72-46a0-8a15-cd25e37168c0" alt="image"></p>
+
+<p>위 사진과 같이 알 수 있듯이 서버 호스트는 항시 서버 오픈 요청이 있다면 번거롭게 서버를 직접 열어야 한다는 불편한 점이 존재했습니다. 저희는 다음과같이 불편한 점을 개선하였습니다.</p>
+
+<p>Docker를 이용해, 기존 마인크래프트 world의 데이터 손실 없이 AWS EC2 서비스 내부에 마인크래프트 서버를 띄워 원활한 멀티플레이 환경을 구축하였습니다.</p>
+
+<p>그럼 어떻게 Docker를 통해 EC2 내부에 마인크래프트 서버를 구축하였는지 소개해 드리기 전 Docker가 생소하신 분이 계실 수 있으니 간단히 소개하고 넘어가겠습니다.</p>
+
+<h2 id="docker-">Docker란 무엇일까!?</h2>
+
+<blockquote>
+  <p>Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.</p>
+</blockquote>
+
+<p>도커 공식 문서에서 도커를 소개하는 문장 중 일부를 발췌해 왔습니다.</p>
+
+<p>“Docker는 애플리케이션을 개발, 제공 및 실행하기 위한 오픈 플랫폼입니다. Docker를 사용하면 애플리케이션을 인프라에서 분리하여 소프트웨어를 신속하게 제공할 수 있습니다.”라고 설명되어 있습니다.</p>
+
+<p>이렇게 설명하면 Docker의 장점이 정확히 무엇인지 이해하기 힘들고 왜 사용해야 하는지 이해가 잘 안 가실 수 있습니다. 아래에서 조금 더 구체적으로 알아보죠!</p>
+
+<p>Docker가 주목받는 이유는 다름 아닌 기존 가상화 기술과 비교할 때 훨씬 가볍고 작으며 빠르기 때문입니다.</p>
+
+<p>기존 가상화 기술과 Docker에서 사용하는 가상화 기술이 어떤 차이점이 있는지 아래 사진을 통해 비교해 보겠습니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/d3cc8f68-ebef-40fb-9b0a-124014ccb2a6" alt="image"></p>
+
+<p>(좌 : 가상머신의 가상화 / 우 : 도커 컨테이너의 가상화)</p>
+
+<p>두 가상화 모두 실행하고자 하는 애플리케이션 프로세스 및 종속 요소와 소스 등을 패키지, 즉 이미지화하여 Host OS와 격리된 환경을 제공합니다.</p>
+
+<p>하지만 <strong>VM 가상화</strong>는 실제 Host OS와 같이 별도의 Guest OS를 두고 원하는 애플리케이션을 설치하는 하드웨어 수준의 가상화이며, <strong>Container 가상화</strong>는 VM 가상화에 비해 경량이면서 Host OS의 Kernel을 공유하는 운영체제 수준의 가상화를 구현합니다.
+이를 통해 Docker는 VM에 비해 훨씬 가벼운 이점이 있고, 원하는 애플리케이션을 빠르게 구축할 수 있는 장점이 있습니다.</p>
+
+<p>(Docker 관련해서 실습을 희망한다면 아래 링크를 추천드립니다 🙂)</p>
+
+<p><a href="https://www.docker.com/play-with-docker/">https://www.docker.com/play-with-docker/</a></p>
+
+<p>Docker 소개는 여기서 마무리하고, 이제 본격적으로 마인크래프트 서버를 어떻게 도커를 통해 구축했는지 설명해 드리겠습니다.</p>
+
+<h2 id="docker----">Docker를 통해 마인크래프트 이미지를 실행시켜보자!</h2>
+
+<p>아래 사진을 보시면 Docker Hub에 마인크래프트 서버를 실행시킬 수 있는 Docker Image가 공유된 것을 확인하실 수 있습니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/c1c2b8e9-cfa8-4504-a87b-cf11f6c0bf05" alt="image"></p>
+
+<p>해당 Docker Hub에서 docker image를 구축하고자 하는 환경에 pull 받으시면 됩니다. 저희 에코노베이션은 AWS EC2를 사용하고 있습니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/8f3da1b1-a35b-490b-9c94-e4b9d067e8e7" alt="image"></p>
+
+<p>위 사진을 보시면 <code class="language-plaintext highlighter-rouge">docker images</code> 커맨드를 통해 현재 EC2 인스턴스에 존재하는 마인크래프트 이미지를 출력해 보았습니다.</p>
+
+<p>이제 Docker Hub에서 pull 받은 image를 <code class="language-plaintext highlighter-rouge">docker run</code>커맨드를 통해 실행시킨 후 컨테이너화하면 정상적으로 마인크래프트를 이용하실 수 있습니다. 하지만 더욱 간단하게 실행시킬 수 있는 방법이 있습니다.</p>
+
+<p>바로 docker compose입니다. docker compose는 Docker에서 제공하는 멀티 컨테이너 애플리케이션을 정의하고 실행하기 위한 도구입니다. docker compose를 통해 여러 이미지를 한 번에 실행할 수 있는 간편한 도구라고 보시면 됩니다. 미리 yml 형식의 파일을 선언하여 옵션값을 미리 설정한 후 이용하실 수 있고, 저희는 아래와 같이 docker-compose.yml을 선언하였습니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/30a34cf0-924b-4d32-b876-cb9881c0dace" alt="image">
+위 선언된 매니페스트에 대해 간단히 소개해 드리겠습니다.</p>
+
+<ul>
+  <li>
+<strong>services: →</strong> 여러 서비스를 정의할 수 있는 섹션입니다.</li>
+  <li>
+<strong>mc: →</strong> 이 서비스는 <code class="language-plaintext highlighter-rouge">itzg/minecraft-server</code>라는 이미지를 사용하여 Minecraft 서버를 실행합니다. <code class="language-plaintext highlighter-rouge">mc</code>는 서비스의 이름이며, Docker Compose를 통해 이 서비스가 실행됩니다.</li>
+  <li>
+<strong>image: itzg/minecraft-server →</strong> <code class="language-plaintext highlighter-rouge">itzg/minecraft-server</code>라는 Docker 이미지를 사용합니다.</li>
+  <li>
+<strong>tty: true →</strong> 이 옵션은 컨테이너가 종료되지 않고 대기하도록 합니다.</li>
+  <li>
+<strong>stdin_open: true →</strong> 표준 입력(입력 스트림)을 열어둡니다.</li>
+  <li>
+<strong>ports: →</strong> Docker 컨테이너의 포트와 호스트 시스템의 포트를 매핑하는 설정입니다.</li>
+  <li>
+<strong>environment: →</strong> 컨테이너에서 사용할 환경 변수를 정의합니다.</li>
+  <li>
+<strong>volumes: →</strong> <code class="language-plaintext highlighter-rouge">./data:/data</code>: 호스트의 현재 디렉토리(<code class="language-plaintext highlighter-rouge">./</code>)에 있는 <code class="language-plaintext highlighter-rouge">data</code> 디렉토리를 컨테이너의 <code class="language-plaintext highlighter-rouge">/data</code> 디렉토리에 연결합니다. 이 설정을 통해 컨테이너가 종료되거나 재시작되어도 데이터가 지속됩니다.</li>
+</ul>
+
+<p>위 설정을 통해 원하는 설정값을 미리 세팅하면 추후 이미지를 실행할 때 번거롭지 않게 <code class="language-plaintext highlighter-rouge">docker compose up</code> 커맨드로 쉽게 실행시킬 수 있습니다.</p>
+
+<p>그렇다면 한번 Docker Hub에서 pull 받은 이미지가 정상적으로 작동하는지 확인해 볼까요?
+<code class="language-plaintext highlighter-rouge">docker ps</code> 커맨드로 현재 실행 중인 컨테이너 목록을 출력할 수 있습니다</p>
+
+<p><img src="https://github.com/user-attachments/assets/ad4f6ed2-cbd4-4002-ace3-7b26b73ea426" alt="image">
+사진을 자세히 보시면 25565 port를 사용하고 있는 마인크래프트 도커 컨테이너를 확인해 보실 수 있습니다. 이제 모든 준비를 마쳤으니 마인크래프트 서버에 접속해 볼까요?</p>
+
+<p>EC2 Public IP로 접근하면 구축된 마인크래프트 서버에 접근이 가능합니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/ac46f789-ab9f-4568-993f-ae25c5101d10" alt="image"></p>
+
+<p>(제가 만들고 있는 에코노 집입니다. 너무 커서 재료가 많이 들어가는 것이 단점이죠,,, )</p>
+
+<p>이번 블로그는 가벼운 주제로 Docker에 대해 알아보았습니다. 최대한 가볍게 작성하려고 하다 보니 놓친 부분도 있는데 재밌게 읽어주셨다면 감사하겠습니다.</p>
+
+<p>저희는 대부분 밤늦게까지 열심히 개발 후 새벽에 게임을 종종 하곤 합니다. 저희와 함께 코딩 후 보람찬 하루를 마인크래프트로 마무리하고 싶다면 28기 신입 모집으로 함께하시는건 어떤가요? 이 블로그가 올라갈 시기면 에코노베이션 28기 신입 모집을 진행하고 있을 것 같네요!</p>
+
+<p>저는 여기서 물러가 보도록 하겠습니다. 다음에는 더 멋진 에코노베이션 회원분이 더 퀄리티 있는 블로그로 여러분을 찾아갈 예정입니다. 다음 블로그도 많이 기대해 주세요!!</p>
+
+<h3 id="section">레퍼런스</h3>
+
+<p>docker<br>
+<a href="https://docs.docker.com/manuals/">https://docs.docker.com/manuals/</a></p>
+
+<p>docker compose overview<br>
+<a href="https://docs.docker.com/compose/">https://docs.docker.com/compose/</a></p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/hello_econo/2024/08/21/%EC%A0%9C4%ED%9A%8C-Hello,-ECONO!-%EB%A6%AC%EB%B7%B0.html" title="제4회 Hello, ECONO! 리뷰">제4회 Hello, ECONO! 리뷰</a><a class="next" href="/jekyll-theme-yat/econo_news/2024/09/23/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-9%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 9월호">에코노 뉴스 9월호</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EA%B2%A8%EC%9A%B8-%EC%95%BC%EC%9C%A0%ED%9A%8C-c5e7dcb46081" title="에코노베이션 겨울 야유회">
+            에코노베이션 겨울 야유회<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/summer/winter_dev/2023/08/30/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EC%83%81%ED%92%88-%ED%8C%90%EB%A7%A4-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8,-%EC%9E%84%EB%AC%B4%EC%99%84%EC%88%98%ED%8C%80.html" title="[2023 SUMMER DEV] 에코노베이션 내부에서 사용할 수 있는 상품 판매 웹 사이트, 임무완수팀">
+            [2023 SUMMER DEV] 에코노베이션 내부에서 사용할 수 있는 상품 판매 웹 사이트,...<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2018%EB%85%84-2%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85-%EA%B3%B5%EA%B0%9C-%EB%B0%9C%ED%91%9C-9add65177ecb" title="2018년 2학기 최종 공개 발표">
+            2018년 2학기 최종 공개 발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/econo-people-20-%EC%9D%BC%EC%83%81%EC%9D%80-%EC%A6%90%EA%B2%81%EA%B2%8C-%EC%9D%B8%EC%83%9D%EC%9D%80-%EC%A7%84%EC%A7%80%ED%95%98%EA%B2%8C-%EC%9D%B4%ED%98%81%EC%A7%84%EB%8B%98-7709b81ee5aa" title="[ECONO PEOPLE #20] 일상은 즐겁게 인생은 진지하게, 이혁진님">
+            [ECONO PEOPLE #20] 일상은 즐겁게 인생은 진지하게, 이혁진님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2025 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
