@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀">
+<meta name="author" content="seoyun">
+<meta property="og:locale" content="ko">
+<meta name="description" content="[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀">
+<meta property="og:description" content="[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-02-22T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"seoyun"},"dateModified":"2025-02-22T00:00:00+09:00","datePublished":"2025-02-22T00:00:00+09:00","description":"[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀","headline":"[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://github.com/user-attachments/assets/3e8da870-4bf2-484e-afa6-ea3955a314a3)"></div>
+    <img class="img-placeholder" src="https://github.com/user-attachments/assets/3e8da870-4bf2-484e-afa6-ea3955a314a3" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 &#39;요건 아직 정상이에요&#39;, KwaKi팀</h1>
+  <h2 class="post-subtitle">[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 &#39;요건 아직 정상이에요&#39;, KwaKi팀</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2025-02-22T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Feb 22, 2025
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> seoyun</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#dev">#dev</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="winter-dev-------------kwaki">[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 ‘요건 아직 정상이에요’, KwaKi팀</h2>
+
+<h3 id="section">프로젝트 소개</h3>
+
+<p><br>
+<img src="https://github.com/user-attachments/assets/4c66e3b5-0b52-4dd7-b822-576943c314b0" alt="KwaKi 대표사진">
+<br><br>
+‘요건 아직 정상이에요’는 냉장고에 보관된 식품을 인식하고, 유통기한을 자동으로 기록 및 추적하는 서비스입니다.</p>
+
+<p>Computer Vision 기술을 활용하여, 바쁜 현대인들이 냉장고 속 식품을 잊지 않도록 리마인더 기능을 제공해 효율적으로 관리할 수 있게 도와줍니다.</p>
+
+<p>OCR을 활용하여 실시간으로 유통기한을 인식하는 과정에서 각도와 조명에 따라 인식 결과가 왜곡되는 문제를 겪었습니다. 이를 해결하기 위해 EasyOCR, Tesseract, PaddleOCR 등 여러 OCR 엔진을 적용해 비교 테스트한 결과, PaddleOCR이 가장 안정적인 성능을 보여 최종적으로 적용하게 되었습니다.</p>
+
+<p><br><br></p>
+
+<h3 id="section-1">팀원 소개</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="https://github.com/user-attachments/assets/fd49943f-1e9a-4acd-af03-8bef5295cbcb" alt="KwaKi 현명" width="200"></th>
+      <th style="text-align: center"><img src="https://github.com/user-attachments/assets/44ad0d2a-5d89-45a7-a4d1-4461018f7758" alt="KwaKi 민주" width="200"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">AI    현명</td>
+      <td style="text-align: center">AI    민주</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br></p>
+
+<h3 id="section-2">인터뷰</h3>
+
+<p><strong>Q. Winter Dev 프로젝트에서 개발자로 참여한 경험을 설명해주세요. 어떤 역할을 맡았고, 주요 기술 스택은 어떻게 구성되었나요?</strong></p>
+
+<p>A. 저희 팀은 AI개발자 2명으로 구성되어서, AI모델 개발에 집중할 수 있었습니다. 데이터 전처리, AI모델 개발 및 학습, 성능개선, Streamlit을 통한 프론트엔드 개발 등 전반적인 것을 모두 경험할 수 있어서 개발해야 할 것들은 많았지만 여러 다양한 것들을 경험할 수 있어서 좋았던 것 같습니다. 저희가 사용한 주요 기술 스텍으로는 Python을 기반으로 Pytorch를 활용했고, 활용한 주요 모델은 YOLO, PaddleOCR 등이 있었습니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트를 하면서 어떤 문제를 겪었나요?</strong></p>
+
+<p>A. 프로젝트를 진행하며 YOLO 알고리즘을 활용해 객체 탐지 기술을 깊이 이해할 수 있었고, 이를 실제 데이터에 적용하면서 모델의 한계와 성능 개선 방법에 대해 고민할 기회가 되었습니다. 또한, 모델의 성능을 비교·분석하는 과정에서 문제 해결 능력이 향상되었습니다. 이러한 경험을 통해 전체적인 머신러닝 파이프라인을 설계하는 역량을 키울 수 있었습니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트를 하기 전 후 달라진 점이 있다면?</strong></p>
+
+<p>A. 프로젝트를 하기 전에는 Computer Vision분야에 관심은 있었지만 실제 프로젝트 경험은 적었는데, 이번 기회에 실제 모델도 학습시켜보고 최적화를 통한 성능 개선, Data Agmentation을 통한 학습 데이터 전처리, Streamlit을 통한 화면 구현 등 여러가지를 경험하면서 스스로 성장하는 기회가 되었던 것 같습니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트를 시작하는 팀에게 전해줄 꿀팁을 말해주세요!</strong></p>
+
+<p>A. YOLO모델이 사용하기 쉬운 것 같지만, 실제 웹캠을 활용한다면, 테스트 환경과 학습 환경이 달라 학습시에는 성능이 잘 나왔지만, 테스트할 때는 성능이 잘 나오지 않을 수도 있습니다. 그렇기 때문에 시간을 넉넉히 가지고 모델 학습 이후에 실제 웹캠을 활용한 환경에서 테스트해보고 학습 파라미터들을 바꿔가며 성능을 개선해 나가는 것이 좋을 것 같습니다!</p>
+
+<p><br></p>
+
+<p><strong>Q. 개발자로서의 역량 향상을 위해 어떤 노력을 기울였으며, 이 프로젝트를 통해 어떤 기술적 성장을 이루었나요?</strong></p>
+
+<p>A. 주 1회 AI 관련 주제를 다루는 스터디를 진행하며 AI의 전반적인 개념, 다양한 모델, 그리고 실제 응용 사례에 대해 학습할 수 있었습니다. 또한, YOLO의 공식 문서를 분석하며 다양한 하이퍼파라미터의 역할과 설정 방법을 공부하는 등 성능 최적화를 위해 지속적으로 노력했습니다.</p>
+
+<p><br>
+<br></p>
+
+<p>지금까지 냉장고 속 식품을 인식하고 유통기한을 자동으로 관리하는 ‘요건 아직 정상이에요’ 서비스를 개발한 KwaKi팀의 이야기를 전해드렸습니다! AI 기술을 활용해 더욱 정교한 서비스를 만들어가는 과정이 인상적이었습니다. 앞으로의 행보도 응원하겠습니다 감사합니다! 🙌</p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/summer/winter_dev/2025/02/17/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EC%A7%80%EB%AF%B8%EC%A7%80%EA%B8%B0.html" title="[2025 WINTER DEV] 운동 의욕 활성화 웹서비스 'GYMMI', 팀 지미지기">[2025 WINTER DEV] 운동 의욕 활성화...</a><a class="next" href="/jekyll-theme-yat/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EA%B8%B0%EB%AF%B9.html" title="[2025 WINTER DEV] 요리 시간 관리 서비스 '쿡타임', 기믹팀">[2025 WINTER DEV] 요리 시간 관리...</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/%EC%A0%9C-2%ED%9A%8C-innovation-hackathon-dbcc57dc172c" title="제2회 INNOVATION HACKATHON">
+            제2회 INNOVATION HACKATHON<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/econo_news/2025/04/19/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-3%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 3월호">
+            에코노 뉴스 3월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html" title="[2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 '요건 아직 정상이에요', KwaKi팀">
+            [2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스...<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%B9%9C%EA%B5%AC%EC%99%80-%ED%95%A0-%EC%9D%BC%EC%9D%84-%EA%B3%B5%EC%9C%A0%ED%95%98%EB%8A%94-%EC%96%B4%ED%94%8C-fast-boys%ED%8C%80-45c3737fedcf" title="[2021 SUMMER DEV]친구와 할 일을 공유하는 어플, Fast Boys팀">
+            [2021 SUMMER DEV]친구와 할 일을 공유하는 어플, Fast Boys팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2025 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
