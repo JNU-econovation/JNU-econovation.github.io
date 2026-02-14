@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AWS Lambda 와 S3를 활용한 이미지 업로드 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="AWS Lambda 와 S3를 활용한 이미지 업로드">
+<meta name="author" content="yunseong">
+<meta property="og:locale" content="ko">
+<meta name="description" content="AWS Lambda 와 S3를 활용한 이미지 업로드">
+<meta property="og:description" content="AWS Lambda 와 S3를 활용한 이미지 업로드">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-06-29T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="AWS Lambda 와 S3를 활용한 이미지 업로드">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"yunseong"},"dateModified":"2024-06-29T00:00:00+09:00","datePublished":"2024-06-29T00:00:00+09:00","description":"AWS Lambda 와 S3를 활용한 이미지 업로드","headline":"AWS Lambda 와 S3를 활용한 이미지 업로드","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/094c9d08-fdea-4d20-8b17-75852485f5c0)"></div>
+    <img class="img-placeholder" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/094c9d08-fdea-4d20-8b17-75852485f5c0" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">AWS Lambda 와 S3를 활용한 이미지 업로드</h1>
+  <h2 class="post-subtitle">AWS Lambda 와 S3를 활용한 이미지 업로드</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2024-06-29T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jun 29, 2024
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> yunseong</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 38 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#TECH">#TECH</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h1 id="aws-lambda--s3---">AWS Lambda 와 S3를 활용한 이미지 업로드</h1>
+
+<p>안녕하세요. 웹 프론트엔드 개발자 이윤성입니다.</p>
+
+<p>오늘은 프로젝트 과정에서 AWS Lambda와 S3를 사용하여 이미지 업로드/조회를 구현한 내용을 공유하려 합니다.</p>
+
+<p>오늘 글을 통해 AWS를 사용하는 팀에서 쉽게 이미지 업로드/조회기능을 구현하셨으면 합니다.</p>
+
+<p><br></p>
+
+<h1 id="section">개요</h1>
+
+<p>유저의 이미지 업로드와 조회기능을 구현하기 위해 여러가지 방법이 있는데요, 오늘은 AWS Lambda, S3, 그리고 Cloudfront를 활용해서 이미지 업로드/조회를 구현한 방법에 알아보겠습니다. 아래는 오늘 다뤄볼 간단한 구성도입니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/094c9d08-fdea-4d20-8b17-75852485f5c0"></p>
+
+<p>두가지 흐름으로 나눌 수 있는데요, 업로드와 조회로 구분해서 살펴보겠습니다.</p>
+
+<p><br></p>
+
+<h2 id="section-1">업로드</h2>
+
+<p>먼저, AWS Lambda는 S3에 접근해 Presigned URL을 발급하는 역할을 수행합니다. 이 점을 유의하고 단계적으로 살펴보겠습니다.</p>
+
+<ol>
+  <li>사용자는 S3에 업로드하기 위한 presigned URL을 요청합니다. 이 때, 람다 함수를 trigger하기 위해 API Endpoint를 Trigger 조건으로 구성합니다. 즉, 사용자는 presigned URL을 발급받으려면 람다함수의 Trigger 조건인 API Endpoint를 호출해야 합니다.</li>
+  <li>람다 함수가 실행된다면, 람다는 S3에 접근해 presigned URL을 발급받습니다. 그리고, 반환 받은 presigned URL을 응답 값으로 사용자에게 넘겨줍니다.</li>
+</ol>
+
+<p><br></p>
+
+<h2 id="section-2">조회</h2>
+
+<p>조회는 간단합니다. CloudFront URL을 통해 S3에 있는 객체들에 접근이 가능합니다. 이 때 사용자는 별도의 절차 필요 없이, 이미지를 조회할 수 있습니다.</p>
+
+<p><br></p>
+
+<h2 id="lambda--">Lambda 선택 이유</h2>
+
+<p>S3에 업로드를 하기 위해 여러 가지 방법들이 있었지만, Lambda를 선택한 이유는 다음과 같습니다.</p>
+
+<ol>
+  <li>
+    <p><strong>저렴합니다.</strong></p>
+
+    <p>lambda의 비용은 요청 1백만건당 0.2USD로, 굉장히 저렴합니다.</p>
+
+    <p><img width="874" alt="lambda선택이유1" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/b64d300a-8880-4dcd-a756-27c18dee38c4"></p>
+  </li>
+  <li>
+    <p><strong>S3에 보다 손쉽게 접근할 수 있습니다.</strong></p>
+
+    <p>Lambda를 사용한다면 다른 AWS 서비스에 접근이 용이합니다. 특히 제가 해결한 방법으로는 S3에 접근할 때 클라이언트 코드에 인가 정보를 주는 것이 아닌 람다에서 접근하고 엔드포인트만 노출하므로 보안적으로도 비교적 좋다고 생각합니다.</p>
+  </li>
+  <li>
+    <p><strong>서비스의 백엔드 서버에 의존도를 줄여 줍니다.</strong></p>
+
+    <p>서비스의 백엔드 서버에 이미지 업로드 로직이 있다면 이미지가 서비스 백엔드 서버를 한 번 거치는데요, 이는 현재 단계(사용자가 별로 없는 단계)에서는 별 의미가 없지만 부하가 많아진다면 서비스에 지장이 갈 수 있다고 생각이 들었습니다. 따라서 이미지 업로드를 처리하는 로직을 람다로 분리해 관리하기로 결정했습니다.</p>
+  </li>
+</ol>
+
+<p><br></p>
+
+<h2 id="cloudfront-">CloudFront 선택이유</h2>
+
+<ol>
+  <li>
+    <p><strong>캐싱의 장점을 용이하게 살릴 수 있습니다.</strong></p>
+
+    <p>이미지를 고유한 이름으로 저장한다면, 캐싱이 굉장히 유용한 전략이라고 생각합니다. 시간이 지나도 데이터가 변할리 없는 데이터이기 때문입니다. (만약 글을 수정해서 이미지가 바뀐다면 고유한 이미지 자체가 바뀌겠죠.)</p>
+
+    <p>따라서, S3에 직접 접근해 처리하는 방식보다 AWS 엣지 로케이션에서 캐싱하는 방식으로 콘텐츠 전송을 보다 더 빠르게 하기 위해 구성하였습니다.</p>
+
+    <p><img width="653" alt="클라우드프론트선택이유" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/43c6107f-8826-4348-8616-c99dffff2e3e"></p>
+
+    <p>Response Header에서 CloudFront를 통해 캐싱이 되고 있음을 알 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>압축 지원</strong></p>
+
+    <p>콘텐츠에 대한 압축을 지원합니다. 용량이 큰 파일은 압축을 해 보냄으로써, 사용자는 보다 더 빠른 이미지를 받을 수 있습니다.</p>
+  </li>
+</ol>
+
+<aside>
+⚠️ <b> 은 탄환(Sliver Bullet)은 없습니다. </b> <br>
+콘텐츠에 대한 압축은 사용자의 CPU에 부담을 줍니다. 압축의 목적은 네트워크 상으로 전송하는 절대적인 바이트를 줄여서 사용자에게 보다 더 빠르게 제공하려는 것에 목적이 있습니다. <br> 
+만약 사용자 환경이 CPU 성능이 그렇게 좋지 못한 디바이스라면, 압축을 검토해보는 것이 좋습니다. 네트워크 속도보다 CPU가 압축된 콘텐츠를 Decoding하는 시간이 더 걸릴수도 있습니다. <br>
+</aside>
+
+<p><br></p>
+
+<h1 id="s3-">1. S3 구성</h1>
+
+<p>버킷은 사용자가 이미지를 업로드(PUT) presigned URL을 발급해주어야 합니다. 따라서 버킷을 생성하고, 그에 맞는 설정을 해보겠습니다. 여기서 가장 중요한 건 S3에 접근하는 AWS 서비스 혹은 특정 서비스에게 어떻게 권한을 주어야 하는가를 주의깊게 살펴보아야 합니다. 따라하시면서 계속 나오겠지만, 아마 에러가 발생한다면 이 권한에서 그럴 확률이 상당히 높습니다.</p>
+
+<h2 id="s3--1">1.1 s3 생성</h2>
+
+<p>먼저, S3를 구성하겠습니다.</p>
+
+<p><img width="866" alt="s3생성" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/4f20773f-f3e0-4898-9c4f-afec33f56974"></p>
+
+<p>주의할 점은 퍼블릭 액세스 차단을 해제 해주세요. 여기서는 후술할 <strong>버킷 정책</strong> 을 통해 액세스를 제어할 예정입니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/7daabdb7-c6e2-45af-89ca-81d4d3f08279"></p>
+
+<p><br></p>
+
+<h2 id="cors-">1.2 CORS 설정</h2>
+
+<p>생성하였다면, 버킷의 권한에 들어가 CORS 설정을 해주어야 합니다. 실제 우리 서비스의 Origin에서 람다로 보내는 요청은 CORS 이기 때문입니다.</p>
+
+<p>따라서 이곳에서는 CORS(교차 출처 리소스 공유)에 대한 지식이 필요합니다.</p>
+
+<p><img width="1529" alt="cors설정" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/e92ec5d1-6353-4f57-8d47-01fe88d435b7"></p>
+
+<p><br></p>
+
+<h3 id="section-3">예시 코드</h3>
+
+<pre>
+  <code class="jsx">
+    [
+      {
+        AllowedHeaders: [
+          // 허용할 헤더
+          "*",
+        ],
+        AllowedMethods: [
+          // 허용할 메서드. 여기서는 PUT을 작성
+          "PUT",
+        ],
+        AllowedOrigins: [
+          // 허용할 Origin
+          "http://localhost:5173",
+          "http://localhost:3000",
+          "http://your-service-address.com",
+        ],
+        ExposeHeaders: [], // CORS 상에서 기본 헤더를 제외하고 노출시킬 헤더
+      },
+    ];
+    ```
+  </code>
+</pre>
+
+<ul>
+  <li>
+<strong>AllowedMethod</strong>
+    <ul>
+      <li>허용할 메서드를 작성합니다. 이미지 업로드 로직이므로 PUT을 허용하였습니다. 잠시 후 람다 함수 설명 구간을 참고하세요.</li>
+    </ul>
+  </li>
+  <li>
+<strong>AllowedOrigins</strong>
+    <ul>
+      <li>허용할 Origin들을 작성합니다. 팀에서 <a href="http://localhost">localhost</a> 에서 테스트 하기위해 localhost의 주소를 넣어주었습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="section-4">1.3 버킷 정책 생성</h2>
+
+<p>S3에 대해 다른 서비스들이 어떤 작업을 할수 있는지 설정해주는 정책 구간입니다. 정책 생성기를 이용하면 편리합니다. 간단히 설명하고 넘어가겠습니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/d50b826f-e58a-4701-9c60-117cc2aa0893"></p>
+
+<pre>
+  <code class="jsx">
+{
+  "Id": "Policy1718086112979",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1718086111552",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::econovation-test-bucket/*",
+      "Principal": "*"
+    }
+  ]
+}
+  </code>
+</pre>
+
+<p>중요한 부분만 살펴보겠습니다.</p>
+
+<p>Principal: 이 정책이 적용되는 주체를 의미합니다. 여기서는 제 서비스의 모든 AWS주체를 의미합니다.</p>
+
+<p><strong>Action:</strong> 허용할 액션을 정의합니다. CloudFront에서는 GetObject를, Lambda에서는 PutObject권한이 필요하니 각각 설정해주었습니다.</p>
+
+<p>Resource: 정책이 적용되는 리소스를 의미합니다. 여기서든 모든 리소스에 접근합니다.</p>
+
+<p><br></p>
+
+<h1 id="cloudfront--1">2. CloudFront 구성</h1>
+
+<p>먼저 쉬운 Cloudfront를 구성해보겠습니다. 그러기 전에 CDN에 대해 간단히 알아보겠습니다.</p>
+
+<p><br></p>
+
+<h2 id="cdn">CDN이란?</h2>
+
+<p>CDN은 Content Delivery Network의 약자로, 콘텐츠를 효율적으로 전달하기 위해 여러 노드(지점)를 가진 네트워크에 데이터를 저장해 제공하는 방식입니다.</p>
+
+<p>쉽게 말해 여러 캐시 서버를 물리적으로 가깝게(혹은 짧은 홉의) 여러 개를 두어 사용자로 하여금 보다 빠르고 효율적으로 콘텐츠를 제공받게 도와주는 것이라고 생각하면 되겠습니다.</p>
+
+<p>여기서는 S3라는 이미지 원본 저장소의 콘텐츠를 AWS의 각 노드(지점)마다 있는 CDN에 복사해 가지고 있다가 콘텐츠를 필요로 하는 사용자에게 제공하는 역할이라고 보시면 되겠습니다.</p>
+
+<p><br></p>
+
+<h2 id="cloudfront--2">2.1 cloudfront 생성</h2>
+
+<p>먼저, CloudFront를 생성합니다. 하나씩 차근차근 살펴보겠습니다. 먼저, 여기서 말하는 원본은 콘텐츠를 제공하는 “원본 저장소”를 의미합니다. CloudFront는 “원본 서버”에서 각 콘텐츠를 복사해온다는 점을 잊지 마세요.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/f0df1830-833d-44b6-addf-7564e42e05e2"></p>
+
+<p><strong>Origin domain</strong></p>
+
+<ul>
+  <li>원본을 지정합니다. 여기서는 S3입니다.</li>
+</ul>
+
+<p><strong>Origin Path</strong></p>
+
+<ul>
+  <li>여기서는 생략합니다. root에서 바로 접근할 수 있도록 간단하게 구성할 것이기 때문입니다.</li>
+</ul>
+
+<p><strong>이름</strong></p>
+
+<ul>
+  <li>원본의 이름을 입력합니다. 원하는 이름으로 구성하시면 됩니다.</li>
+</ul>
+
+<p><strong>원본 액세스</strong></p>
+
+<ul>
+  <li>원본의 객체를 CloudFront를 통해서만 조회할 수 있도록 구성합니다.</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="section-5">기본 캐시 동작</h3>
+
+<p>앞에서 CloudFront는 원본 저장소에서 콘텐츠를 “복사”해서 가지고 있는다고 하였습니다. 이를 “캐시”라고 합니다. (엄밀한 정의는 아닙니다.) 따라서 “복사한 콘텐츠를 얼마나 가지고 있어야 하나?” 에 대한 설정이라고 보시면 되겠습니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/6f8e1a03-d93f-4eed-8508-11372f8f6e1b"></p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/c4075cc4-2d47-4881-ac6f-539fa0fa9c35"></p>
+
+<p><strong>객체 압축</strong></p>
+
+<ul>
+  <li>앞서 말했듯 Gzip, brotli를 통해 객체를 압축해 전송할 수 있습니다. 보내는 콘텐츠의 용량을 줄여서 보낼 수 있게 지원합니다.</li>
+</ul>
+
+<p><strong>허용된 HTTP 방법</strong></p>
+
+<ul>
+  <li>CloudFront를 통해 조회만 하므로 GET, HEAD로만 지정해줍니다.</li>
+</ul>
+
+<p><strong>캐시 정책</strong></p>
+
+<ul>
+  <li>HTTP 캐싱에 관련된 TTL, 캐시 키등을 설정합니다. 중점은 “얼마나 캐시 설정을 할 것이냐?” 라고 보시면 됩니다.</li>
+</ul>
+
+<p><strong>가격 분류</strong></p>
+
+<p>서비스 지역을 한국만 잡고 계시다면, 아래 설정을 권장합니다. 가격 차이가 어느정도 있으니까요.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/749a7c23-d5e2-4cb1-b1d3-6c51a26f7bf5"></p>
+
+<p>나머지 설정은 프로젝트 내 요구사항에 맞게 설정하시면 됩니다. 구체적인 설정들은 생략하도록 하겠습니다.</p>
+
+<p><br></p>
+
+<h2 id="section-6">2.2 배포확인</h2>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/6d889fc5-13c2-4183-81b4-5efacf15fe2e"></p>
+
+<p>배포 확인을 하면 배포 도메인을 확인할 수 있습니다. S3에 이미지를 수동으로 업로드 해보고, 아래 주소로 확인해보세요.</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://&lt;배포된 CloudFront 도메인 이름&gt;/&lt;S3에 업로드한 파일명(확장자 포함)&gt;</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">ex) [https://dmxnsdl234.cloudfront.net/myimage.png](https://dmxnsdl234.cloudfront.net/myimage.png)</code></p>
+
+<p><br></p>
+
+<h1 id="aws-lambda">3. AWS Lambda</h1>
+
+<p>이제 이미지 조회까지 완료했습니다! 이제 이미지 업로드를 구현해보겠습니다. 앞서 말했듯 Lambda를 사용합니다. Lambda는 쉽게 말해서 한 줄로 정리가 가능합니다.</p>
+
+<p><strong>“사용자로부터 요청이 들어오면, S3에 이미지 업로드를 할 수 있는 URL을 발급받아, 사용자에게 응답으로 알려주는 초간단 서버”</strong></p>
+
+<p>지금부터 한 번 만들어 볼까요?</p>
+
+<p><br></p>
+
+<h2 id="section-7">3.1 람다 함수 생성</h2>
+
+<p>다음과 같이 구성해주세요.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/cbcbf899-1939-49b7-b463-29db0ec4735c"></p>
+
+<p><strong>함수 이름</strong></p>
+
+<ul>
+  <li>편하게 작성해주세요.</li>
+</ul>
+
+<p><strong>런타임</strong></p>
+
+<ul>
+  <li>putObject를 수행할 런타임을 골라주세요. 자기가 구현할 언어로 선택하시면됩니다. 저는 설명을 위해 범용적인 Python을 채택했습니다.</li>
+</ul>
+
+<p><strong>아키텍처</strong></p>
+
+<ul>
+  <li>현재 예제에서는 아키텍처는 큰 구애를 받지 않습니다. 우리가 구현하려는 기능과, 파이썬 자체가 명령어 집합에 구애받는 언어는 아니기 때문이죠. 성능까지 고려하기에는 그 가치가 미미하기 때문에, 저렴한 arm64를 선택해봅시다.</li>
+</ul>
+
+<blockquote>
+  <p>사설: arm64가 저렴한 이유는 뭘까요?
+<em>사설은 제 개인적인 생각입니다.</em>
+이는 아키텍처 설계와 관련있어 보입니다. arm 기반 아키텍처는 상대적으로 성능에 최적화 하기보다 전력 소비와 열 발생 등을 줄이도록 설계했기 때문이라고 생각합니다.</p>
+</blockquote>
+
+<p>여기까지 왔다면 성공입니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/6135f66c-0acb-4bf0-9219-32ec280e7edd"></p>
+
+<p><br></p>
+
+<h2 id="section-8">3.2 업로드 기능 구현</h2>
+
+<p>업로드 기능은 AWS SDK 에 접근할 수 있는 라이브러리인 boto3 를 사용합니다. boto3에 대한 설명은 따로 적지 않겠습니다.</p>
+
+<p>lambda_function에 아래와 같이 작성해주세요. 코드에 주석으로 설명이 첨부되어 있습니다!</p>
+
+<p>제가 이렇게 작성했지만, 저보다 더 서버로직을 잘 작성하시는 여러분은 본인 언어에 맞게 구현하시면 됩니다 :)</p>
+
+<p>코드를 읽어보며 사용자가 어떤 요청을 보내야 하는지, 어떤 응답을 받아야하는지 주의하며 읽어주세요.</p>
+
+<pre>
+  <code class="python">
+    import json
+    import boto3
+    import uuid
+
+    # Configure S3 client
+    s3 = boto3.client('s3')
+
+    def lambda_handler(event, context):
+
+
+    # 파일 확장자를 알기 위해 커스텀 HTTP를 추가하였습니다.
+    fileExtension = event.get('headers').get('x-extension');
+
+    # 모니터링의 로그에 남습니다. 생략하셔도 됩니다.
+    print(event);
+    print(fileExtension);
+
+    # S3 버킷명을 작성해주세요.
+    bucket_name = 'econovation-test-bucket'
+
+    # 파일명을 유니크한 이름으로 짓기 위해 uuid를 사용합니다.
+    key = f'{uuid.uuid4()}.{fileExtension}'
+
+    # S3로부터 pre-signed URL을 발급 받는 과정입니다.
+
+    presigned_url = s3.generate_presigned_url(
+    ClientMethod='put_object', # 여기서 putObject를 사용합니다. 아마 안된다면 정책 설정에 문제가 있을 확률이 높습니다.
+    Params={
+      'Bucket': bucket_name,
+      'Key': key,
+      'ContentType': f'application/{fileExtension}', # Set the Content-Type for MIME type
+    },
+
+    ExpiresIn=3600, # URL 만료 시간을 설정합니다. 저는 1시간으로 설정했습니다!
+    HttpMethod='PUT'
+    );
+
+
+    # 클라이언트에게 보내주는 응답 값 입니다.
+    # 예제에서는 에러 처리에 대한 내용은 다루지 않겠습니다 :(
+    response = {
+      'statusCode': 200,
+      'headers': {
+      'Access-Control-Allow-Origin': '*'
+      },
+      'body': json.dumps({
+      'presignedUrl': presigned_url,
+      'key': key
+      })
+    }
+
+    return response
+  </code>
+</pre>
+
+<p>다 작성하셨나요? 그렇다면 “Deploy”를 눌러주세요. 그렇다면 정상적으로 업로드 되었음을 확인할 수 있습니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/f86dd668-3b2c-4fc8-9c38-45f9eec06cbf"></p>
+
+<aside>
+💡 Test를 통해 실제 사용자가 요청을 보내는 것처럼 테스트를 해볼 수 있습니다! 관심있으신 분들은 AWS의 [Testing Lambda function](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/testing-functions.html) 을 참고해보세요!
+
+</aside>
+
+<p><br></p>
+
+<h3 id="section-9">실행 역할 설정</h3>
+
+<p>구성 → 실행역할→ 역할이름을 클릭합니다. (역할 이름이 없다면 하나 생성하시기 바랍니다.)</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/8be39df9-a1b9-4ae8-877e-a2b858236fe2"></p>
+
+<p>권한추가 → 인라인 정책 생성을 클릭합니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/6c4bff10-0b58-4ae2-9b18-e16e858b6630"></p>
+
+<p><br></p>
+
+<h3 id="section-10">권한 지정</h3>
+
+<p>S3와 PutObject를 선택하고 다음을 누릅니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/dd6b8861-e127-4bf7-a050-9668da37bb4b"></p>
+
+<p>알맞게 정책이름을 작성하고 생성합니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/0ee5acdb-2a00-4a2f-b8fc-8789c13f71d3"></p>
+
+<p><br></p>
+
+<h1 id="api-gateway-trigger">4. API Gateway Trigger</h1>
+
+<p>클라이언트에게 람다 함수를 호출하기 위한 API를 제공해야합니다. 이를 API Gateway를 통해 람다함수를 Trigger할 수 있는데요,</p>
+
+<p>람다함수 → 구성 → 트리거 혹은 다이어그램의 트리거 추가 버튼을 누릅니다.</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/5c7ca720-4fe3-4889-ad50-852fec1ae787"></p>
+
+<p>다음과 같이 설정해시면됩니다. 이 부분은 쉽기 때문에 따로 설명은 생략하도록 하겠습니다. 도메인이 다르다면 당연하게도 CORS 설정을 (예)로 해주시길 바랍니다!</p>
+
+<p><img src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/c15cf243-be27-4bb7-8502-c48983de1287"></p>
+
+<p>그렇다면 이렇게 api 엔드포인트가 나오게 됩니다. 이제 프론트엔드에서 업로드 서비스를 구현해볼까요?</p>
+
+<p><br></p>
+
+<h2 id="cors--1">CORS 설정</h2>
+
+<p>아까 lambda의 코드에서 custom 헤더가 있었음을 기억하시나요? 확장자를 파악하기 위해서 있는 건데요, 그래서 CORS상에서도 이 헤더를 추가해주어야 합니다.</p>
+
+<p>API Gateway → 좌측 CORS에 들어가 허용할 Header를 삽입해주세요.</p>
+
+<p><img width="1529" alt="cors설정" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/944da943-5835-44e8-ad0c-b9edbebec2fe"></p>
+
+<p><br></p>
+
+<h1 id="section-11">5. 프론트엔드 구현</h1>
+
+<p>이 문서에서는 React + Vite로 간단히 시연해보겠습니다.</p>
+
+<aside>
+💡 이 문서에서는 유지보수를 위한 코드, 안전한 코드보다 이해를 돕기위해 절차적으로 작성해보겠습니다. 수없는 매직넘버들이 난무할 것이며…(_ _) 실제 프로덕션에 담는 코드는 이 코드 그대로 작성하기 보다 개선해보시기 바랍니다. 특히 도메인 자체를 깃 호스팅 사이트에 올리는 건 위험할 수 있습니다.
+따라서.. 어떻게 돌아가는지에 집중해서 읽어주시기 바랍니다.
+
+</aside>
+
+<p><br></p>
+
+<h2 id="presigned-url----">presigned URL 발급 및 업로드 로직</h2>
+
+<pre>
+  <code class="tsx">
+    // api.ts
+    import axios, { RawAxiosRequestHeaders } from "axios";
+
+    export const imgUploadAxiosInstance = axios.create({
+      baseURL: "https://your-lambda-execute-url.com",
+    });
+
+    // MIME Type을 지정해줍니다.
+    const generateHeaderForPresignedUrl = (
+      key: keyof RawAxiosRequestHeaders,
+      extension: string
+    ): RawAxiosRequestHeaders =&gt; {
+      return {
+        [key]: `application/${extension}`,
+      };
+    };
+
+    // lambda를 호출해 presigned URL을 발급받습니다.
+    export const getPresignedUrl = async (extension: string) =&gt; {
+      const response = await imgUploadAxiosInstance.get(
+        `/your-lambdda-trigger-endpoint`,
+        {
+          headers: {
+            ...generateHeaderForPresignedUrl("Content-Type", extension),
+            "x-extension": extension,
+          },
+        }
+      );
+      return response.data as { presignedUrl: string };
+    };
+
+    // 발급받은 Presigned URL을 통해 PutObject를 수행합니다.
+    export const putImageToS3 = async (
+      presignedUrl: string,
+      file: File,
+      extension: string
+    ) =&gt; {
+      const instance = axios.create();
+
+      return await instance.put(presignedUrl, file, {
+        headers: generateHeaderForPresignedUrl("Content-Type", extension),
+      });
+    };
+  </code>
+</pre>
+
+<p><br></p>
+
+<h3 id="hooks">hooks</h3>
+
+<pre>
+  <code class="tsx">
+    // useImageUpload.ts
+    import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+    import { getPresignedUrl, putImageToS3 } from "./api";
+
+    // 파일의 확장자를 가져옵니다. (매우 러프하게...)
+    const getFileExtension = (file: File) =&gt; {
+      const { name } = file;
+      return name.split(".")[1];
+    };
+
+    // 업로드 하는 비동기 로직을 구현합니다.)
+    const handleUpload = async (
+      file: File,
+      setFileNameList: Dispatch&lt;SetStateAction&lt;string[]&gt;&gt;
+    ) =&gt; {
+      // 1. extension을 찾아옵니다.
+      const extension = getFileExtension(file);
+      // 2. presigned URL을 발급받습니다.
+      const presignedBody = await getPresignedUrl(extension);
+      try {
+        // 3. 받아온 presigned URL을 통해 S3에 업로드합니다.
+        await putImageToS3(presignedBody.presignedUrl, file, extension);
+        const url = new URL(presignedBody.presignedUrl);
+        // 업로드하고 파일명으로 이미지 조회가 되는지 확인하기 위한 로직
+        const fileName = url.pathname.slice(1);
+        setFileNameList((prev) =&gt; [...prev, fileName]);
+      } catch (e) {
+        alert("이미지 업로드에 실패하였습니다. 잠시 후 다시 시도 해보세요.");
+      }
+    };
+
+    const useImageUpload = () =&gt; {
+      const [fileNameList, setFileNameList] = useState&lt;string[]&gt;([]);
+
+      const onUploadFile = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+        if (!event.target.files) return;
+        const file = event.target.files[0];
+        handleUpload(file, setFileNameList);
+      };
+
+      return { onUploadFile, fileNameList };
+    };
+
+    export default useImageUpload;
+  </code>
+</pre>
+
+<p><br></p>
+
+<h3 id="component">component</h3>
+
+<pre>
+  <code class="tsx">
+    import useImageUpload from "./useImageUpload";
+
+    const CLOUDFRONT_URL = "https://your.cloudfront.net";
+    function App() {
+      const { onUploadFile, fileNameList } = useImageUpload();
+
+      return (
+        &lt;&gt;
+          &lt;div&gt;
+            &lt;input
+              onChange={onUploadFile}
+              type="file"
+              accept="image/png, image/jpeg, image/jpg"
+            /&gt;
+
+            &lt;div&gt;
+              {/* CloudFront URL과 fileName의 조합으로 찾아옵니다. */}
+              {fileNameList.map((fileName) =&gt; (
+                &lt;img key={fileName} src={`${CLOUDFRONT_URL}/${fileName}`} alt="" /&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/&gt;
+      );
+    }
+
+    export default App;
+
+  </code>
+</pre>
+
+<p><br></p>
+
+<p>완성입니다! 실제로 이미지가 잘 올라오고, 또 CloudFront를 통해 잘 조회되는지 살펴보세요.</p>
+
+<p>람다호출, 이미지 업로드 잘 되는 걸 확인할 수 있네요 😄</p>
+
+<p><img width="1349" alt="에코노" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/03e0c5af-6483-4ea6-ad18-fefba6186528"></p>
+
+<p>이미지 조회 또한 잘 되는 것을 확인할 수 있습니다 😎</p>
+
+<p><img width="831" alt="이미지조회" src="https://github.com/JNU-econovation/JNU-econovation.github.io/assets/125952146/7e840f37-f96e-406b-a4b2-062b3705b80c"></p>
+
+<p><br></p>
+
+<h2 id="section-12">결론</h2>
+
+<p>오늘은 이렇게 Lamdba, S3, CloudFront를 활용해 이미지 업로드/조회 하는 기능을 구현해보았습니다. 이 글을 통해 여러분들 프로젝트에 도움이 되셨기를 바라며, AWS를 더 잘 다루시기 바랍니다!</p>
+
+<p>글에 대한 오류나 오타가 있다면 언제든지 연락주세요~!</p>
+
+<p><br></p>
+
+<h2 id="section-13">참고문서</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Cross-Origin Resource Sharing (CORS)</a></p>
+
+<p><a href="https://medium.com/@brianhulela/upload-files-to-aws-s3-bucket-from-react-using-pre-signed-urls-543cca728ab8">Upload files to AWS s3 bucket from React using Pre-signed Urls</a></p>
+
+<p><a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html">Authenticating Requests: Using Query Parameters (AWS Signature Version 4)</a></p>
+
+<p><a href="https://redhat.com/ko/topics/linux/what-is-arm-processor">ARM 프로세서란?</a></p>
+
+<ul>
+  <li>아마존 서비스 공식문서</li>
+  <li>boto3 document</li>
+</ul>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/econo_news/2024/06/04/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-6%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 6월호">에코노 뉴스 6월호</a><a class="next" href="/jekyll-theme-yat/econo_news/2024/07/04/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-7%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 7월호">에코노 뉴스 7월호</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/econo-people-1-moment%ED%8C%80-%EC%97%B4%EC%8B%AC%ED%9E%88-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%99%9C%EB%8F%99-%ED%96%88%EB%8D%94%EB%8B%88-%EB%8C%80%EC%83%81-%ED%83%94%EC%96%B4%EC%9A%94-a2042cc2b0a3" title="[ECONO PEOPLE #1] - Moment팀, 열심히 에코노베이션 활동 했더니 대상 탔어요">
+            [ECONO PEOPLE #1] - Moment팀, 열심히 에코노베이션 활동 했더니 대상 탔어요<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/econo_news/2026/01/06/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-12%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 12월호">
+            에코노 뉴스 12월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-%EA%B8%B0%EB%B0%98-%EB%8F%85%EA%B1%B0%EB%85%B8%EC%9D%B8%EC%9D%98-%EC%9D%91%EA%B8%89%EC%83%81%ED%99%A9-%EA%B0%90%EC%A7%80-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%95%84%EC%9D%B4%EB%90%B4%EC%95%84%ED%8C%80-e9dc968ba8b4" title="[2021 WINTER DEV]딥러닝 영상처리 기반 독거노인의 응급상황 감지 시스템, 아이됴아팀">
+            [2021 WINTER DEV]딥러닝 영상처리 기반 독거노인의 응급상황 감지 시스템, 아이됴아팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-5%EC%A3%BC%EC%B0%A8-%EC%A3%BC%EA%B0%84%EB%B0%9C%ED%91%9C-467113f2f632" title="에코노베이션 5주차 주간발표">
+            에코노베이션 5주차 주간발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

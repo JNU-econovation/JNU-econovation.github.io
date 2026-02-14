@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>웹뷰 브리지 라이브러리 개발 기록 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="웹뷰 브리지 라이브러리 개발 기록">
+<meta name="author" content="geongyu">
+<meta property="og:locale" content="ko">
+<meta name="description" content="웹뷰 브리지 라이브러리 개발 기록">
+<meta property="og:description" content="웹뷰 브리지 라이브러리 개발 기록">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-09-16T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="웹뷰 브리지 라이브러리 개발 기록">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"geongyu"},"dateModified":"2025-09-16T00:00:00+09:00","datePublished":"2025-09-16T00:00:00+09:00","description":"웹뷰 브리지 라이브러리 개발 기록","headline":"웹뷰 브리지 라이브러리 개발 기록","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://velog.velcdn.com/images/dubu1001/post/33cd9818-804e-4b83-a65a-8f3b90fc884c/image.png)"></div>
+    <img class="img-placeholder" src="https://velog.velcdn.com/images/dubu1001/post/33cd9818-804e-4b83-a65a-8f3b90fc884c/image.png" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">웹뷰 브리지 라이브러리 개발 기록</h1>
+  <h2 class="post-subtitle">웹뷰 브리지 라이브러리 개발 기록입니다. 웹뷰와 네이티브 앱 간의 통신을 위한 라이브러리를 개발하며 겪은 문제와 해결 과정을 공유합니다.</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2025-09-16T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 16, 2025
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> geongyu</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 hour 29 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#TECH">#TECH</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h1 id="section">웹뷰 브리지 라이브러리 개발 기록</h1>
+
+<p><img src="https://velog.velcdn.com/images/dubu1001/post/33cd9818-804e-4b83-a65a-8f3b90fc884c/image.png" alt="시작"></p>
+
+<h1 id="section-1">배경</h1>
+<p>안녕하십니까? 저는 에코노베이션 26기 박건규입니다. 저는 25년도 상반기 프로젝트로 안전한 산행을 위한 앱, 산결 어플의 프론트엔드 개발을 진행하였습니다. 이 과정에서 단 한번도 해보지 못했던 앱 개발을 진행해야만 했고, 친숙한 리액트 문법을 사용할 수 있는 리액트 네이티브를 선택하게 되었습니다. 그리고 빠른 사용자 테스트 진행을 위해서 화면 대부분을 웹뷰를 통해 구현하기로 하였습니다.</p>
+
+<blockquote>
+  <p><strong>[프로젝트 산결을 소개합니다! 🙋]</strong> <br>
+여러분들은 등산을 좋아하시나요 🙂 많은 2~30대 분들은 등산 비율이 높지 않지만, 사고 비율은 다른 연령대에 비해서 가장 높다는 사실 알고계신가요? 저희는 이 문제점에 주목하여, 등산을 즐겁게 할 수 있도록 하면서 등산 과정에서 발생할 수 있는 사고 예방, 감지 및 구조 요청을 돕는 앱, 산결을 개발하고 있습니다! <br>
+[앱 깃허브 링크]:(https://github.com/JNU-econovation/Soop-APP) <br>
+[웹 깃허브 링크]:(https://github.com/JNU-econovation/Soop-WEB) <br>
+현재는 앱과 웹을 <a href="https://github.com/JNU-econovation/Sangyeol-FE">모노레포</a>로 관리하고있습니다! <br></p>
+</blockquote>
+
+<h1 id="section-2">웹뷰와 네이티브 앱 간의 통신</h1>
+
+<p>우선 웹뷰를 띄우기 위해서는 <a href="https://github.com/react-native-webview/react-native-webview">Webview 라이브러리</a>를 사용하는 방법이 가장 대중적입니다.</p>
+
+<p>웹뷰를 사용할 때에는 Webview 컴포넌트에 보여주고 싶은 웹의 주소를 source로 넘겨주시면 됩니다.</p>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/%EC%9B%B9%EB%B7%B0%EB%9E%80.png?raw=true" alt="웹뷰란?"></p>
+
+<p>JS는 웹과 앱 두 환경에서 돌아가지만, 결국 하나의 서비스를 이루게 됩니다. 이에 따라서 하나의 통일된 사용자 경험을 주는 것이 중요합니다. 이를 위해 웹과 앱은 서로 필요한 정보들을 소통해야 하는 상황들이 많이 발생하게 됩니다. 웹뷰와 네이티브 앱 간의 통신을 위해서는 아래와 같은 방식을 사용하실 수 있습니다.</p>
+
+<h2 id="section-3">네이티브 앱에서 웹뷰로 메시지 보내기</h2>
+
+<p>네이티브 앱에서 웹뷰로 메시지를 보내려면 <code class="language-plaintext highlighter-rouge">WebView</code> 컴포넌트의 <code class="language-plaintext highlighter-rouge">postMessage</code> 메서드를 사용하실 수 있습니다. 이 메서드는 웹뷰 내의 JavaScript 코드로 메시지를 전달합니다. 예를 들어, 네이티브 앱에서 다음과 같이 메시지를 보내실 수 있습니다.</p>
+
+<pre>
+  <code class="jsx">
+    import React from 'react';
+    import { WebView } from 'react-native-webview'; 
+    import { View, Button } from 'react-native';
+
+    const MyWebView = () =&gt; {
+      const webviewRef = React.useRef(null);
+
+      const sendMessageToWebView = () =&gt; {
+        if (webviewRef.current) {
+          webviewRef.current.postMessage('Hello from Native App!');
+        }
+      };
+
+      return (
+        &lt;View style=&gt;
+          &lt;WebView
+            ref={webviewRef}
+            source=
+          /&gt;
+          &lt;Button title="Send Message to WebView" onPress={sendMessageToWebView} /&gt;
+        &lt;/View&gt;
+      );
+    };
+    export default MyWebView;
+  </code>
+</pre>
+
+<p>이렇게 보낸 메시지는 웹 내에서 <code class="language-plaintext highlighter-rouge">window.ReactNativeWebView.postMessage</code>를 통해 받으실 수 있습니다.</p>
+
+<pre>
+  <code class="jsx">
+    // 웹 내에서 메시지 받기
+    window.addEventListener('message', (event) =&gt; {
+      console.log('Received message from Native App:', event.data);
+    });
+  </code>
+</pre>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/appToWeb.png?raw=true" alt="앱에서 웹으로 보내기"></p>
+
+<p>반대로 웹에서 네이티브 앱으로 메시지를 보내는 경우는 postMessage를 사용하시면 됩니다.</p>
+
+<pre>
+  <code class="jsx">
+    window.ReactNativeWebView.postMessage('Hello from Web!');
+  </code>
+</pre>
+
+<p>앱에서는 이를 Webview의 <code class="language-plaintext highlighter-rouge">onMessage</code> 이벤트 핸들러를 통해 받으실 수 있습니다.</p>
+
+<pre>
+  <code class="jsx">
+    &lt;WebView
+      ref={webViewRef}
+      source=
+      onMessage={(event) =&gt; {
+        console.log('Received message from WebView:', event.nativeEvent.data);
+      }}
+  </code>
+</pre>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/webToApp.png?raw=true" alt="웹에서 앱으로 보내기"></p>
+
+<p>웹과 앱이 서로 메시지를 주고 받는 것은 정말 코드 몇 줄로 간단히 구현이 가능합니다. 다만 이를 그대로 사용할 수는 없었는데요. 실제 서비스를 개발하다보면 이보다 훨씬 많은 경우를 고려해야만 합니다.!</p>
+
+<h1 id="section-4">기존 이벤트 기반 통신의 문제점들</h1>
+
+<p>아직 앱 개발을 많이 해보지 않은 짧은 식견으로 생각한 문제점은 다음과 같습니다.</p>
+
+<ol>
+  <li>
+    <p>웹과 앱 간의 메시지 형식을 정하기 어렵습니다.</p>
+  </li>
+  <li>
+    <p>이벤트 기반 코드들은 전부 리액트와 생명 주기가 맞지 않는 사이드 이팩트들입니다.</p>
+  </li>
+  <li>
+    <p>앱에서 웹으로 메시지를 보내는 경우, 웹이 로딩되지 않은 상태에서 메시지를 보내면 메시지를 받지 못하게 됩니다.</p>
+  </li>
+  <li>
+    <p>서로간의 통신에서 response가 존재하지 않아 전달이 올바르게 되었는지, 혹은 에러가 발생했는지를 알 수가 없습니다.</p>
+  </li>
+</ol>
+
+<p>분명히 저뿐만 아니라 다른 개발자분들도 동일하게 느꼈을 것이라 생각합니다. 그러하여 다양한 라이브러리를 찾아보았는데, 생각보다 라이브러리가 많지 않았습니다. 정말 잘 만들어진 <a href="https://github.com/gronxb/webview-bridge">FE conf 에서 발표된 라이브러리</a>가 있었지만, 앱을 처음 개발하는 저의 입장에서는 가볍게 제게 필요한 기능만을 제공하는 저만의 코드가 있기를 바랐습니다. 그리하여 직접 라이브러리를 개발하기로 하였습니다.</p>
+
+<p>(새로운 라이브러리를 또 공부해서 사용하는 것보다는 제가 필요한 기능만을 가진 가벼운 라이브러리를 만드는 것이 시간적, 개발적으로나 훨씬 비용이 적게 들 것으로 예상하였습니다!)</p>
+
+<h1 id="section-5">라이브러리 개발</h1>
+
+<h2 id="section-6">라이브러리의 목표</h2>
+
+<p>라이브러리의 목표는 웹과 네이티브 앱 간의 통신 로직을 간단하게 작성할 수 있도록 도와주는 것입니다. 이를 위해 다음과 같은 기능을 제공하고자 합니다.</p>
+
+<ol>
+  <li>
+    <p><strong>메시지 타입 정의</strong>: 웹과 앱 간의 메시지 타입을 정의할 수 있는 기능을 제공합니다. 정한 타입을 통하여 메시지의 형식을 일관되고, 타입 세이프하게 관리할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>리액트 훅 사용</strong>: 리액트 훅을 사용하여 메시지를 보내고 받을 수 있는 간단한 API를 제공합니다. 이를 통해 개발자는 복잡한 사이드 이팩트 관리 없이 메시지를 주고 받을 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>응답 처리</strong>: 메시지를 보낸 후 응답을 받을 수 있는 기능을 제공합니다. 이를 통해 메시지가 올바르게 전달되었는지 확인할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>에러 처리</strong>: 메시지 전송 중 발생할 수 있는 에러를 처리할 수 있는 기능을 제공합니다. 이를 통해 개발자는 에러 상황을 쉽게 처리할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>통신 가능 시점 관리</strong>: 웹이 로딩된 후에만 메시지를 보낼 수 있도록 관리합니다. 이를 통해 웹이 로딩되지 않은 상태에서 메시지를 보내는 문제를 해결할 수 있습니다.</p>
+  </li>
+</ol>
+
+<p>위의 목표들은 흔히 웹에서 생각할 수 있는 HTTP 통신과 유사합니다. 그래서 이를 구현하기 위해서는 HTTP 통신을 구현하는 것과 유사한 방식으로 개발하면 될 것이라 생각했습니다.</p>
+
+<h2 id="section-7">통신 가능 시점 확인하기</h2>
+
+<h3 id="section-8">해결해야하는 문제 상황</h3>
+
+<p>개발하다보면 웹을 띄우자마자 특정 동작을 해야하는 경우가 존재합니다. 뿐만 아니라 어느 시점부터 웹과 앱 간의 통신이 가능한지 확인해야만 안정적으로 메시지를 주고 받을 수 있을 것입니다.</p>
+
+<p>처음에는 단순히 웹뷰가 로딩된 후(Webview 컴포넌트의 onLoad 사용)에만 메시지를 보내는 방법을 생각했습니다. 하지만 이는 웹뷰가 로드되었다는 것을 알려줄 뿐 정말로 앱에서 보낸 메시지를 받을 수 있는 Next.js의 js가 올바르게 로드되었는지를 나타낼 수는 없었습니다. 그렇기에 대부분의 경우 올바르게 동작하지 않았습니다.</p>
+
+<h3 id="tcp-3-way-handshake">아이디어 : TCP 3-Way-Handshake</h3>
+
+<p>어떻게 이 문제를 해결할 수 있을까 고민하다가 TCP 통신을 생각해보았습니다.</p>
+
+<ul>
+  <li>통신을 시작하는 주체가 먼저 SYN 세그먼트를 보냅니다.</li>
+  <li>상대방은 SYN 세그먼트를 받고, SYN/ACK 세그먼트를 보냅니다.</li>
+  <li>마지막으로 주체는 ACK 세그먼트를 보내며 연결을 완료합니다. 이때 ACK와 동시에 데이터를 보낼 수 있습니다.</li>
+</ul>
+
+<p>이러한 3-Way-Handshake 과정을 통해 각자 통신에 필요한 준비가 완료되었음을 알 수 있습니다.</p>
+
+<p>이를 웹뷰 통신 로직에 적용해볼 수 있지 않을까요?</p>
+
+<h3 id="section-9">개발 과정</h3>
+
+<p>처음에는 웹뷰에 javascript를 삽입(inject)하여, 웹뷰가 로딩되면 바로 메시지를 보내는 방식으로 구현하고자 하였습니다. 
+이를 통해서 굳이 웹에서는 앱과의 통신에 대해서 신경쓰지 않으며, 앱 내에서만 통신을 관리할 수 있을 것이라 생각했습니다.</p>
+
+<pre>
+  <code class="jsx">
+    export const WEB_VIEW_HANDSHAKE = `
+    (() =&gt; {
+      alert('웹뷰 핸드쉐이크 시작');
+      const webviewReady = (syn, ack) =&gt; window.ReactNativeWebView.postMessage(JSON.stringify({ name: 'webview-handshake', meta: {syn, ack} }));
+
+      webviewReady(1, 0);
+
+      // 만약 웹뷰 요청을 보낸 이후 1초 이내에 응답을 받지 못하면 한번 더 요청을 보낸다.
+      // 1초로 한 이유는 일반적인 리눅스 시스템에서 TCP 연결을 위한 SYN 타임아웃이 1초로 설정되어 있기 때문이다.
+      let timeoutId = setTimeout(() =&gt; {
+        webviewReady(1, 0);
+      }, 1000);
+
+      function handleMessage(event) {
+        try {
+          const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+          
+          if (data.name === 'webview-handshake' &amp;&amp; data.meta.syn === 1 &amp;&amp; data.meta.ack === 1) {
+            webviewReady(0, 1);
+            
+            if (timeoutId) {
+              clearTimeout(timeoutId);
+            }
+
+            window.removeEventListener('message', handleMessage);
+          }
+        } catch (error) {
+          console.error('메시지 처리 중 오류 발생:', error);
+        }
+      }
+      window.addEventListener('message', handleMessage);
+      return true;
+    })()
+    `;
+  </code>
+</pre>
+
+<p>하지만 이 방법은 웹뷰가 로딩되기 전에 메시지를 보내는 문제가 발생했습니다. 이를 해결하기 위해서 웹뷰가 완전히 로딩되어 js가 동작할 수 있는 시점을 직접 웹에서 알려주도록 하였습니다. 웹에서 앱으로 메시지를 보낸다는 것은, javascript가 완전히 로딩되었다는 것을 의미하며, 그 시점 이후부터는 앱으로부터 메시지를 받을 수 있다는 것을 의미합니다. (Next를 기준으로 생각해보면, hydration이 완료된 이후(window를 사용할 수 있는 시점부터)라고 생각할 수 있습니다.)</p>
+
+<p>HTTP로 생각해보면 앱은 항상 실행되고 있는 서버이고, 웹은 중간중간 간헐적으로 접속을 하고 끊기는 클라이언트라고 생각할 수 있습니다. 즉 어쩌면 웹이 먼저 메시지를 보내는 것은 자연스러운 것입니다.</p>
+
+<pre>
+  <code class="jsx">
+    // 3-way-handshake 로직이 추가된 Webview 컴포넌트
+    const WebViewWithInjected = forwardRef&lt;WebView, WebViewWithInjectedProps&gt;(
+      ({ source, onMessage, onReadyToMessage }, ref) =&gt; {
+        const [isWebViewReady, setIsWebViewReady] = useState(false);
+        const webViewRef = useRef&lt;WebView&gt;(null);
+
+        useImperativeHandle(ref, () =&gt; webViewRef.current as WebView);
+
+        useEffect(() =&gt; {
+          if (isWebViewReady) {
+            Alert.alert("onReadyToMessage 실행");
+            onReadyToMessage?.();
+          }
+        }, [isWebViewReady, onReadyToMessage]);
+
+        const handleMessage = useCallback(
+          (event: WebViewMessageEvent) =&gt; {
+            const reqMessage = JSON.parse(event.nativeEvent.data);
+            if (reqMessage.name === "webview-handshake") {
+              if (reqMessage.meta.syn === 1 &amp;&amp; reqMessage.meta.ack === 0) {
+                webViewRef.current?.postMessage(
+                  JSON.stringify({
+                    name: "webview-handshake",
+                    meta: { syn: 1, ack: 1 },
+                  }),
+                );
+                return;
+              }
+              if (reqMessage.meta.syn === 0 &amp;&amp; reqMessage.meta.ack === 1) {
+                setIsWebViewReady(true);
+                Alert.alert("웹뷰 핸드쉐이크 완료" + isWebViewReady);
+                onReadyToMessage?.();
+                return;
+              }
+            }
+            if (onMessage) onMessage(reqMessage);
+          },
+          [onMessage],
+        );
+
+        return (
+          &lt;WebView
+            sourse={/*...*/}
+            ref={webViewRef}
+            injectedJavaScript={INJECTED_JAVASCRIPT}
+            showsHorizontalScrollIndicator={false}
+            onMessage={handleMessage}
+          /&gt;
+        );
+      },
+    );
+
+    export default WebViewWithInjected;
+  </code>
+</pre>
+
+<p>앱에서는 웹으로부터 syn 메시지를 받으면 syn/ack 메시지를 보내고, ack 메시지를 받으면 웹뷰가 준비되었다는 것을 인지합니다. 이 과정이 전부 끝나면 웹뷰가 준비되었다는 것을 인지하게 됩니다.</p>
+
+<p>웹에서는 아래처럼 구현할 수 있었습니다.</p>
+
+<pre>
+  <code class="jsx">
+    "use client";
+
+    type Flag = 0 | 1;
+
+    interface WebviewHandshake {
+      name: "webview-handshake";
+      flag: {
+        syn: Flag;
+        ack: Flag;
+      };
+    }
+
+    const TIMEOUT = 1000;
+
+    function postMessage&lt;Data&gt;(
+      message: MessageEventResponseData&lt;Data&gt; | WebviewHandshake
+    ) {
+      window.ReactNativeWebView?.postMessage(JSON.stringify(message));
+      document.ReactNativeWebView?.postMessage(JSON.stringify(message));
+    }
+
+    export default function Bridge({ onRequest }: BridgeProps) {
+      // ...앱에서 보낸 일반 메시지 처리 코드...
+
+      useEffect(() =&gt; {
+
+        // 0. Bridge컴포넌트가 로드되고 js를 실행할 수 있는 시점에서, 앱으로 syn 메시지를 보낸다. 
+        const postHandShakeMessage = (syn: Flag, ack: Flag) =&gt; {
+          postMessage({ name: "webview-handshake", flag: { syn, ack } });
+        };
+        postHandShakeMessage(1, 0);
+
+        // 앱으로 syn을 보낸 후, 1초 이내에 ack을 받지 못하면 다시 syn을 보낸다.
+        // 1초로 설정한 이유는 일반적인 리눅스 시스템에서 TCP 연결을 위한 SYN 타임아웃이 1초로 설정되어 있기 때문이다.
+        const timeoutId = setTimeout(() =&gt; {
+          postHandShakeMessage(1, 0);
+        }, TIMEOUT);
+
+        const handleMessage = (event: MessageEvent) =&gt; {
+          event.stopPropagation();
+          try {
+            // 3. 앱으로부터 받은 메시지에서 name과 flag를 추출한다. 
+            const {
+              name,
+              flag: { syn, ack },
+            } =
+              typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+
+            // 4. 핸드셰이크 과정에서 syn/ack 메시지를 기대하고 있으며, syn이 1이고 ack이 1인 메시지를 받으면 앱에서 준비가 완료되었다는 것을 인지한다.
+            // 5. 이후 ack을 보내고, 타임아웃 및 핸드셰이크 이벤트 리스너를 제거한다.
+            if (name === "webview-handshake" &amp;&amp; syn === 1 &amp;&amp; ack === 1) {
+              postHandShakeMessage(0, 1);
+
+              if (timeoutId) clearTimeout(timeoutId);
+
+              window.removeEventListener("message", handleMessage);
+            }
+          } catch (error) {
+            console.error("handshake 중 에러 발생:", error);
+            window.removeEventListener("message", handleMessage);
+          }
+        };
+
+        // 1. 웹뷰가 로딩되면 앱으로부터 메시지를 받기 위해 이벤트 리스너를 등록한다.
+        // 2. 앱으로부터 메시지를 받으면 handleMessage 함수를 호출한다.
+        window.addEventListener("message", handleMessage);
+      }, []);
+
+      return null;
+    }
+  </code>
+</pre>
+
+<p>웹에서는 우선적으로 앱으로 syn 메시지를 보내고, 앱에서 syn/ack 메시지를 받으면 ack 메시지를 보내는 방식으로 구현하였습니다. 이렇게 하면 웹뷰가 로딩된 이후에만 메시지를 보낼 수 있게 됩니다.</p>
+
+<p>이를 시퀀스 다이어그램으로 나타내면 아래와 같습니다.</p>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/handshake-process.png?raw=true" alt="handshake 다이어그램"></p>
+
+<p>실제로 아래처럼 잘 동작합니다!</p>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/handshake.gif?raw=true" alt="handshake 시연"></p>
+
+<p>관련된 pr은 <a href="https://github.com/JNU-econovation/Soop-WEB/pull/11">여기</a>에서 확인하실 수 있습니다.</p>
+
+<h2 id="section-10">나머지 문제들 해결</h2>
+
+<p>이제 웹뷰가 로딩된 이후에만 메시지를 보낼 수 있게 되었으니, 나머지 문제들을 해결해보겠습니다. 안전한 통신을 위하여 통신 가능 시점을 TCP 3-Way-Handshake로 확인하는 과정을 거쳤습니다. 이제는 이 메시지를 주고 받을 수 있도록, 실제 HTTP 통신에서 메시지를 하위 레이어의 헤더로 감싸 보내듯이 인자로 전달받은 메시지를 헤더로 감싸서 보내도록 하였습니다.</p>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/improve-handshake.png?raw=true" alt="개선된 전체 통신 다이어그램"></p>
+
+<h3 id="section-11">받을 때에는 컴포넌트로, 보낼 때에는 훅으로</h3>
+
+<p>웹뷰와 앱 간의 메시지를 주고받을 때, 받는 쪽은 컴포넌트로, 보내는 쪽은 훅으로 구현하였습니다. 이는 리액트의 컴포넌트와 훅의 사용 방식을 따르도록 하여 개발자가 쉽게 사용할 수 있도록 하였습니다.</p>
+
+<h3 id="section-12">타입 안정성을 챙기자</h3>
+
+<p>흔히 개발자가 api 명세서를 작성할 때 요청과 응답값을 팀의 취향에 맞게 정의합니다. 메시지 타입 또한 사용하는 곳에서 직접 정의할 수 있도록 하는 것이 맞다고 생각하였습니다. 정의한 타입을 지킬 수 있도록 하여 타입 세이프한 통신이 가능하게 하고자 하였습니다.</p>
+
+<p>웹의 경우 아래처럼 사용하도록 하였습니다.</p>
+
+<pre>
+  <code class="jsx">
+    // 웹에서 메시지를 보낼 때
+
+    // 요청/응답 메시지 타입을 넣어 정의한다.
+    const { request } = useBridge&lt;RequestMessage, ResponseMessage&gt;();
+
+    const sendMessage = () =&gt; {
+      request({
+        requestMessage: {
+          // 전송할 요청 메시지
+          // 이전에 정의한 메시지 타입을 따를 수 있도록 유도한다.
+        },
+        responseCallback: (response) =&gt; {
+          // 응답 메시지가 왔을 때 처리하는 콜백
+          // response는 이전에 정의한 응답 메시지 타입을 따른다.
+        },
+        onErrorCallback: (error) =&gt; {
+          // 에러가 발생했을 때 처리하는 콜백
+        },
+      });
+    };
+  </code>
+</pre>
+
+<ul>
+  <li>useBridge 훅을 통해서 요청을 보낼 수 있는 함수를 얻어오실 수 있습니다.</li>
+  <li>useBridge 훅에 요청과 응답 메시지 타입을 제네릭으로 넘겨주어, 요청과 응답 메시지의 타입을 미리 정의하실 수 있습니다.</li>
+  <li>request 함수의 경우 보낼 요청 메시지와, 요청에 대한 응답을 받았을 때 호출할 콜백, 에러가 발생했을 때 호출할 콜백을 인자로 받습니다. 각각은 이전에 정의한 메시지 타입을 따릅니다.</li>
+</ul>
+
+<pre>
+  <code class="jsx">
+    // 웹에서 메시지를 받을 때
+    &lt;BridgeRequestListener&lt;RequestMessage, ResponseMessage&gt;
+      onRequest={(requestMessage) =&gt; {
+        // requestMessage는 이전에 정의한 요청 메시지 타입을 따른다.
+        if (/*requestMessage 관련 분기 처리*/)
+          return {
+            // 응답 메시지
+          } 
+        return {
+          // 예상하지 못한 요청이 왔을 때의 응답 메시지
+        };
+      }}
+    /&gt;
+  </code>
+</pre>
+
+<ul>
+  <li>BridgeRequestListener 컴포넌트에 요청과 응답 메시지 타입을 제네릭으로 넘겨주어, 요청과 응답 메시지의 타입을 미리 정의하실 수 있습니다.</li>
+  <li>onRequest 콜백을 통해서 요청 메시지를 받으실 수 있습니다. 요청 메시지는 이전에 정의한 요청 메시지 타입을 따릅니다. 해당 콜백의 반환값은 응답 메시지가 되며, 필수적으로 응답 메시지를 반환해야 합니다.</li>
+</ul>
+
+<p>앱의 경우 아래와 같이 사용하도록 하였습니다.</p>
+
+<pre>
+  <code class="tsx">
+    // 앱에서 메시지를 보낼 때
+
+    const { ref, postMessage } = usePostMessageBridge&lt;RequestMessage, ResponseMessage&gt;();
+
+    postMessage({
+      message: {
+        // 전송할 요청 메시지
+        // 이전에 정의한 요청 메시지 타입을 따른다.
+      },
+    });
+
+    return (
+      &lt;WebviewWithBridge
+        ref={ref}
+        //...
+      /&gt;
+    );
+  </code>
+</pre>
+
+<ul>
+  <li>usePostMessageBridge 훅을 통해서 메시지를 보낼 수 있는 postMessage 함수와 ref를 얻어올 수 있습니다.</li>
+  <li>usePostMessageBridge 훅에 요청과 응답 메시지 타입을 제네릭으로 넘겨주어, 요청과 응답 메시지의 타입을 미리 정의할 수 있습니다.</li>
+  <li>postMessage 함수의 경우 보낼 요청 메시지를 인자로 받습니다. 요청 메시지는 이전에 정의한 요청 메시지 타입을 따릅니다.</li>
+  <li>ref는 Webview 컴포넌트에 전달해주셔야 합니다. 이를 통해서 Webview 컴포넌트에서 메시지를 보낼 수 있습니다.</li>
+</ul>
+
+<pre>
+  <code class="jsx">
+    // 앱에서 메시지를 받을 때 
+    &lt;WebviewWithBridge&lt;MessageEventRequestData, MessageEventResponseData&gt;
+      ref={webViewRef}
+      onBridgeMessage={(reqMessage) =&gt; {
+        // 요청 메시지를 받았을 때 처리하는 콜백
+        // reqMessage는 이전에 정의한 요청 메시지 타입을 따른다.
+        if (/*reqMessage 관련 분기 처리*/)
+          return {
+            // 응답 메시지
+          } 
+        return {
+          // 예상하지 못한 요청이 왔을 때의 응답 메시지
+        };
+      }}
+      middleware={(reqMessage: MessageEventRequestData) =&gt; {
+        // 요청 메시지에 대한 미들웨어 처리. 이는 어떤 요청 메시지가 오더라도 onBridgeMessage 콜백이 호출되기 전에 실행된다.
+        // 예를 들어, 요청 메시지의 유효성을 검사하거나, 로깅 등을 할 수 있다.
+      }}
+      //...
+    /&gt;
+  </code>
+</pre>
+
+<ul>
+  <li>WebviewWithBridge 컴포넌트에 요청과 응답 메시지 타입을 제네릭으로 넘겨주어, 요청과 응답 메시지의 타입을 미리 정의할 수 있습니다.</li>
+  <li>onBridgeMessage 콜백을 통해서 요청 메시지를 받으실 수 있습니다. 요청 메시지는 이전에 정의한 요청 메시지 타입을 따릅니다. 해당 콜백의 반환값은 응답 메시지가 되며, 필수적으로 응답 메시지를 반환해야 합니다.</li>
+</ul>
+
+<p>여기서 웹은 요청에 대한 응답을 콜백으로 받는 반면, 앱은 요청에 대한 응답을 반환값으로 받는다는 차이가 있습니다. 이는 Webview 컴포넌트의 ref로는 응답을 처리할 수 없는 구조이기 때문에 불가피하게 모든 응답 혹은 요청은 WebviewWithBridge 컴포넌트로 받아야만 합니다.</p>
+
+<h3 id="section-13">요청과 응답</h3>
+
+<p>이와 더불어서 보낸 요청에 대한 응답을 받을 수 있도록 해야 했습니다. 단방향인 이벤트 기반의 통신에서, 받는 값이 요청인지 응답인지를 구분할 수 있어야만 했고, 응답이라면 어떤 요청에 대한 응답인지를 구분해야만 했습니다. 이를 구분하기 위하여 조금 더 명확하게 메시지 타입을 정의하도록 하였습니다.</p>
+
+<ul>
+  <li>관련 pr : https://github.com/JNU-econovation/Soop-APP/pull/33</li>
+</ul>
+
+<p>메시지 타입은 아래와 같습니다.</p>
+
+<pre>
+  <code class="tsx">
+    {
+      _id : string // 메시지별로 고유한 식별자
+      ack : string | null // 해당 메시지가 요청인 경우 null, 응답인 경우 요청 메시지의 \_id값
+      flag : { syn } // 해당 메시지가 연결 요청 메시지인지 표시하는 값. 이는 핸드셰이크 과정에서 사용
+      body : any // 메시지 본문값. 이는 상단에서 내려준 메시지가 담김
+    }
+  </code>
+</pre>
+
+<p>모든 메시지는 고유한 식별자 id를 가집니다. 요청이라면 ack값이 null이고, 응답이라면 ack값이 요청 메시지의 _id값이 되도록 하였습니다. 이를 통해서 요청과 응답을 구분할 수 있고, 어떤 요청에 대한 응답인지를 특정지을 수 있었습니다.</p>
+
+<h3 id="section-14">메시지 큐</h3>
+
+<p>이제 메시지의 형식이 정해졌고, 요청과 응답을 주고 받을 수 있게 되었습니다. 
+이제는 메시지를 보내는 쪽에서 요청에 대한 응답을 받아 처리할 수 있도록 해야 했습니다. 
+응답은 요청을 보낸 즉시 오지 않는 비동기 방식으로 동작하기 때문에, 요청을 보낼 때마다 응답을 처리할 콜백을 미리 저장해두고, 응답이 왔을 때 해당 콜백을 찾아 호출해야만 했습니다.
+이를 위해서 메시지 큐를 구현하였습니다.
+요청을 보낼 때마다 메시지 큐에 요청 메시지의 _id와 응답 콜백을 저장해두고, 응답 메시지를 받았을 때 메시지 큐에서 해당 _id에 대한 콜백을 찾아 호출하는 방식으로 구현하였습니다.</p>
+
+<p>큐의 이름은 TCP 통신에서 흐름 제어를 위해 사용하는 수신 윈도우(RWND, Receive Window)에서 따왔습니다.</p>
+
+<pre>
+  <code class="tsx">
+    class RWindow {
+      // TODO: 단순 id를 담는 것이 아닌 객체로 변경 고려 (메시지 body를 제외한 모든 정보 담기)
+      public RWND_BUFFER: Set&lt;string&gt;;
+
+      //TODO: WeakMap으로 변경 고려 =&gt; RWND_BUFFER에서 객체를 제거하면 GC가 콜백도 제거해줄 것임
+      private callbackBuffer: Map&lt;string, ((resMessage?: any) =&gt; void)[]&gt; =
+        new Map();
+      private static WINDOW_SIZE = 20;
+
+      constructor() {
+        this.RWND_BUFFER = new Set&lt;string&gt;();
+      }
+
+      // id 추가
+      public add(id: string) {
+        if (this.RWND_BUFFER.size &gt;= RWindow.WINDOW_SIZE) {
+          throw new Error("RWND_BUFFER is already full");
+        }
+
+        if (this.RWND_BUFFER.has(id)) {
+          throw new Error("RWND_BUFFER already contains this id");
+        }
+
+        this.RWND_BUFFER.add(id);
+      }
+
+      // id에 해당하는 콜백들 제거 및 반환
+      public popCallbacksById(id: string) {
+        this.RWND_BUFFER.delete(id);
+
+        const callbacks = this.callbackBuffer.get(id);
+        this.callbackBuffer.delete(id);
+
+        return callbacks ?? [];
+      }
+      
+      // id에 콜백 추가
+      public addListener&lt;ResMessageType&gt;(
+        id: string,
+        callback: (resMessage: ResMessageType) =&gt; void,
+      ) {
+        if (this.callbackBuffer.has(id)) {
+          this.callbackBuffer.set(id, [...this.callbackBuffer.get(id)!, callback]);
+          return;
+        }
+        this.callbackBuffer.set(id, [callback]);
+      }
+
+      // id에 해당하는 콜백들 반환
+      public getListeners(
+        id: string,
+      ): \(\(resMessage?: unknown) =&gt; void)\[] | undefined {
+        return this.callbackBuffer.get(id);
+      }
+    }
+  </code>
+</pre>
+
+<p>RWindow 인스턴스를 전역으로 생성하여 id와 콜백을 관리하도록 하였습니다. 요청을 보낼 때마다 RWindow 인스턴스에 id값과 콜백을 저장하도록 하였습니다.</p>
+
+<p>이후 메시지를 보낼 수 있는 동작을 정의해보았습니다.</p>
+
+<pre>
+  <code class="tsx">
+    class Message&lt;BodyType = unknown&gt; {
+      private _id: string;
+      private ack: string | null;
+      private flag: { syn: 0 | 1 };
+      private body?: BodyType;
+
+      constructor(
+        private ref: React.RefObject&lt;WebView&lt;{}&gt; | null&gt;,
+        private R_WND: RWindow,
+        {
+          ack = null,
+          syn = 0,
+          body,
+        }: {
+          syn: 0 | 1;
+          ack: string | null;
+          body?: BodyType;
+        },
+      ) {
+        this._id = this.getRandomId();
+        this.ack = ack;
+        this.flag = { syn };
+        this.body = body;
+      }
+
+      private createNewMessageObj = () =&gt; {
+        return {
+          _id: this._id,
+          ack: this.ack,
+          flag: this.flag,
+          body: this.body,
+        };
+      };
+
+      // 메시지 전송 및 콜백 등록
+      public send = &lt;ResMessageType&gt;(callback?: (m: ResMessageType) =&gt; void) =&gt; {
+        Message.sendWebviewMessage(this.ref, this.createNewMessageObj());
+
+        if (!callback) return;
+        this.R_WND.addListener(this._id, callback);
+      };
+
+      // 웹의 경우 아래의 방식으로 작성하였다. 
+      // 요청을 보내면 응답 콜백을 등록하고, window에 이벤트 리스너를 등록하여 응답 메시지를 받는다.
+      // 응답 메시지를 받으면(ack가 _id와 일치), 해당 콜백을 찾아 호출하고, 이벤트 리스너를 제거한다.
+      public send = &lt;Body&gt;(callback?: (m: WebviewBridgeMessage&lt;Body&gt;) =&gt; void) =&gt; {
+        Message.sendWebviewMessage(this.createNewMessageObj());
+
+        if (!callback) return;
+        this.R_WND.addListener(this._id, callback);
+
+        const messageHandler = (event: Event) =&gt; {
+          const messageEvent = event as MessageEvent&lt;WebviewBridgeMessage&lt;Body&gt;&gt;;
+          messageEvent.stopPropagation();
+          const resMessage =
+            typeof messageEvent.data === "string"
+              ? (JSON.parse(messageEvent.data) as WebviewBridgeMessage&lt;Body&gt;)
+              : messageEvent.data;
+
+          if (resMessage.ack === this._id) {
+            const listeners = this.R_WND.popCallbacksById(this._id);
+            listeners.forEach((listener) =&gt; listener(resMessage));
+            document.removeEventListener("message", messageHandler);
+            window.removeEventListener("message", messageHandler);
+          }
+        };
+
+        document.addEventListener("message", messageHandler as EventListener);
+        window.addEventListener("message", messageHandler);
+      };
+    }
+  </code>
+</pre>
+
+<p>이를 한번에 관리할 수 있는 클래스도 만들어 보았습니다.</p>
+
+<pre>
+  <code class="tsx">
+    class WebViewBridge {
+      private R_WND: RWindow = new RWindow();
+
+      public createMessage = &lt;BodyType&gt;(
+        // WebView ref와 메시지 body를 인자로 받아 메시지 인스턴스를 생성. 
+        // 앱에서만 유효하며, 웹에서는 ref를 받지 않는다.
+        ref: React.RefObject&lt;WebView | null&gt;,
+        {
+          ack = null,
+          syn = 0,
+          body,
+        }: Omit&lt;WebviewBridgeMessage&lt;BodyType&gt;, \"flag\" | \"\_id\"&gt; &amp; {
+          syn?: Flag;
+        },
+      ) =&gt; {
+        return new Message&lt;BodyType&gt;(ref, this.R_WND, {
+          ack,
+          syn,
+          body,
+        });
+      };
+
+      // id에 해당하는 콜백을 찾아 호출
+      public renderCallback = (ack: string, body: unknown) =&gt; {
+        const callbacks = this.RWND.popCallbacksById(ack);
+
+        callbacks.forEach((callback) =&gt; callback(body));
+      };
+    }
+
+    // 사용법
+    const Bridge = new WebViewBridge();
+    Bridge.createMessage(webViewRef, {
+      syn: ...,
+      ack: ...,
+      body: { ... },
+    }).send(() =&gt; {/* callback */});
+  </code>
+</pre>
+
+<p>위의 3개의 클래스를 통해서 메시지를 주고 받을 수 있는 기본적인 구조를 완성하였습니다.</p>
+
+<p>이제 이를 react 훅과 컴포넌트로 감싸서 개발 단계에서 쉽게 사용할 수 있도록 하였습니다.</p>
+
+<h3 id="section-15">리액트 훅과 컴포넌트로 감싸기</h3>
+
+<p>앱에서 보낼 때에는 usePostMessageBridge 훅을 사용하도록 하였습니다.</p>
+
+<pre>
+  <code class="tsx">
+    interface PostMessageProps&lt;MessageType, ResponseType&gt; {
+      message: MessageType;
+      onResponse?: (response: ResponseType) =&gt; void;
+    }
+
+    const usePostMessageBridge = &lt;ReqType, ResponseType&gt;() =&gt; {
+      const ref = useRef&lt;WebView | null&gt;\(null);
+
+      const postMessage = ({
+        message,
+        onResponse,
+      }: PostMessageProps&lt;ReqType, ResponseType&gt;) =&gt; {
+        if (!ref.current) {
+          // WebView가 아직 로드되지 않은 경우
+          // ...
+          return;
+        }
+
+        try {
+          // 요청 메시지 생성 및 전송
+          const newMessage = Bridge.createMessage&lt;ReqType&gt;(ref, {
+            ack: null,
+            body: message,
+          });
+          newMessage.send&lt;ResponseType&gt;((response) =&gt; {
+            if (onResponse) return onResponse(response);
+          });
+        } catch (error) {
+          // ...
+        }
+      };
+
+      return {
+        ref,
+        postMessage,
+      };
+    };
+  </code>
+</pre>
+
+<p>웹에서는 아래와 같이 작성하였습니다.</p>
+
+<pre>
+  <code class="tsx">
+    "use client";
+    interface RequestProps&lt;ReqBody = unknown, ResBody = unknown&gt; {
+      requestMessage: ReqBody;
+      responseCallback?: (resMessage: ResBody) =&gt; void;
+    }
+
+    const useBridge = &lt;ReqBody = unknown, ResBody = unknown&gt;() =&gt; {
+      const Bridge = getBridge();
+      const [isReady, setIsReady] = useState(false); // 웹뷰가 준비되었는지 여부
+
+      // 웹뷰가 준비되었는지 확인하는 핸드셰이크 메시지 전송.
+      const sendHandshakeSynMessage = useCallback(() =&gt; {
+        if (isReady) return;
+        Bridge.createMessage({
+          syn: BRIDGE.SET,
+          ack: null,
+        }).send((message) =&gt; { // 앱으로부터 syn/ack 메시지를 받으면 ack 메시지를 보내고, 웹뷰가 준비되었음을 인지
+          const {
+            _id,
+            ack,
+            flag: { syn },
+          } = message;
+          if (syn !== BRIDGE.SET) // error...
+          if (ack === null) // error...
+          setIsReady(true); // 앱으로부터 syn/ack 메시지를 받았으므로, 앱이 웹뷰 통신 준비가 되었음을 인지
+
+          // ack 메시지 전송 (핸드셰이크 완료)
+          Bridge.createMessage({
+            ack: _id,
+            syn: BRIDGE.RESET,
+          }).send();
+        });
+      }, [Bridge, isReady]);
+
+      // 컴포넌트가 마운트될 때 핸드셰이크 시작
+      useEffect(() =&gt; {
+        sendHandshakeSynMessage();
+      }, [sendHandshakeSynMessage]);
+
+      // 요청을 보낼 수 있는 request 함수
+      const request = ({
+        requestMessage,
+        responseCallback,
+      }: RequestProps&lt;ReqBody, ResBody&gt;) =&gt; {
+        // 서버에서 실행되지 않도록 방지
+        if (typeof window === "undefined") return;
+
+        // 입력받은 요청 메시지를 전송하고 응답 콜백 등록
+        Bridge.createMessage({
+          ack: BRIDGE.BLANK,
+          body: requestMessage,
+        }).send&lt;ResBody&gt;(({ body }) =&gt; {
+          if (responseCallback &amp;&amp; body) return responseCallback(body);
+        });
+      };
+
+      return { request };
+    };
+  </code>
+</pre>
+
+<p>응답을 받는 앱 컴포넌트는 아래와 같이 작성하였습니다.</p>
+
+<pre>
+  <code class="tsx">
+    interface WebViewWithBridgeProps&lt;ReqMessage, ResMessage&gt;
+      extends Omit&lt;ComponentProps&lt;typeof WebView&gt;, "onMessage"&gt; {
+      onBridgeMessage?:
+        | \(\(reqMessage: ReqMessage) =&gt; ResMessage | void)
+        | \(\(reqMessage: ReqMessage) =&gt; Promise&lt;ResMessage | void&gt;);
+      onReadyToMessage?: () =&gt; void;
+      middleware?: (message: ReqMessage) =&gt; void;
+      ref?: Ref&lt;WebView&gt;;
+    }
+
+    const WebviewWithBridge = &lt;ReqMessage, ResMessage&gt;({
+      onBridgeMessage,
+      onReadyToMessage,
+      middleware,
+      ref,
+      ...props
+    }: WebViewWithBridgeProps&lt;ReqMessage, ResMessage&gt;) =&gt; {
+      const [isReady, setIsReady] = useState(false); // 웹뷰가 준비되었는지 여부
+      const internalRef = useRef&lt;WebView&gt;(null);
+      const webViewRef = ref ? (ref as React.RefObject&lt;WebView&gt;) : internalRef;
+
+      const handleMessage = useCallback(
+        (event: WebViewMessageEvent) =&gt; {
+          const reqMessage = JSON.parse(
+            event.nativeEvent.data,
+          ) as WebviewBridgeMessage&lt;ReqMessage&gt;;
+
+          const {
+            _id,
+            ack,
+            flag: { syn },
+            body,
+          } = reqMessage;
+
+          // 만약 수신한 메시지가 ack 메시지라면(특정 요청 메시지에 대한 응답 메시지라면), 해당 콜백을 찾아 호출
+          if (ack) Bridge.renderCallback(ack, reqMessage);
+
+          // handshake 로직
+          // 웹으로부터 handshake sync 메시지 수신
+          if (!isReady) {
+            if (!isReady &amp;&amp; syn === 1 &amp;&amp; ack === null) {
+              // 웹에서 syn을 보냈을 때, syn/ack을 보내준다.
+              Bridge.createMessage(webViewRef, {
+                syn: 1,
+                ack: _id,
+              }).send&lt;WebviewHandshake&gt;(({ ack, flag: { syn } }) =&gt; {
+                if (!isReady &amp;&amp; syn === 0 &amp;&amp; ack !== null) {
+                  setIsReady(true);
+                  return;
+                }
+              });
+              return;
+            }
+          }
+
+          // 웹뷰가 준비되지 않은 상태라면 일반적인 메시지 처리를 하지 않음
+          if (!isReady) return;
+
+          // 일반적인 메시지 처리
+          if (onBridgeMessage) {
+            const resMessage = onBridgeMessage(body);
+
+            // onBridgeMessage가 Promise를 반환하는 경우
+            if (resMessage instanceof Promise) {
+              resMessage
+                .then((response) =&gt; {
+                  if (!response) {
+                    // 응답이 없는 경우 경고 또는 에러 처리
+                  }
+                  // 응답 메시지 전송
+                  Bridge.createMessage(webViewRef, {
+                    ack: _id,
+                    body: response,
+                  }).send();
+                })
+                .catch((error) =&gt; {
+                  // ...
+                });
+              return;
+            } else {
+              // onBridgeMessage가 일반 값을 반환하는 경우
+              if (!resMessage) {
+                // 응답이 없는 경우 경고 또는 에러 처리
+              }
+              // 응답 메시지 전송
+              Bridge.createMessage(webViewRef, {
+                ack: _id,
+                body: resMessage,
+              }).send();
+            }
+          }
+        },
+        [onBridgeMessage, middleware, isReady],
+      );
+
+      return &lt;WebView ref={webViewRef} onMessage={handleMessage} {...props} /&gt;;
+    };
+  </code>
+</pre>
+
+<p>웹에서는 아래와 같이 작성하실 수 있습니다.</p>
+
+<pre>
+  <code class="tsx">
+    "use client";
+
+    interface BridgeProps&lt;RequestMessage, ResponseMessage&gt; {
+      onRequest: (reqMessage: RequestMessage) =&gt; ResponseMessage;
+      requestValidator?: (reqMessage?: RequestMessage) =&gt; boolean;
+    }
+
+    export default function BridgeRequestListener&lt;RequestType, ResponseType&gt;({
+      onRequest,
+      requestValidator,
+    }: BridgeProps&lt;RequestType, ResponseType&gt;) {
+      const Bridge = getBridge();
+      const [isReady, setIsReady] = useState(false); // 웹뷰가 준비되었는지 여부
+
+      // 핸드셰이크 메시지 전송 로직
+      const sendHandshakeSynMessage = useCallback(() =&gt; {
+        if (isReady) return;
+
+        // 앱으로 syn 메시지 전송. 올바른 응답을 받으면 ack 메시지를 보내고, 웹뷰가 준비되었음을 인지
+        Bridge.createMessage({
+          syn: BRIDGE.SET,
+          ack: null,
+        }).send((message) =&gt; {
+          const {
+            _id,
+            ack,
+            flag: { syn },
+          } = message;
+          
+          // 올바른 응답이라면 
+          setIsReady(true); // 앱이 웹뷰 통신 준비가 되었음을 인지
+
+          // ack 메시지 전송 (핸드셰이크 완료)
+          Bridge.createMessage({
+            ack: _id,
+            syn: BRIDGE.RESET,
+          }).send();
+        });
+      }, [Bridge, isReady]);
+
+      // 웹뷰의 응답을 처리하는 로직. 앱으로부터 요청을 받았을 때 실행된다.
+      useEffect(() =&gt; {
+        if (!isReady) return;
+
+        const handleMessage = (event: Event) =&gt; {
+          const messageEvent = event as MessageEvent;
+
+          const { data } = messageEvent;
+          try {
+            const {
+              ack,
+              _id,
+              flag: { syn },
+              body,
+            } = typeof data === "string"
+              ? (JSON.parse(data) as WebviewBridgeMessage&lt;RequestType&gt;)
+              : (data as WebviewBridgeMessage&lt;RequestType&gt;);
+
+            if (ack !== null)
+              throw new Error(
+                "클라이언트에서 보낸 요청에 ack가 포함되어 있습니다.",
+              );
+
+            if (syn === 1)
+              throw new Error(
+                "핸드셰이크가 끝난 시점에서 웹뷰 핸드셰이크 메시지가 도착하였습니다.",
+              );
+
+            if (requestValidator &amp;&amp; !requestValidator(body)) {
+              throw new Error(
+                "요청 메시지의 유효성 검사에 실패하였습니다. 요청 메시지를 확인해주세요.",
+              );
+            }
+
+            if (body) {
+              const responseMessage = onRequest(body);
+
+              if (strictMode &amp;&amp; !responseMessage)
+                throw new Error("응답 메시지가 정의되지 않았습니다.");
+
+              Bridge.createMessage({
+                ack: _id,
+                syn: BRIDGE.RESET,
+                body: responseMessage,
+              }).send();
+            }
+          } catch (error) {
+            console.error("메시지 처리 중 오류 발생:", error);
+          }
+        };
+
+        // 요청에 대한 응답을 처리하는 로직
+        if (Message.checkIsAndroid()) {
+          document.addEventListener("message", handleMessage as EventListener);
+          return () =&gt;
+            document.removeEventListener("message", handleMessage as EventListener);
+        } else {
+          window.addEventListener("message", handleMessage);
+          return () =&gt; window.removeEventListener("message", handleMessage);
+        }
+      }, [Bridge, isReady, onRequest, requestValidator, strictMode]);
+
+      // 웹뷰 핸드셰이크를 위한 로직
+      useEffect(() =&gt; {
+        sendHandshakeSynMessage();
+      }, [sendHandshakeSynMessage]);
+
+      return null;
+    }
+  </code>
+</pre>
+
+<h3 id="section-16">실제 사용 모습</h3>
+
+<p>웹뷰를 사용하였을 때, 웹의 기본 화면 전환(네비게이션)을 그대로 사용하게 되면 툭툭 끊기고 부드럽지 못한 화면 전환이 발생합니다. 이로 인해 현재 애플리케이션에서 모든 네비게이션(화면 전환)의 책임을 앱에서 담당하도록 하였습니다. 그리고, 웹에서 특정 인터랙션 발생 시 특정 페이지로 화면을 전환하도록 메시지를 보내도록 하였습니다.</p>
+
+<p><img src="https://github.com/geongyu09/geongyu09.github.io/blob/dev/public/assets/blog/webviewThreeWayHandshake/%EC%9B%B9%EB%B7%B0%EC%8B%9C%EC%97%B0.gif?raw=true" alt="웹뷰시연"></p>
+
+<p>사진과 같이 통신을 통한 웹뷰에서의 화면 전환이 잘 되는 것을 볼 수 있습니다!!!</p>
+
+<p>설명을 위해서 많은 코드가 생략되었습니다. 전체 코드는 <a href="https://github.com/JNU-econovation/Sangyeol-FE/tree/develop/packages/bridge">여기</a>에서 확인하실 수 있습니다.</p>
+
+<h3 id="section-17">마무리</h3>
+
+<p>이렇게 해서 웹뷰와 앱 간의 양방향 통신을 안전하게 할 수 있는 구조를 완성하였습니다. 뭔가 개발하면서 제 스스로 문제점을 인식하고, 이를 해결할 수 있는 라이브러리(?)를 만들어 간 점에서 진짜 개발자가 된 느낌이 들었습니다. 물론 아직도 부족한 점이 많고, 개선할 점이 많은 코드이지만, 기본적인 구조를 완성했다는 점에서 뿌듯합니다.</p>
+
+<p>점차 부족한 코드들도 개선해 나가면서, 이 라이브러리를 발전시켜 나가고 싶습니다. 기회가 된다면 오픈 소스로 공개하여, 다른 개발자분들도 이 라이브러리를 사용할 수 있도록 하고 싶습니다..!!</p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/hello_econo/2025/09/10/%EC%A0%9C-6%ED%9A%8C-Hello-ECONO-%EB%A6%AC%EB%B7%B0.html" title="제6회 Hello, ECONO! 리뷰">제6회 Hello, ECONO! 리뷰</a><a class="next" href="/jekyll-theme-yat/econo_news/2025/11/11/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-9%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 9월호">에코노 뉴스 9월호</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="/%ED%96%89%EC%82%AC/2023/10/08/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EC%8A%A4%ED%8C%8D%EC%8A%A4-%EC%97%B0%ED%95%A9-%EC%84%B8%EB%AF%B8%EB%82%98.html" title="에코노베이션 X 스팍스 연합 세미나">
+            에코노베이션 X 스팍스 연합 세미나<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/tech/2025/11/29/%EB%AD%89%ED%83%B1%EC%9D%B4%EB%A5%BC-%ED%82%A4%EC%9A%B0%EB%8A%94-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.html" title="뭉탱이를 키우는 디자이너의 인사이트">
+            뭉탱이를 키우는 디자이너의 인사이트<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html" title="AWS Lambda 와 S3를 활용한 이미지 업로드">
+            AWS Lambda 와 S3를 활용한 이미지 업로드<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/%ED%8A%B9%EC%A7%91-%EC%95%A0%EB%8B%88%EC%BD%94%EB%B2%A0%EC%9D%B4%EC%85%98%EC%9D%98-%EB%A7%8C%EC%9A%B0%EC%A0%88-30e5240895eb" title="[특집] 애니코베이션의 만우절">
+            [특집] 애니코베이션의 만우절<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

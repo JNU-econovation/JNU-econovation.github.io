@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Archives | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="Archives">
+<meta name="author" content="JNU-econovation">
+<meta property="og:locale" content="ko">
+<meta name="description" content="IT 개발동아리 에코노베이션입니다.">
+<meta property="og:description" content="IT 개발동아리 에코노베이션입니다.">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/archives.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/archives.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Archives">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"JNU-econovation"},"description":"IT 개발동아리 에코노베이션입니다.","headline":"Archives","url":"https://jnu-econovation.github.io/jekyll-theme-yat/archives.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  <div class="page-segments">
+  <ul class="page-segments-list">
+    
+    <h2 id="2026" class="segment-name">2026</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%95%9C%EC%96%91.html">
+    [2026 Winter DEV] 버려진 미래 시설을 배경으로, 봉인된 AI를 해방시키는 소울라이크 액션 게임  'SOUL STEEL', 한양팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%8D%BC%EC%8A%A4%ED%8A%B8-%EC%BB%A4%EB%B0%8B.html">
+    [2026 WINTER DEV] 지속적인 학습을 돕는 수집형 스터디 플랫폼, 근데 귀여운 캐릭터 뭉탱이를 곁들인 '뭉탱이', 퍼스트커밋팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Queen.html">
+    [2026 Winter DEV] 기타 소리 분석을 통한 이펙트 종류 및 파라미터 값 예측 모델 'Boss Effector', Queen팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_ISEK-AI.html">
+    [2026 WINTER DEV] 나만의 가상 캐릭터와 실시간으로 소통하는 버츄얼 AI 음성채팅 서비스 'ISEK-AI', ISEK-AI팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_HOMIS.html">
+    [2026 WINTER DEV] 뜨개 도안을 제작하고 판매하는 애플리케이션 '뜨개도아', HOMIS팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 12, 2026</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Brains.html">
+    [2026 Winter DEV] 제주도 게스트하우스 통합 플랫폼 '게하르방', Brains팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 06, 2026</span>
+<span>
+  <a class="post-link" href="/econo_news/2026/01/06/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-12%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 12월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2025" class="segment-name">2025</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Dec 03, 2025</span>
+<span>
+  <a class="post-link" href="/%ED%96%89%EC%82%AC/2025/12/03/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EC%8A%A4%ED%8C%8D%EC%8A%A4-%EC%97%B0%ED%95%A9-%EC%84%B8%EB%AF%B8%EB%82%98.html">
+    에코노베이션 X 스팍스 연합 세미나<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Dec 03, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/12/03/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-11%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 11월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 29, 2025</span>
+<span>
+  <a class="post-link" href="/tech/2025/11/29/%EB%AD%89%ED%83%B1%EC%9D%B4%EB%A5%BC-%ED%82%A4%EC%9A%B0%EB%8A%94-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%9D%98-%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.html">
+    뭉탱이를 키우는 디자이너의 인사이트<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 13, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/11/13/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-10%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 10월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 11, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/11/11/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-9%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 9월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 16, 2025</span>
+<span>
+  <a class="post-link" href="/tech/2025/09/16/%EC%9B%B9%EB%B7%B0-%EB%B8%8C%EB%A6%AC%EC%A7%80-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EA%B0%9C%EB%B0%9C-%EA%B8%B0%EB%A1%9D.html">
+    웹뷰 브리지 라이브러리 개발 기록<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 10, 2025</span>
+<span>
+  <a class="post-link" href="/hello_econo/2025/09/10/%EC%A0%9C-6%ED%9A%8C-Hello-ECONO-%EB%A6%AC%EB%B7%B0.html">
+    제6회 Hello, ECONO! 리뷰<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/08/12/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-7~8%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 7~8월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/12/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EB%9A%9C%EB%B2%85%EC%B5%B8.html">
+    [2025 SUMMER DEV] 작은 습관으로 기르는 과일 농장 '후르츠팜', 뚜벅쵸팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/12/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_ST4R.html">
+    [2025 SUMMER DEV] 별자리를 사랑하는 사람들을 위한 스팟 공유 &amp; 모임 커뮤니티 플랫폼  'Starlight', ST4R팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/12/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Ecode.html">
+    [2025 SUMMER DEV] AI 자동 피드백을 통한 메타인지 강화 학습 플랫폼 'Tabula', Ecode팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/12/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_BAP.html">
+    [2025 SUMMER DEV] 전남대학교 학생들을 위한 메뉴 추천 서비스 '전맛탱', BAP팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 07, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/07/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EC%9C%B5%EC%9C%B5%EC%9C%B5.html">
+    [2025 SUMMER DEV] 개인 맞춤형 수면 서비스 '적정 수면 시간 예측', 융융융팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 07, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/07/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EB%A7%A5%EB%AA%A8%EB%8B%9D.html">
+    [2025 SUMMER DEV] 생성형 AI를 이용한 어린이 동화 창작 서비스 'IngQ', 맥모닝팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 07, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/07/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_SEED.html">
+    [2025 SUMMER DEV] 살아 움직이는 사물에 맞서 동방을 탈출하는 게임 '지금 우리 동방은', SEED팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 07, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/08/07/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_4!.html">
+    [2025 SUMMER DEV] 등산객 안전을 위한 스마트 산행 서비스 '산결', 4!팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 15, 2025</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2025/07/15/%EC%97%90%EC%BD%94%EB%85%B8-AI-%EA%B0%9C%EB%B0%9C%EC%9E%90-%ED%98%84%EB%AA%85%EB%8B%98%EC%9D%98-What's-on-my-desk!.html">
+    에코노 AI 개발자 현명님의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 08, 2025</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2025/07/08/%EC%97%90%EC%BD%94%EB%85%B8-%EB%B2%A1%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EC%A2%85%EB%AF%BC%EB%8B%98%EC%9D%98-What's-on-my-desk!.html">
+    에코노 백엔드 개발자 종민님의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 03, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/07/03/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-6%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 6월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 03, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/06/03/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-5%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 5월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 13, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/05/13/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-4%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 4월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 03, 2025</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2025/05/03/%EC%97%90%EC%BD%94%EB%85%B8-%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%AF%BC%EA%B7%9C%EB%8B%98%EC%9D%98-What's-on-my-desk!.html">
+    에코노 백엔드 개발자 민규님의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 30, 2025</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2025/04/30/%EC%97%90%EC%BD%94%EB%85%B8-%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%8F%84%EC%97%B0%EB%8B%98%EC%9D%98-What's-on-my-desk!.html">
+    에코노 백엔드 개발자 도연님의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 19, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/04/19/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-3%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 3월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 11, 2025</span>
+<span>
+  <a class="post-link" href="/hello_econo/2025/03/11/%EC%A0%9C5%ED%9A%8C-Hello,-ECONO!-%EB%A6%AC%EB%B7%B0.html">
+    제5회 Hello, ECONO! 리뷰<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 07, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/03/07/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-1~2%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 1~2월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 28, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/28/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%98%84%EC%86%94%EB%A3%A8%EC%85%98.html">
+    [2025 WINTER DEV] 당구 메이트 매칭 서비스 '너쫌친당', 현솔루션팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 28, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/28/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EB%B9%84%EB%B9%94%ED%95%91.html">
+    [2025 WINTER DEV] 맞춤형 전남대학교 공지 제공 서비스 '전남대 모음이', 비빔핑팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 28, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/28/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_TranJstor.html">
+    [2025 WINTER DEV] 쉽고 빠른 무료분양을 도와주는 서비스 '펫브릿지', TranJstor팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 28, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/28/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Buddies.html">
+    [2025 WINTER DEV] 도움이 필요한 장애인과 봉사자를 연결해주는 서비스 '버디 브릿지', 버디즈팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 28, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/28/%EC%9B%90%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_FoxyCraft.html">
+    [2025 WINTER DEV] 가족을 찾기 위해 여정을 떠나는 게임 'The Way Home', FoxyCraft팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 22, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EA%B8%B0%EB%AF%B9.html">
+    [2025 WINTER DEV] 요리 시간 관리 서비스 '쿡타임', 기믹팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 22, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/22/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_KwaKi.html">
+    [2025 WINTER DEV] 냉장고의 식품을 인식하고, 유통기한을 자동으로 기록 및 추적해주는 서비스 '요건 아직 정상이에요', KwaKi팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 17, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/17/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EC%A7%80%EB%AF%B8%EC%A7%80%EA%B8%B0.html">
+    [2025 WINTER DEV] 운동 의욕 활성화 웹서비스 'GYMMI', 팀 지미지기<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 17, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/17/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EB%91%90%EB%A6%AC%EC%9C%A0.html">
+    [2025 WINTER DEV] 대학생들을 위한 물품 대여 서비스 LEAN, 팀 두리유<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 17, 2025</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2025/02/17/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EA%B7%9C%EC%9E%98.html">
+    [2025 WINTER DEV] 에코노베이션 동아리방 현황 확인 어플리케이션 'WhozIn', 규잘팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 14, 2025</span>
+<span>
+  <a class="post-link" href="/econo_news/2025/01/14/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-12%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 12월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2024" class="segment-name">2024</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Dec 06, 2024</span>
+<span>
+  <a class="post-link" href="/tech/2024/12/06/%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EC%97%90%EB%9F%AC%EC%B2%98%EB%A6%AC-%EB%8F%84%EC%9E%85%EA%B8%B0.html">
+    우당탕탕 에러처리 도입기<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Dec 02, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/12/02/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-11%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 11월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 29, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/10/29/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-10%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 10월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 23, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/09/23/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-9%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 9월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 31, 2024</span>
+<span>
+  <a class="post-link" href="/tech/2024/08/31/Let-s-play-Minecraft-with-Docker.html">
+    Let’s play Minecraft with Docker<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 21, 2024</span>
+<span>
+  <a class="post-link" href="/hello_econo/2024/08/21/%EC%A0%9C4%ED%9A%8C-Hello,-ECONO!-%EB%A6%AC%EB%B7%B0.html">
+    제4회 Hello, ECONO! 리뷰<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%8F%AC%EB%87%A8.html">
+    [2024 SUMMER DEV] 학생들을 위한 온라인 전시 홍보 웹서비스 '온전', 포뇨팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EC%A7%80%EB%AF%B8.html">
+    [2024 SUMMER DEV] 운동 의욕 활성화 웹서비스 'GYMMI', 지미팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EC%8B%9C%EA%B7%B8%EB%A7%88.html">
+    [2024 SUMMER DEV] 에코노베이션 내부의 도서를 효율적으로 관리하고 대출/반납할 수 있는 웹서비스 'Chack Check', Sigma팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EB%B2%84%EB%94%94%EC%A6%88.html">
+    [2024 SUMMER DEV] 일상에서 도움이 필요한 장애인과 자원봉사자를 빠르고 간편하게 연결해주는 맞춤형 웹서비스 'Buddy Bridge', 버디즈팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%EA%B0%9C%EB%B0%9C%EC%A7%91.html">
+    [2024 SUMMER DEV] 저체중 사용자들을 위한 건강한 체중 도우미 서비스 'EATceed', 개발집팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_LIB.html">
+    [2024 SUMMER DEV] 자신의 독서 취향을 온전히 담은 온라인 서재 플랫폼 '기록의 서재', LIB팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Error.html">
+    [2024 SUMMER DEV] 에코노베이션 스케줄러 시스템 'ERROR', 404팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Croffle.html">
+    [2024 SUMMER DEV] 자신만의 음악을 만들고 공유하는 서비스 '크로플', Croffle팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 14, 2024</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2024/08/14/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_BlackCompany.html">
+    [2024 SUMMER DEV] 에코노베이션 행사 관리 체계 시스템 'EEOS', BlackCompany팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 11, 2024</span>
+<span>
+  <a class="post-link" href="/about_econo/2024/08/11/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%8F%99%EB%B0%A9-%ED%99%9C%EC%9A%A9%EB%B2%95.html">
+    에코노베이션 동아리방 활용법<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 04, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/08/04/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-8%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 8월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 31, 2024</span>
+<span>
+  <a class="post-link" href="/tech/2024/07/31/React-Query%EC%97%90%EC%84%9C-%EC%BA%90%EC%8B%9C%EC%99%80-%EC%84%9C%EB%B2%84-%EC%83%81%ED%83%9C.html">
+    React Query에서 캐시와 서버 상태<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 04, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/07/04/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-7%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 7월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 29, 2024</span>
+<span>
+  <a class="post-link" href="/tech/2024/06/29/AWS-Lambda-%EC%99%80-S3%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C.html">
+    AWS Lambda 와 S3를 활용한 이미지 업로드<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 04, 2024</span>
+<span>
+  <a class="post-link" href="/econo_news/2024/06/04/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-6%EC%9B%94%ED%98%B8.html">
+    에코노 뉴스 6월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 22, 2024</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2024/05/22/%EC%97%90%EC%BD%94%EB%85%B8-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88-%EA%B0%80%ED%98%84%EB%8B%98%EC%9D%98-What's-on-my-desk!.html">
+    에코노 디자이너 가현님의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 16, 2024</span>
+<span>
+  <a class="post-link" href="/what's_on_my_desk/2024/05/16/Loopy%EC%9D%98-What's-on-my-desk!.html">
+    다재다능한 Loopy의 What's on my desk!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 07, 2024</span>
+<span>
+  <a class="post-link" href="/let's_git_it_started/2024/05/07/Let's-git-it-started-1%EC%B0%A8.html">
+    4월 12일, 1차 Let's git it started를 진행했습니다.<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2023" class="segment-name">2023</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Oct 08, 2023</span>
+<span>
+  <a class="post-link" href="/%ED%96%89%EC%82%AC/2023/10/08/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EC%8A%A4%ED%8C%8D%EC%8A%A4-%EC%97%B0%ED%95%A9-%EC%84%B8%EB%AF%B8%EB%82%98.html">
+    에코노베이션 X 스팍스 연합 세미나<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 30, 2023</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2023/08/30/%EC%A0%84%EB%82%A8%EB%8C%80-%ED%95%99%EC%83%9D%EB%93%A4%EC%97%90%EA%B2%8C-%ED%8F%AC%EC%BB%A4%EC%8A%A4%EB%90%9C-%EC%9C%84%ED%82%A4-%EC%84%9C%EB%B9%84%EC%8A%A4,-%EC%A0%84%EB%8C%80%EC%9C%84%ED%82%A4.html">
+    [2023 SUMMER DEV] 전남대 학생들에게 포커스된 위키 서비스, 전대위키<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 30, 2023</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2023/08/30/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EC%83%81%ED%92%88-%ED%8C%90%EB%A7%A4-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8,-%EC%9E%84%EB%AC%B4%EC%99%84%EC%88%98%ED%8C%80.html">
+    [2023 SUMMER DEV] 에코노베이션 내부에서 사용할 수 있는 상품 판매 웹 사이트, 임무완수팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 30, 2023</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2023/08/30/%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%8B%AE%EC%9D%80-%EA%BC%B4-%EC%97%B0%EC%98%88%EC%9D%B8-%EC%B6%94%EC%B2%9C-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5+WEB,-%EC%B1%84%EB%8B%A4%EC%B9%98%EC%A6%88%ED%8C%80.html">
+    [2023 SUMMER DEV] 사용자 닮은 꼴 연예인 추천 인공지능+WEB, 채다치즈팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 30, 2023</span>
+<span>
+  <a class="post-link" href="/summer/winter_dev/2023/08/30/2023-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-SUMMER-DEV.html">
+    2023 에코노베이션 SUMMER DEV<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 07, 2023</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/hello-econo-f7c300504488">
+    Hello, ECONO 회고<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2022" class="segment-name">2022</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Jun 28, 2022</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2022-winter-dev-%EC%95%8C%EC%9D%84-%EA%B9%A8%EA%B3%A0-%EC%84%B1%EC%9E%A5%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%9D%80-%EC%82%AC%EB%9E%8C%EB%93%A4%EC%9D%98-%EB%A7%8C%EB%82%A8-%EC%98%A4%EA%B0%90%EC%9E%90%ED%8C%80-6cf92b60827e">
+    [2022 WINTER DEV] 알을 깨고 성장하고 싶은 사람들의 만남, 오감자팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 17, 2022</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2022-winter-dev-%EC%88%A0%EC%9D%80-%EA%B3%A7-%EC%88%A8%EC%9D%B4%EB%8B%A4-%EC%95%84%EC%9D%B4%EC%BD%94-%ED%99%80%EB%A6%AD%ED%8C%80%EC%9D%98-%EC%B9%B5%ED%85%8C%EC%9D%BC-%EC%B6%94%EC%B2%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%98%A4%EB%8A%98%EC%9D%98-%EC%B9%B5%ED%85%8C%EC%9D%BC-b98db509e6b7">
+    [2022 WINTER DEV] “술은 곧 숨이다” 아이코 홀릭팀의 칵테일 추천 프로젝트! &lt;오늘의 칵테일&gt;<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 28, 2022</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2022-winter-dev-%EB%AC%B4%EC%9D%98%EC%8B%9D-%EC%84%B8%EA%B3%84-%EC%95%88%EC%97%90%EC%84%9C-%EB%B2%94%EC%9D%B8%EC%9D%84-%EC%B0%BE%EB%8A%94-%EC%8A%A4%ED%86%A0%EB%A6%AC%ED%85%94%EB%A7%81-%EC%9D%B8%EB%94%94%EA%B2%8C%EC%9E%84-%EB%81%BC%EB%A3%A9-%ED%8C%80-f391b7ee684a">
+    [2022 WINTER DEV] 무의식 세계 안에서 범인을 찾는 스토리텔링 인디게임, 끼룩 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 08, 2022</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2022-winter-dev-%EC%97%90%EC%BD%94%EB%85%B8-%EB%82%B4%ED%96%A5%ED%98%95%EC%9D%80-%EB%AA%A8%EB%91%90-%EB%AA%A8%EC%97%AC%EC%A3%BC%EC%84%B8%EC%9A%94-too-much-i-tmi%ED%8C%80%EC%9D%98-honey-%EC%B0%BE%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-d565b9422f0">
+    [2022 WINTER DEV] 에코노 내향형은 모두 모여주세요! Too Much I, TMI팀의 honey 찾기 프로젝트!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2021" class="segment-name">2021</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Dec 05, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-20-%EC%9D%BC%EC%83%81%EC%9D%80-%EC%A6%90%EA%B2%81%EA%B2%8C-%EC%9D%B8%EC%83%9D%EC%9D%80-%EC%A7%84%EC%A7%80%ED%95%98%EA%B2%8C-%EC%9D%B4%ED%98%81%EC%A7%84%EB%8B%98-7709b81ee5aa">
+    [ECONO PEOPLE #20] 일상은 즐겁게 인생은 진지하게, 이혁진님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 15, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%9E%91%EC%82%AC-%EC%9E%91%EA%B3%A1-%ED%98%91%EC%97%85-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%8B%88%EA%B3%A1%EB%82%B4%EA%B3%A1%ED%8C%80-977916c33edd">
+    [2021 SUMMER DEV] 온라인 작사 작곡 협업 웹 사이트, 니곡내곡팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 08, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%97%90%EC%BD%94%EB%85%B8%EC%97%90-%EC%9C%A0%EC%84%9C%EC%93%B0%EB%8A%94-%EC%BA%A5%EA%B1%B0%EB%A3%A8%EC%A6%88%EA%B0%80-%EC%9E%88%EB%8B%A4%EA%B5%AC-7b55b4b5e010">
+    [2021 SUMMER DEV] 에코노에 유서쓰는 캥거루즈가 있다구?<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 08, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%97%90%EC%BD%94%EB%85%B8-%EA%B3%A0-%E9%AB%98-%EC%9D%B8%EB%AC%BC-%EB%AA%A8%EC%98%80%EB%94%B0-%EB%A9%9C%EB%A1%9C%EB%94%94%EC%97%90-%EB%B0%98%EC%A3%BC%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A3%BC%EB%8A%94-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%EC%95%84%EB%A6%AC%EC%95%84%ED%8C%80-37404c020791">
+    [2021 SUMMER DEV] 에코노 고(高)인물 모였따! 멜로디에 반주를 만들어주는 인공지능 — 아리아팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Nov 07, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%B0%BE%EC%95%84%EB%82%B4%EA%B3%A0-%EB%A7%9E%EB%B0%94%EA%BE%B8%EB%8A%94-%EC%8A%A4%ED%86%A0%EB%A6%AC%ED%85%94%EB%A7%81-rpg-%EB%A0%88%EC%9D%B8%EB%94%94%EC%96%B4%EA%B2%8C%EC%9E%84%EC%A6%88-%ED%8C%80-4996d855519c">
+    [2021 SUMMER DEV] 찾아내고 맞바꾸는 스토리텔링 RPG, 레인디어게임즈 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 14, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EB%8F%85%EC%9E%90%EB%93%A4%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9B%B9%ED%88%B0-%EB%A6%AC%EB%B7%B0-%ED%94%8C%EB%9E%AB%ED%8F%BC-%ED%88%AC%EB%84%88%ED%8C%80-5dbfd97b0e15">
+    [2021 SUMMER DEV] 독자들을 위한 웹툰 리뷰 플랫폼, 투너팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%B9%9C%EA%B5%AC%EC%99%80-%ED%95%A0-%EC%9D%BC%EC%9D%84-%EA%B3%B5%EC%9C%A0%ED%95%98%EB%8A%94-%EC%96%B4%ED%94%8C-fast-boys%ED%8C%80-45c3737fedcf">
+    [2021 SUMMER DEV]친구와 할 일을 공유하는 어플, Fast Boys팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%A3%BC%EA%B0%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%B8-%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%8B%A4%EC%9D%8C-%EC%A3%BC%EA%B0%80%EB%A5%BC-%EC%98%88%EC%B8%A1%ED%95%98%EB%8A%94-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%94%94%ED%95%91%EC%86%8C%EC%8A%A4%ED%8C%80-22f4bf4ce551">
+    [2021 SUMMER DEV] 주가 데이터인 시계열 데이터를 이용해 다음 주가를 예측하는 인공지능 프로그램, 디핑소스팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 05, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%AC-%EA%B8%B0%EB%B0%98-%EA%B0%90%EC%A0%95-%EB%B6%84%EC%84%9D-%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%8C%8C%EB%A6%87%ED%8C%8C%EB%A6%87%ED%8C%80-20e1c49f9762">
+    [2021 SUMMER DEV] 자연어 처리 기반 감정 분석 다이어리 안드로이드 애플리케이션, 파릇파릇팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 04, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EB%82%98%EB%A7%8C%EC%9D%98-%EC%B6%94%EC%B2%9C%EC%9D%84-%EA%B8%B0%EB%A1%9D%ED%95%98%EB%8A%94-%EC%86%8C%EC%85%9C-%EB%A7%B5-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%9D%B4%EC%9D%91-%ED%8C%80-e8af7658f7e0">
+    [2021 SUMMER DEV] 나만의 추억을 기록하는 소셜 맵 안드로이드 애플리케이션, 이응 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 02, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%97%90%EC%BD%94%EB%85%B8-%EB%83%89%EC%9E%A5%EA%B3%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9C%84%ED%97%98%ED%95%9C-%ED%98%95%EC%A0%9C%EB%93%A4-%ED%8C%80-ac44e999b73c">
+    [2021 SUMMER DEV] 에코노 냉장고 프로젝트, ‘위험한 형제들’ 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-19-%EC%9D%B4%EC%84%A0%EA%B2%BD%EB%8B%98-%EA%B7%B8%EB%95%90-%EB%AA%B0%EB%9E%90%EC%A3%A0-%EC%97%90%EC%BD%94%EB%85%B8%EC%97%90-%EB%93%A4%EC%96%B4%EC%99%80-%EC%A0%9C-%EC%82%B6%EC%9D%B4-%EC%9D%B4%EB%A0%87%EA%B2%8C-%EB%B0%94%EB%80%94%EC%A7%80-4574f6eca108">
+    [ECONO PEOPLE #19] 이선경님, 그땐 몰랐죠 에코노에 들어와 제 삶이 이렇게 바뀔지…<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 12, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-18-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98%EC%9D%98-%ED%96%89%EC%82%AC%EB%B6%80%EB%A5%BC-%EC%86%8C%EA%B0%9C%ED%95%A9%EB%8B%88%EB%8B%A4-%EA%B9%80%EA%B7%9C%EB%9E%80%EB%8B%98-%EA%B9%80%EC%86%A1%EC%95%84%EB%8B%98-%EA%B9%80%EC%96%91%ED%95%98%EB%8B%98-%EC%9D%B4%EC%84%9C%ED%98%84%EB%8B%98-1da2fe494236">
+    [ECONO PEOPLE #18] 에코노베이션의 행사부를 소개합니다! 김규란님, 김송아님, 김양하님, 이서현님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 10, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-17-%EC%97%90%EC%BD%94%EB%85%B8%EC%9D%98-%EC%82%B4%EC%95%84%EC%9E%88%EB%8A%94-%EC%97%AD%EC%82%AC%EC%9D%B4%EC%9E%90-%EB%8B%A4%EC%96%91%ED%95%9C-%EB%8F%84%EC%A0%84%EA%B3%BC-%EC%97%B4%EC%A0%95%EC%9C%BC%EB%A1%9C-%EA%B0%80%EB%93%9D%ED%95%9C-%EA%B9%80%EC%A0%95%EC%9D%B8%EB%8B%98-5269aa0d05f1">
+    [ECONO PEOPLE #17] 에코노의 살아있는 역사이자, 다양한 도전과 열정으로 가득한 김정인님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 30, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-16-%EC%8B%A4%EB%A6%AC%EC%BD%98%EB%B0%B8%EB%A6%AC%EC%97%90%EC%84%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8B%A4-%EC%99%94%EC%96%B4%EC%9A%94-%EA%B9%80%EC%96%91%ED%95%98%EB%8B%98-ceca806d3fbd">
+    [ECONO PEOPLE #16] 실리콘밸리에서 개발하다 왔어요! 김양하님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 26, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-15-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-tf%ED%8C%80%EC%97%90-%EB%8C%80%ED%95%B4-%EA%B6%81%EA%B8%88%ED%95%98%EC%8B%9C%EB%8B%A4%EA%B5%AC%EC%9A%94-%EA%B8%B0%ED%9A%8D%ED%8C%80-%EA%B9%80%EC%84%9C%EC%98%81-%EC%98%A4%EC%A4%91%EA%B7%A0-%EB%8B%98%EC%9D%98-%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%A5%BC-%EB%93%A4%EB%A0%A4%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4-eff796af5d7c">
+    [ECONO PEOPLE #15] 이노베이션 해커톤 TF팀에 대해 궁금하시다구요? 기획팀 김서영, 오중균 님의 이야기를 들려드립니다!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 21, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-14-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-tf%ED%8C%80%EC%97%90-%EB%8C%80%ED%95%B4-%EA%B6%81%EA%B8%88%ED%95%98%EC%8B%9C%EB%8B%A4%EA%B5%AC%EC%9A%94-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88-%EC%9E%84%EC%9B%90%EB%B9%88-%EB%8B%98%EC%9D%98-%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%A5%BC-%EB%93%A4%EB%A0%A4%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4-e69f1db8b545">
+    [ECONO PEOPLE #14] 이노베이션 해커톤 TF팀에 대해 궁금하시다구요? 디자이너 임원빈 님의 이야기를 들려드립니다!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 21, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-13-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-tf-%ED%8C%80-%EC%95%84%EC%A7%81-%EB%8D%94-%EA%B6%81%EA%B8%88%ED%95%98%EB%8B%A4%EA%B3%A0%EC%9A%94-%EC%A0%9C-1%ED%9A%8C-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-tf-%EB%A6%AC%EB%8D%94-%EB%B0%95%EC%A4%80%EC%88%98%EB%8B%98%EC%9D%98-%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%A5%BC-%EB%93%A4%EB%A0%A4%EB%93%9C%EB%A0%A4%EC%9A%94-9fbfaf255301">
+    [ECONO PEOPLE #13] 이노베이션 해커톤 TF 팀, 아직 더 궁금하다고요? 제 1회 이노베이션 해커톤 TF 리더 박준수님의 이야기를 들려드려요~<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 13, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-12-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-tf-%ED%8C%80%EC%97%90-%EB%8C%80%ED%95%B4-%EA%B6%81%EA%B8%88%ED%95%98%EC%8B%A0%EA%B0%80%EC%9A%94-%EB%A6%AC%EB%93%9C-%EB%B0%B0%EC%A2%85%EC%A7%84-%EB%8B%98%EC%9D%98-%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%A5%BC-%EB%93%A4%EB%A0%A4%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4-4779372a2a47">
+    [ECONO PEOPLE #12] 이노베이션 해커톤 TF 팀에 대해 궁금하신가요? 리드 배종진 님의 이야기를 들려드립니다!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 03, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2021%EB%85%84-1%ED%95%99%EA%B8%B0-ot-116e6a9441e1">
+    에코노베이션 2021년 1학기 OT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 15, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-1-econovation-b%ED%8C%80-%EA%B8%B0%ED%9A%8D%EB%B0%9C%ED%91%9C-2f9c0a4d416e">
+    2021–1 ECONOVATION B팀 기획발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-1-econovation-%EC%B2%AB-%EA%B8%B0%ED%9A%8D%EB%B0%9C%ED%91%9C-b213dffe771cf">
+    2021–1 ECONOVATION A팀 기획발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%ED%95%B4%EB%B3%80%EA%B0%80-%EC%9C%A0%EB%A6%AC%EB%B3%91-%ED%8E%B8%EC%A7%80-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EA%B0%9C%EB%B0%9C-canvas%ED%8C%80-249e67593259">
+    [2021 WINTER DEV] 해변가 유리병 편지 웹사이트개발, ‘Canvas’팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EC%BA%A0%ED%95%91-%ED%8A%B8%EB%A0%88%EC%9D%BC%EB%9F%AC-%EC%89%90%EC%96%B4%EB%A7%81-%EC%84%9C%EB%B9%84%EC%8A%A4-pick-t-pick-your-trailer-%ED%8C%80-4add0c876ba1">
+    [2021 WINTER DEV] 캠핑 트레일러 쉐어링 서비스, Pick-T(Pick your Trailer) 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EC%B2%B4%EC%8A%A4%EB%B3%B4%EB%93%9C-%EC%9C%84%EC%9D%98-%EC%BA%90%EC%A3%BC%EC%96%BC-%EB%AC%B4%EC%8C%8D%EA%B2%8C%EC%9E%84-%EA%B0%9C%EB%B0%9C-%EA%B2%8C%EB%86%88%ED%8C%80-61691a46a318">
+    [2021 WINTER DEV] 체스보드 위의 캐주얼 무쌍게임 개발, ‘게놈’팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%9E%91%EA%B3%A1-%EB%B0%8F-%EC%9E%91%EC%82%AC-%ED%98%91%EC%97%85-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%EA%B0%9C%EB%B0%9C-seagull-seagirl-%ED%8C%80-270b2c8724a1">
+    [2021 WINTER DEV] 온라인 작곡 및 작사 협업 웹사이트 개발, Seagull &amp; Seagirl 팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EC%97%AC%ED%96%89-%EC%9D%BC%EC%A0%95-%EC%8A%A4%EC%BC%80%EC%A5%B4%EB%A7%81-%EB%B0%8F-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%EA%B8%B0%EB%B0%98-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%EA%B0%9C%EB%B0%9C-jmt-c%ED%8C%80-60849d15a75b">
+    [2021 WINTER DEV] 여행 일정 스케쥴링 및 인공지능 기반 관광지 추천 웹사이트 개발, ‘JMT-C’팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-%EA%B8%B0%EB%B0%98-%EB%8F%85%EA%B1%B0%EB%85%B8%EC%9D%B8%EC%9D%98-%EC%9D%91%EA%B8%89%EC%83%81%ED%99%A9-%EA%B0%90%EC%A7%80-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%95%84%EC%9D%B4%EB%90%B4%EC%95%84%ED%8C%80-e9dc968ba8b4">
+    [2021 WINTER DEV]딥러닝 영상처리 기반 독거노인의 응급상황 감지 시스템, 아이됴아팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-2021-winter-dev-s-bert%EA%B8%B0%EB%B0%98-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84-book-sementic-search-slack-chatbot-%EC%9D%B4%EB%8F%84%ED%8C%80-9ac287f3a5b2">
+    [2021 WINTER DEV] S-BERT기반, 검색엔진(Book Sementic search, Slack Chatbot), 이도팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 06, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-2021-winter-dev-ea60f7759091">
+    ❄ ECONO 2021 WINTER DEV ❄<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 02, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-1-econovation-recruit-fba8b9c57db7">
+    2021–1 ECONOVATION RECRUIT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 01, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-%EB%82%A0%EC%A7%9C-%EC%B6%94%EC%B2%9C-%EB%B0%8F-%EC%9D%BC%EC%A0%95-%EA%B3%B5%EC%9C%A0-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EA%B0%9C%EB%B0%9C-wemeet%ED%8C%80-b0d64a6e9ff">
+    [2021 WINTER DEV] 날짜 추천 및 일정 공유 애플리케이션 개발, Wemeet팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 23, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-2021-winter-dev-c8ab0c0b1968">
+    ECONO 2021 WINTER DEV<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 22, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-2021-winter-dev-2e3c22f96ddf">
+    [2021 WINTER DEV] 냄새가 난다 팀워크 맛집의 냄새! ‘낌’팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 22, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2021-econo-winter-dev-7fff536f7f2a">
+    [2021 WINTER DEV] 개발자를 위한 서적을 한 곳에 모은, ‘진상’팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 15, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-11-%ED%95%A8%EA%BB%98%EB%9D%BC%EC%84%9C-%EB%8D%94-%ED%81%B0-%EC%8B%9C%EB%84%88%EC%A7%80%EB%A5%BC-%EB%B3%B4%EC%97%AC%EC%A3%BC%EC%8B%A0-tabby%ED%8C%80-%EC%9E%84%EC%9B%90%EB%B9%88%EB%8B%98-%EC%A0%95%ED%98%84%EC%84%9D%EB%8B%98-b59eed77697a">
+    [ECONO PEOPLE #11]함께라서 더 큰 시너지를 보여주신 Tabby팀. 임원빈님, 정현석님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 11, 2021</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-10-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2020-%ED%9A%8C%EC%9E%A5%EB%8B%A8%EC%9D%84-%EC%86%8C%EA%B0%9C%ED%95%A9%EB%8B%88%EB%8B%A4-%EB%B0%B0%EC%A2%85%EC%A7%84-%EB%8B%98-%EC%9D%B4%EC%A7%80%EC%9C%A8-%EB%8B%98-659d0e69cd0e">
+    [ECONO PEOPLE #10] 에코노베이션 2020 회장단을 소개합니다! 배종진 님, 이지율 님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2020" class="segment-name">2020</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Dec 28, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-2020-summer-dev-f294a75398e9">
+    ECONO 2020 SUMMER DEV<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 09, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%A0%9C-2%ED%9A%8C-innovation-hackathon-dbcc57dc172c">
+    제2회 INNOVATION HACKATHON<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 29, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%A0%9C-2%ED%9A%8C-%EC%A0%84%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-10796cde962b">
+    제 2회 전남대 이노베이션 해커톤<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 25, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-8-%ED%95%99%EC%A0%90-%EC%B7%A8%EC%97%85-%EB%8C%80%EC%99%B8%ED%99%9C%EB%8F%99-3%EB%A7%88%EB%A6%AC-%ED%86%A0%EB%81%BC%EB%A5%BC-%EC%9E%A1%EB%8B%A4-%EC%A1%B0%EC%9D%80%EC%86%94%EB%8B%98-9754ffee9ddb">
+    [ECONO PEOPLE #9]학점, 취업, 대외활동 3마리 토끼를 잡다! 조은솔님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 03, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-8-%EC%84%B8%EC%83%81%EC%97%90%EC%84%9C-%EA%B0%80%EC%9E%A5-%EC%8E%88-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EC%9D%B4%ED%99%94%EC%A4%91%EB%8B%98-88db7f769642">
+    [ECONO PEOPLE #8] 세상에서 가장 쎈 개발자, 이화중님!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 03, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-2020-winter-dev-9e480bfdb754">
+    ECONO 2020 WINTER DEV🌟<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 19, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-7-%EC%8B%AC%EA%B8%B0%EC%84%B1%EB%8B%98-hoxy-sw-%EB%A7%88%EC%97%90%EC%8A%A4%ED%8A%B8%EB%A1%9C-%EA%B4%80%EC%8B%AC%EC%9E%88%EB%82%98-d0f6ac054059">
+    [ECONO PEOPLE #7] 심기성님! Hoxy, SW 마에스트로 관심있나?<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 16, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/goodbye-2019-hello-2020-world-e4b7476c4a68">
+    GoodBye 2019, Hello 2020 World!🌟<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 09, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-6-%EC%97%90%EC%BD%94%EB%85%B8%EA%B0%80-%EC%A3%BC%EB%AA%A9%ED%95%98%EB%8A%94-her-%EC%84%9C%EC%9D%B8%ED%95%98%EB%8B%98-9e52b7b42ce6">
+    [ECONO PEOPLE #6] 에코노가 주목하는 Her, 서인하님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 01, 2020</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-5-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%8A%94-%EC%A2%8B%EA%B2%A0%EB%8B%A4-%EC%A0%95%EB%AF%BC%EC%84%9D%EB%8B%98-%EB%8D%B0%EB%A0%A4%EA%B0%80%EC%84%9C-219bbd7d868b">
+    [ECONO PEOPLE #5] 정민석님, Connecting the Dots!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+    <h2 id="2019" class="segment-name">2019</h2>
+      
+      
+        <li class="">
+<span class="post-meta">Dec 30, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-halloween-party-2a35d945534f">
+    🎃ECONO Halloween party!!🎃<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Dec 01, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-4-%EB%B0%95%ED%98%84%EC%84%9C%EB%8B%98-%ED%95%99%EA%B5%90%EC%97%90-%EB%8B%A4%EB%8B%88%EB%8A%94-%EC%A7%81%EC%9E%A5%EC%9D%B8%EC%9D%B4-%EC%9E%88%EB%8B%A4%EA%B3%A0-e0a94cd07d8c">
+    [ECONO PEOPLE #4] 박현서님, 학교에 다니는 직장인이 있다고?!<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 17, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EC%97%AC%EB%A6%84-%EC%95%BC%EC%9C%A0%ED%9A%8C-8b522c1e8211">
+    에코노베이션 여름 야유회<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Oct 17, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2019%EB%85%84-2%ED%95%99%EA%B8%B0-ot-39014d6e34f2">
+    에코노베이션 2019년 2학기 OT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 02, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2%ED%95%99%EA%B8%B0-%EC%8B%A0%EC%9E%85%EB%AA%A8%EC%A7%91-ca0706e8fb78">
+    에코노베이션 2학기 신입모집<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Sep 01, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2019-1%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C-f0202de853de">
+    에코노베이션 2019.1학기 최종발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Aug 19, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-3-%EC%88%9C%EC%88%98%ED%95%9C-%EC%97%B4%EC%A0%95%EC%9D%84-%EA%B0%80%EC%A7%84-%EB%A9%8B%EC%A7%84-%EC%B9%9C%EA%B5%AC-%EC%9C%A4%EC%9E%AC%EC%84%B1%EB%8B%98-edc552b3e96c">
+    [ECONO PEOPLE #3] 순수한 열정을 가진 멋진 친구 윤재성님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jul 05, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-2-%EC%A1%B0%ED%98%84%EC%9A%A9%EB%8B%98-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%95%99%EC%A0%90-%EA%B3%B5%EB%AA%A8%EC%A0%84-%EC%96%B4%EB%A0%B5%EC%A7%80-%EC%95%8A%EC%95%84%EC%9A%94-9e427754c7e6">
+    [ECONO PEOPLE #2] 조현용님, 프로젝트, 학점, 공모전 어렵지 않아요~<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 18, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%A0%9C-1%ED%9A%8C-%EC%A0%84%EB%82%A8%EB%8C%80-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%95%B4%EC%BB%A4%ED%86%A4-23eea6d9430a">
+    제 1회 전남대 이노베이션 해커톤<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jun 01, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/econo-people-1-moment%ED%8C%80-%EC%97%B4%EC%8B%AC%ED%9E%88-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%ED%99%9C%EB%8F%99-%ED%96%88%EB%8D%94%EB%8B%88-%EB%8C%80%EC%83%81-%ED%83%94%EC%96%B4%EC%9A%94-a2042cc2b0a3">
+    [ECONO PEOPLE #1] - Moment팀, 열심히 에코노베이션 활동 했더니 대상 탔어요<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 17, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-5%EC%A3%BC%EC%B0%A8-%EC%A3%BC%EA%B0%84%EB%B0%9C%ED%91%9C-467113f2f632">
+    에코노베이션 5주차 주간발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">May 09, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-4%EC%A3%BC%EC%B0%A8-%EC%A3%BC%EA%B0%84%EB%B0%9C%ED%91%9C-979e686218b4">
+    에코노베이션 4주차 주간발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 11, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%91%90%EB%B2%88%EC%A7%B8-%EC%A3%BC%EA%B0%84-%EB%B0%9C%ED%91%9C-98f8768afc7d">
+    에코노베이션 2주차 주간 발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 03, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2019%EB%85%84-1%ED%95%99%EA%B8%B0-ot-7b9bcfe0672f">
+    에코노베이션 1주차 주간 발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Apr 03, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%ED%8A%B9%EC%A7%91-%EC%95%A0%EB%8B%88%EC%BD%94%EB%B2%A0%EC%9D%B4%EC%85%98%EC%9D%98-%EB%A7%8C%EC%9A%B0%EC%A0%88-30e5240895eb">
+    [특집] 애니코베이션의 만우절<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 26, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2019%EB%85%84-1%ED%95%99%EA%B8%B0-ot-7b9bcfe0672f">
+    에코노베이션 2019년 1학기 OT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Mar 05, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EA%B2%A8%EC%9A%B8-%EC%95%BC%EC%9C%A0%ED%9A%8C-c5e7dcb46081">
+    에코노베이션 겨울 야유회<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Feb 03, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2018-2%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C-f2c93c9fc0ce">
+    에코노베이션 2018. 2학기 최종발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 16, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2018%EB%85%84-2%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85-%EA%B3%B5%EA%B0%9C-%EB%B0%9C%ED%91%9C-9add65177ecb">
+    2018년 2학기 최종 공개 발표<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 12, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/2018-econovation-%EC%86%A1%EB%85%84%ED%9A%8C-f89aed263b44">
+    에코노베이션 2018년 송년회<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+        <li class="">
+<span class="post-meta">Jan 09, 2019</span>
+<span>
+  <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EC%84%A0%EB%B0%B0-%EC%B4%88%EC%B2%AD-%EA%B0%95%EC%97%B0-46ca7d905ec5">
+    에코노베이션 선배 초청 강연<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+</span>
+</li>
+        
+      
+    
+  </ul>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="common-list">
+  <ul>
+    <li>
+      <a href="/jekyll-theme-yat/index.html">
+        All<span>146</span>
+      </a>
+    </li>
+
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2019">
+          2019 <span>21</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2020">
+          2020 <span>10</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2021">
+          2021 <span>37</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2022">
+          2022 <span>4</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2023">
+          2023 <span>6</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2024">
+          2024 <span>24</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2025">
+          2025 <span>37</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/archives.html#h-2026">
+          2026 <span>7</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

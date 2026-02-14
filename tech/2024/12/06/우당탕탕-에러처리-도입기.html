@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>우당탕탕 에러처리 도입기 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="우당탕탕 에러처리 도입기">
+<meta name="author" content="rootachieve">
+<meta property="og:locale" content="ko">
+<meta name="description" content="우당탕탕 에러처리 도입기">
+<meta property="og:description" content="우당탕탕 에러처리 도입기">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/12/06/%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EC%97%90%EB%9F%AC%EC%B2%98%EB%A6%AC-%EB%8F%84%EC%9E%85%EA%B8%B0.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/12/06/%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EC%97%90%EB%9F%AC%EC%B2%98%EB%A6%AC-%EB%8F%84%EC%9E%85%EA%B8%B0.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-12-06T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="우당탕탕 에러처리 도입기">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"rootachieve"},"dateModified":"2024-12-06T00:00:00+09:00","datePublished":"2024-12-06T00:00:00+09:00","description":"우당탕탕 에러처리 도입기","headline":"우당탕탕 에러처리 도입기","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/12/06/%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EC%97%90%EB%9F%AC%EC%B2%98%EB%A6%AC-%EB%8F%84%EC%9E%85%EA%B8%B0.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2024/12/06/%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EC%97%90%EB%9F%AC%EC%B2%98%EB%A6%AC-%EB%8F%84%EC%9E%85%EA%B8%B0.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://github.com/user-attachments/assets/4c182b84-b0cc-4401-a45c-2b8721d43036)"></div>
+    <img class="img-placeholder" src="https://github.com/user-attachments/assets/4c182b84-b0cc-4401-a45c-2b8721d43036" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">우당탕탕 에러처리 도입기</h1>
+  <h2 class="post-subtitle">우당탕탕 에러처리 도입기</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2024-12-06T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 06, 2024
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> rootachieve</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 47 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#TECH">#TECH</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h1 id="section">우당탕탕 에러처리 도입기</h1>
+
+<p>안녕하세요! 에코노베이션 25기 김근성입니다.</p>
+
+<p>저는 개발집팀에서 EATceed의 Android 앱 개발을 하고 있는데요, 오늘은 앱을 개발하면서 에러 처리를 깔끔하게 도입하기 위해 고민했던 과정을 이야기해 보려 해요. 그렇게 대단한 구현이나 구조는 아니지만, 어떠한 흐름으로 생각하고 변경했는지, 그리고 코드가 어떻게 변경되어 가는지 봐주시면 감사하겠습니다!</p>
+
+<h2 id="eatceed-">EATceed의 구조</h2>
+
+<p>이야기에 앞서, EATceed에서는 <strong>MVVM(Model, View, ViewModel) 패턴</strong>을 채용하고 있어요.</p>
+
+<ul>
+  <li>View : 데이터를 보여주고, 입력을 받아들임. ViewModel에 데이터를 요청한 뒤 관찰하며 대기하다 데이터 변경 시 통보받아 처리</li>
+  <li>ViewModel : View에서 들어온 요청을 바탕으로 model에 데이터 요청, 데이터를 받아 처리 후 저장</li>
+  <li>Model : ViewModel에서 들어온 요청을 바탕으로 데이터를 리턴</li>
+</ul>
+
+<p><img src="https://github.com/user-attachments/assets/b85f19ed-5087-480c-80b7-7f6a52d119e2" alt="image.png"></p>
+
+<p>해당 패턴은 여러 장점이 있지만 핵심은 <strong>각 컴포넌트의 분리</strong>를 이뤄낼 수 있다는 점이에요.</p>
+
+<p>View는 ViewModel에만 요청을 보내고 통보받고, ViewModel은 Model에만 요청을 보내며, Model은 아무런 요청도 보내지 않죠.</p>
+
+<p>만약 아래 구조와 같이 중간에 인터페이스를 끼게 된다면 기존 코드의 변경을 전혀 하지 않고 각각의 컴포넌트를 그대로 바꿔 낄 수 있게 됩니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/c170285c-536a-445c-bed4-44c80bfd9e3c" alt="image.png"></p>
+
+<div style="text-align: center;">
+    <div style="display: inline-block; text-align: center;">
+        <img src="https://github.com/user-attachments/assets/7959b846-cb82-4e7b-882d-bc66e6bfc741" alt="모델 컴포넌트를 바꿔 끼는 모습" style="max-width: 100%; height: auto;">
+        <p>모델 컴포넌트를 바꿔 끼는 모습</p>
+    </div>
+</div>
+
+<p>이외에도 장점이 가득한 구조이기에 저희 프로젝트에서 사용하고 있지만, 컴포넌트가 분리되어 있기에 <strong>Model에서 요청 도중 에러가 발생 시 이를 ViewModel을 거쳐 View까지 보내줘야만 처리가 가능하다는 문제</strong>가 있어요. 오늘의 이야기는 이런 배경으로부터 시작합니다.</p>
+
+<h2 id="section-1">변화의 필요성</h2>
+
+<p>EATceed는 최초 개발 시부터 위와 같은 구조를 잘 지켜서 개발하고 있었지만, 기능 개발이 우선시 되었기에 이 작업을 시작하기 전까지 요청에 있어 별도의 <strong>에러처리를 하지 않고 있었어요.</strong></p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): FoodInfoResponseDTO? {
+	val result = service_main.getFoodInfoById(id)
+	return result.body()?.response
+}
+</code>
+</pre>
+
+<p>기능이 동작하는지만 확인하면 되었기에 큰 문제 없이 작업하였지만, 이후 조금씩 기능들이 완성되고 테스트에 들어가자, 주변에서 <strong>“실패 케이스에 대한 처리가 없어서 된 지 안된지 모르겠다”</strong>, <strong>“요청이 간지 안간지 모르겠다”</strong> 와 같은 이야기가 나오기 시작하였어요,</p>
+
+<p>여기저기서 이제는 미룰 수 없다는 신호가 나오자 서둘러 구조를 짜기 시작하였어요.</p>
+
+<h2 id="resultt">실패 - Result<t></t>
+</h2>
+
+<p>구조를 짜며 처음 계획한 것은 <code class="language-plaintext highlighter-rouge">너무 많은 것을 하려 하지 말고 일단 한 뒤 문제가 보이면 고치자</code> 였어요.</p>
+
+<p>너무 많은 것을 고민하다 보면 <strong>작업이 하염없이 밀릴 것</strong>이라 생각하였고, 분명 이렇게 하려 해도 <strong>완벽한 구조를 짜는 건 불가능</strong>하다 생각했기 때문이에요.</p>
+
+<p>이 작업의 시작으로 가장 첫 번째로 문제라는 생각이 든 부분은 “실패”의 표현이었습니다.</p>
+
+<p>지금 형태의 경우 API 요청을 한 후 결과를 받아 만약 body가 비어 있다면(null) 에러가 발생한 것으로 판단, 실패의 의미로 null을 넘기고, body가 있다면 성공한 것으로 판단하여 response 값을 넘기는 방식이었는데, <strong>null이 실패를 의미한다는 건 나만 아는 게 아닌가?</strong> 하는 생각이 들었어요.</p>
+
+<p>그렇기에 가장 먼저 실패와 성공을 명시적으로 표시하는 방식으로 바꾸기로 하였어요.</p>
+
+<div style="display: flex; align-items: flex-start; justify-content: space-around;">
+    <img src="https://github.com/user-attachments/assets/a10c0040-f326-4fbd-bd2a-6896fccd179f" alt="Image 1" width="300">
+    <img src="https://github.com/user-attachments/assets/eaf280e6-0756-4cc8-9f64-ac1fc2d74b30" alt="Image 2" width="300">
+</div>
+
+<p><br></p>
+
+<p>이를 편하게 구현하기 위한 방법을 찾던 중 Kotlin에서 제공하는 Result<t> 클래스를 발견했어요.</t></p>
+
+<p>Result는 성공과 실패를 간단하게 표현하기 위한 클래스로 <strong>성공 시엔 값을, 실패 시엔 예외(Throwable)을 전달받을 수 있는 클래스</strong>에요. 거기다 map, onSuccess, onFailure 등 여러 함수형 기능을 제공하여 처리를 간결하게 할 수 있기에 저의 목적인 실패, 성공 표현에 매우 적합하기도 하였죠.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): Result&lt;FoodInfoResponseDTO&gt; {
+	return try {
+		val result = service_main.getFoodInfoById(id)
+		val body = result.body()?
+		if(body == null) {
+			Result.failure(Exception())
+		} else {
+			Result.success(body.response)
+		}
+	} catch (e: Exception){
+		Result.failure(e)
+	}
+}
+</code>
+</pre>
+
+<p>적용하면서 혹시 요청 과정에서 발생할 수 있는 에러를 잡기 위해 추가로 try-catch도 적용했어요.</p>
+
+<p>아직 에러 코드에 대한 처리는 없지만 Result를 도입함으로써 직관적으로 성공, 실패를 알 수 있게 되었고, ViewModel에서도 onSuccess를 통해 성공했을 시 업데이트하는 부분을 간결하게 표현할 수 있게 되었습니다!</p>
+
+<h2 id="nullable-runningwithcheckrefresh">제 3의 상태 - nullable, runningWithCheckRefresh</h2>
+
+<p>실패, 성공을 쉽게 표현할 수 있게 된 후 다음 작업으로는 <code class="language-plaintext highlighter-rouge">에러 코드를 보내고 이에 따른 처리를 하자</code> 였어요.  하지만, 이 작업을 해야 하나 생각할 때쯤에는 BE에서 에러 코드가 토큰 만료와 같은 몇 가지를 제외하면 아직 다 정해지지 않기에 진행할 수가 없었어요.</p>
+
+<p>나중에 해야하나 고민하던 중 앱에서는 계속 토큰 만료로 실패와 로그아웃이 발생해 <code class="language-plaintext highlighter-rouge">리프레시 토큰 갱신</code>만 우선 작업하기로 하였습니다.</p>
+
+<p>토큰 만료는 실패와 달리 재시도가 필요하여 실패로 처리해서는 안 된다고 생각하였기에 처음에는 실패, 성공에 이은 토큰 만료라는 새로운 상태를 도입하고자 하였어요. 하지만 그러면서도 기존의 코드에 크게 변경이 가해지면 안 되었기에 Result를 그대로 사용하면서 확장하는 방식을 고민해 보았어요.</p>
+
+<p>이에 제가 선택한 방식은 <strong>Result를 nullable하게 만드는 것</strong>이였습니다. 아예 새로운 클래스나 Result를 래핑하는 클래스를 고민해 보았지만, 리프레시 토큰 발급 하나를 위해 이렇게까지 하는 것은 너무 과하다 생각하기도 하였고, 이후에 나올 방식을 통해 토큰 만료 상태를 model 안에서만 다루고 제거할 수 있다 생각했어요.</p>
+
+<p>생각이 어느 정도 정리된 후에는 바로 위에서 적용한 Result 반환 타입들을 전부 nullable하게 바꾸어 주었어요.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): Result&lt;FoodInfoResponseDTO&gt;? {
+//...생략
+</code>
+</pre>
+
+<p>그리고 앞서 이야기하였듯 토큰 만료 상태를 Model 안에서만 다루고 제거하기 위해 ‘요청을 해서 null이 반환된다면 토큰 재발급 후 재시도하는 로직’을 자동화 하기로 결정하였어요.</p>
+
+<ul>
+  <li>요청을 보내서 성공, 실패했다.
+    <ul>
+      <li>그대로 값 반환</li>
+    </ul>
+  </li>
+  <li>요청을 보내서 토큰 만료가 나왔다.
+    <ul>
+      <li>토큰 재발급 시도</li>
+      <li>이후 재시도 하여 나온 값 반환</li>
+    </ul>
+  </li>
+</ul>
+
+<p>위와 같은 로직을 구현해야 하는데 Kotlin에서는 함수 또한 매개변수로 함수에 넘길 수 있기에 <strong>기존 요청을 하던 코드를 그대로 매개변수로 넘겨 결과를 받고 실행</strong>하면 기존 코드의 큰 수정 없이 토큰 재발급 로직을 도입할 수 있을거라 생각하며 코드를 작성하기 시작했습니다. 기존 호출을 재발급 로직으로 감싸는 거죠!</p>
+
+<pre>
+<code class="kotlin">
+private suspend inline fun &lt;T&gt; runningWithCheckRefresh(running : ()-&gt;T): T {
+  val result = running()
+  return if(result == null){
+    getAccessToken()
+    running()
+  }else{
+    result
+  }
+}
+</code>
+</pre>
+
+<p>초안으로는 위와 같은 형태의 코드를 작성해보았어요.</p>
+
+<p>보면 inline이라는 새로운 키워드가 있는데, kotlin에서 inline 키워드를 함수의 선언에 적을 경우 <strong>해당 함수의 코드는 컴파일 시간에 호출한 위치에 그대로 붙여 넣어져요.</strong> 함수 콜스택에 쌓이지 않기에 약간의 속도 향상을 기대해 볼 수 있고, 에러 발생 시 stacktrace에 적히지 않기에 에러 분석에 조금 더 도움이 될 거라 판단해 적용해 보았습니다!</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): Result&lt;FoodInfoResponseDTO&gt;? {
+	return runningWithCheckRefresh {
+		try {
+			val result = service_main.getFoodInfoById(id)
+			val body = result.body()?
+			if(body == null) {
+				when(result.code()){
+          401 -&gt; {
+            null
+          }
+
+          else-&gt;{
+            Result.failure(Exception()
+          }
+		    }
+			} else {
+				Result.success(body.response)
+			}
+		} catch (e: Exception){
+			Result.failure(e)
+		}
+	}
+}
+</code>
+</pre>
+
+<p>기존 요청에 적용은 위와 같이 하게되는데, 재발급 로직이 필요한 함수에만 기존 함수 호출을 runningWithCheckRefresh 로 한번 감싸기만 하면 재발급 로직을 적용할 수 있는 거죠!</p>
+
+<p>다만, 추가로 null을 별도로 보내기 위해 응답의 코드를 확인해야해서 switch와 비슷한 when을 통하여 401인지 체크하는 코드를 추가했는데, 이는 추후 다른 에러 코드 또한 비슷하게 처리할 생각이라 토큰 재발급 기능의 비용이라고 생각하진 않았어요.</p>
+
+<p>하지만 가장 처음에 이야기하였듯 화면 상에 표현되는 로직 처리를 위해서는 상태를 View까지 가져올 필요가 있었습니다.</p>
+
+<p>만약 토큰 재발급에 실패하면 토큰 만료 상태인 null 또한 View까지 가져와야 하고 이는 위에서 이야기한 ‘<strong>null이 실패를 의미한다는 건 나만 아는 게 아닌가?’</strong>와 동일하게 코드의 가독성을 낮추게 되었어요.</p>
+
+<p>또한 토큰 만료는 응답에서 <strong>“토큰 만료로 인한 실패”</strong> 로 넘어와요. 즉, 처음에 생각한 것과 달리 토큰 만료는 실패와 동일한 상태로 처리해도 되는 거죠. 그렇기에 추후 에러 코드가 다 정해진 시점에 nullable을 전부 제거하고 에러 코드를 통해 토큰 만료를 판별하도록 바꾸었어요.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): Result&lt;FoodInfoResponseDTO&gt; {
+	return runningWithCheckRefresh {
+		try {
+			val result = service_main.getFoodInfoById(id)
+			val body = result.body()?
+			if(body == null) {
+				when(result.code()){
+          401 -&gt; {
+            Result.failure(Exception("TOKEN_EXP")
+          }
+
+          else-&gt;{
+            Result.failure(Exception()
+          }
+		    }
+			} else {
+				Result.success(body.response)
+			}
+		} catch (e: Exception){
+			Result.failure(e)
+		}
+	}
+}
+</code>
+</pre>
+
+<p>다시 원상 복구하긴 했지만, 시도 자체는 재미있었고, 그 과정에서 토큰 재발급 로직 자동화에 성공했으니 좋은 도전이였다 생각해요.</p>
+
+<h3 id="section-2">모델에서 에러 코드 처리?</h3>
+
+<p>작업을 다 완료한 후 생각해 보니 에러 코드에 따라 무언가를 보여주고 처리하는 것은 View에서 처리해야 했어요. (가령 토큰 만료 시 로그인 화면으로 보내야 함) 즉, when문을 통해 응답을 받는 부분에서 이를 처리할 필요가 없었죠.</p>
+
+<p>작업한 게 아쉽지만 더 깔끔한 코드를 위해 When문을 제거했어요.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): Result&lt;FoodInfoResponseDTO&gt; {
+	return runningWithCheckRefresh {
+		try {
+			val result = service_main.getFoodInfoById(id)
+			val body = result.body()?
+			if(body == null) {
+        Result.failure(Exception(result.code())
+			} else {
+				Result.success(body.response)
+			}
+		} catch (e: Exception){
+			Result.failure(e)
+		}
+	}
+}
+</code>
+</pre>
+
+<h2 id="requestresultt">상태가 부족한데 - RequestResult<t></t>
+</h2>
+
+<p>이제 에러 코드도 View까지 가져올 수 있고, 토큰 재발급도 바르게 동작하게 되었어요. 지금 글은 연속적인 변경 같지만 실제로는 여기까지 하고 ‘괜찮네!’ 하면서 작업을 마무리하고 다른 기능 개발에 들어갔습니다.</p>
+
+<p>꽤 오래 잘 사용하며 개발하던 도중 특정 기능들의 경우 <strong>데이터를 요청했는지, 데이터의 요청이 진행 중인지, 그리고 데이터의 요청이 완료되었는지를 알아야 하는 상황</strong>이 생기게 됐어요. 특히나 데이터의 요청이 진행 중인지는 로딩 화면 등의 이유로 대부분의 기능에서 필요로 하였죠.</p>
+
+<p>이를 해결하기 위해서는 새로운 클래스를 만들어 모든 API 요청마다 요청 상태를 관리해야 했는데 여러모로 문제점이 많이 보였어요.</p>
+
+<ul>
+  <li>API가 많아 수정할 부분이 매우 많음</li>
+  <li>API 마다 결과와 진행 상태 두가지를 관리해야 함.</li>
+  <li>View에서 각 API마다 결과, 진행상태 두가지를 관찰하다 각각 처리해야 함</li>
+</ul>
+
+<p>첫 번째는 어쩔 수 없는 부분이였지만 두 번째, 세 번째는 지금 당장도, 앞으로도 불편함이 많을 요소였어요. 그러던 중 <strong>요청 완료가 되었으면 무조건 성공 또는 실패가 존재</strong>하겠다는 생각이 떠오르게 되었어요.</p>
+
+<p>Result 클래스는 성공, 실패 두 가지의 상태를 가져요. 그럼 이와 비슷하게 성공, 실패, 요청 안 함, 요청 중 이런 네 가지 상태를 가지는 클래스를 만들어 Result 대신 적용하면 두 가지 상태를 관리해야하는 문제를 해결할 수 있겠다 싶어 바로 변경에 들어갔어요.</p>
+
+<div style="text-align: center;">
+    <div style="display: inline-block; text-align: center;">
+        <img src="https://github.com/user-attachments/assets/ca9a156d-e9be-44c7-b2eb-a7ba37ffd3bd" alt="모델 컴포넌트를 바꿔 끼는 모습" style="max-width: 100%; height: auto;">
+        <p>선 시작 후 통보</p>
+    </div>
+</div>
+
+<p>일단 가장 먼저 클래스의 틀을 잡았어요. 기존 Result에서 크게 벗어나지 않으면서 새로운 것을 추가해야 했기에 이름과 내부, 그리고 onXXXXX 함수들은 Result와 유사하게 구현했어요.</p>
+
+<pre>
+<code class="kotlin">
+sealed class RequestResult&lt;out T&gt;{
+    object None : RequestResult&lt;Nothing&gt;()
+    object Loading : RequestResult&lt;Nothing&gt;()
+    data class Success&lt;T&gt;(val data: T) : RequestResult&lt;T&gt;()
+    data class Error(val code: String, val exception: Throwable? = null) : RequestResult&lt;Nothing&gt;()
+
+    suspend fun onSuccess (running: suspend (T) -&gt; Unit) :RequestResult&lt;T&gt;{
+        if(this is Success){
+            running(this.data)
+        }
+        return this
+    }
+
+    suspend fun onFailure(running: suspend (String, Throwable?) -&gt; Unit, ) :RequestResult&lt;T&gt;{
+        if(this is Error){
+            running(this.code, this.exception)
+        }
+        return this
+    }
+
+    suspend fun onLoading(running: suspend () -&gt; Unit): RequestResult&lt;T&gt;{
+        if(this is Loading){
+            running()
+        }
+        return this
+    }
+    suspend fun onNone(running: suspend () -&gt; Unit): RequestResult&lt;T&gt;{
+        if(this is None){
+            running()
+        }
+        return this
+    }
+}
+</code>
+</pre>
+
+<p>Enum과 비슷한 Sealed 클래스를 통해 하위에 네 가지 클래스를 생성해 두었고, 제네릭에 out을 통해 공변성을 두었어요. 이렇게 하게 된다면 **임의의 타입 T가 있을 때 T의 서브 클래스인 K또한 문제없이 RequestResult<t> 에 들어갈 수 있게 됩니다.**</t></p>
+
+<p>보통 응답의 경우 정해져 있기에 T면 T가 들어가는 건데 무슨 필요인가 할 수 있지만, T타입인 성공 값을 넣어줘서 RequestResult<t>가 묵시적으로 정해지는 **Success와 달리 None, Loading, Error는 T가 무엇인지 알 수 없기에 생성 시에 공변성이 없다면 아래와 같이 T를 명시**해줘야 해요.</t></p>
+
+<pre>
+<code class="kotlin">
+return RequestResult.Success(data) // Good
+return RequestResult&lt;FoodInfoResponseDTO&gt;.Loading // Bad
+</code>
+</pre>
+
+<p>하지만 공변성을 주고 위 RequestResult와 같이 Nothing을 적어두면 명시해 주지 않아도 생성할 수 있게 돼요. 이는 Nothing이 모든 클래스의 서브 클래스이기에 가능하답니다!</p>
+
+<pre>
+<code class="kotlin">
+return RequestResult.Success(data) // Good
+return RequestResult.Loading // Good
+</code>
+</pre>
+
+<p>추가로 기존 Result에서는 Error에 Exception만 담을 수 있어 에러 코드를 새로운 Exception을 생성해 메시지로 담았었는데, 예외 메시지에 에러 코드는 맞지 않다 생각하여 새로 만들면서 아예 에러코드를 별도로 담을 수 있게 하였어요.</p>
+
+<h2 id="section-3">잘 작동한다</h2>
+
+<p>새로운 응답 형식으로 바꾼 뒤 테스트를 해보았어요. 이제 API당 한 개의 값만 관리하면서 결과, 상태를 모두 알 수 있게 되었죠!</p>
+
+<pre>
+<code class="kotlin">
+//-------변경 관찰
+val checkAnalyticsArrivalResult by homeViewModel.checkAnalyticsArrivalResult.collectAsStateWithLifecycle()
+
+//-------값 가져오기   
+val isAnalyticsArrival = (checkAnalyticsArrivalResult as? RequestResult.Success)?.data ?: false
+
+//--------변경 통지
+LaunchedEffect(changeWeightResultState) {
+  changeWeightResultState.onSuccess {
+	  //성공시 작업
+    homeViewModel.getData()
+  }.onFailure { code, e -&gt;
+	  //실패시 작업
+	}
+}
+
+//-----로딩
+if(getRemainDetectCountResult is RequestResult.Loading){
+  LottieProgress()
+}
+</code>
+</pre>
+
+<p>매우 깔끔하게 잘 동작하네요!</p>
+
+<h3 id="section-4">재사용되네</h3>
+
+<p>그런데 문제점을 하나 발견하게 되었어요.</p>
+
+<p>안드로이드 View 특성상 일부 경우에 ViewModel에서 다시 한번 변경 통지를 받아요. <strong>즉, 변경 통지를 받는 코드인 LaunchedEffect와 그 안에 있는 onSuccess 등의 코드가 한 번 더 실행</strong>되게 됩니다.</p>
+
+<p>대부분은 문제가 없었지만 홈 화면과 같이 단 한 번만 데이터를 받아야 하는 기능들은 그러면 문제가 생겼기에 수정이 필요했어요.</p>
+
+<pre>
+<code class="kotlin">
+sealed class RequestResult&lt;out T&gt;{
+    private var isUsed = false
+    class None : RequestResult&lt;Nothing&gt;()
+    class Loading : RequestResult&lt;Nothing&gt;()
+    data class Success&lt;T&gt;(val data: T) : RequestResult&lt;T&gt;()
+    data class Error(val code: String, val exception: Throwable? = null) : RequestResult&lt;Nothing&gt;()
+
+    suspend fun onSuccess (reUse:Boolean = false, running: suspend (T) -&gt; Unit) :RequestResult&lt;T&gt;{
+        if\(this is Success &amp;&amp; \(reUse \|| !isUsed)){
+            running(this.data)
+            isUsed = true
+        }
+        return this
+    }
+</code>
+</pre>
+
+<p>이를 수정하기 위해서 RequestResult 내부에 isUsed라는 변수와 함수 요청 시 선택적으로 값을 넣을 수 있는 reUse 플래그를 만들어 <code class="language-plaintext highlighter-rouge">isUse가 false(0회 실행)</code> 거나, <code class="language-plaintext highlighter-rouge">isUse가 true일때(1회 실행) reUse가 true</code>라면 실행되도록 하여 다른 부분 코드를 전혀 수정하지 않고 해당 문제를 고칠 수 있었어요.</p>
+
+<h2 id="api----safeapicall">API추가의 불편함 - safeApiCall</h2>
+
+<p>이제 모든 작업을 마무리하고 기능 개발에 집중하게 되었어요.</p>
+
+<p>하지만, 기능 구현을 하다 보니 새로운 API추가시 이를 구현하는 게 매우 불편하다는 생각이 다시 한번 들었어요. 지금의 경우 요청 함수가 아래와 같은 구조로 되어있었는데, 이런 구조가 API요청마다 똑같이 적혀져있기에 새로 하나 추가할 때마다 같은 코드를 또 그대로 적어넣어야 했아요.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): RequestResult&lt;FoodInfoResponseDTO&gt; {
+ 	return runningWithCheckRefresh {
+      try {
+          val result = service_main.getFoodInfoById(id)
+          if(result.body()!=null){
+              RequestResult.Success(it.body()!!.response!!)
+          }else{
+              val gson = Gson()
+              val type = object : TypeToken&lt;CommonResponseDTO&lt;FoodInfoResponseDTO&gt;&gt;() {}.type
+              val errorBody : CommonResponseDTO&lt;K&gt;? = gson.fromJson(result.errorBody()!!.charStream(), type)
+
+              RequestResult.Error(
+                  code = errorBody?.error?.code?: result.code().toString(),
+                  Exception(errorBody?.error?.reason?: result.message())
+              )
+          }
+    }catch (e: Exception){
+        RequestResult.Error("NONE", e)
+    }
+}
+</code>
+</pre>
+
+<p>이에 다시 한번 고치기로 결정합니다. 일단 함수들을 전부 다 확인하였을 때 함수들 마다 다른 부분은</p>
+
+<ol>
+  <li>요청 전처리</li>
+  <li>API요청부 (service_main.XXXXXX)</li>
+  <li>응답 후처리</li>
+  <li>에러 시 후처리</li>
+</ol>
+
+<p>이렇게 4가지였어요. 사실상 요청 전처리와 요청은 하나로 묶을 수 있기에 전처리, 성공 후처리, 실패 후처리라 생각한 후 중복을 제거하는 작업에 들어갔습니다.</p>
+
+<pre>
+<code class="kotlin">
+private suspend inline fun &lt;T, K&gt; safeApiCall(
+        onRunning: ()-&gt;Response&lt;CommonResponseDTO&lt;K&gt;&gt;,
+        onSuccess: (Response&lt;CommonResponseDTO&lt;K&gt;&gt;) -&gt; RequestResult&lt;T&gt;,
+        onFailure: ((CommonResponseDTO&lt;K&gt;?)-&gt;Unit) = {}
+    ): RequestResult&lt;T&gt;{
+        return runningWithCheckRefresh {
+            try {
+                val result = onRunning()
+                if(result.isSuccessful&amp;&amp;result.body()!=null){
+                    onSuccess(result)
+                }else{
+                    val gson = Gson()
+                    val type = object : TypeToken&lt;CommonResponseDTO&lt;K&gt;&gt;() {}.type
+                    val errorBody : CommonResponseDTO&lt;K&gt;? = gson.fromJson(result.errorBody()!!.charStream(), type)
+
+                    onFailure(errorBody)
+
+                    RequestResult.Error(
+                        code = errorBody?.error?.code?: result.code().toString(),
+                        Exception(errorBody?.error?.reason?: result.message())
+                    )
+
+                }
+            }catch (e: Exception){
+                RequestResult.Error("NONE", e)
+            }
+        }
+}
+</code>
+</pre>
+
+<p>runningWithCheckRefresh와 비슷한 구조로</p>
+
+<ul>
+  <li>응답값을 받아올 호출하여<code class="language-plaintext highlighter-rouge">Response&lt;CommonResponseDTO&lt;K&gt;&gt;</code> 를 받아오는 onRunning</li>
+  <li>성공 시 <code class="language-plaintext highlighter-rouge">Response&lt;CommonResponseDTO&lt;K&gt;&gt;</code>를 받아 RequestResult<t>를 만드는 onSuccess</t>
+</li>
+  <li>실패 시 <code class="language-plaintext highlighter-rouge">(CommonResponseDTO&lt;K&gt;?)-&gt;Unit</code> 를 받아 처리를 하는 onFailure.</li>
+</ul>
+
+<p>이렇게 세 가지 함수를 입력받고 각각의 상황에서 호출하도록 구현하였어요. 그리고 요청들에 적용해 보았어요.</p>
+
+<pre>
+<code class="kotlin">
+suspend fun getFoodInfoById(id: Int): RequestResult&lt;code&gt; {
+  return safeApiCall(
+      onRunning = {
+          service_main.getFoodInfoById(id)
+      },
+      onSuccess = {
+          RequestResult.Success(it.body()!!.response!!)
+      }
+  )
+}
+</code>
+</pre>
+
+<p>어때요! 엄청나게 깔끔해지지 않았나요? 이런 중복을 추출함으로써 새로운 API를 도입하는 데 드는 시간을 비약적으로 줄일 수 있었어요.</p>
+
+<p>또한 에러 로깅을 추가하거나 요청 시 무언가 공통된 작업을 추가하는 것도 매우 간편해졌답니다!</p>
+
+<h2 id="errorcodeexecutor">에러처리 - ErrorCodeExecutor</h2>
+
+<p>이왕 한 김에 불편했던 점 한 가지를 더 수정하기로 하였어요.</p>
+
+<p><img src="https://github.com/user-attachments/assets/b262f372-b2b4-40c8-b729-50881db5044e" alt="image.png"></p>
+
+<p>지금은 에러 코드를 받아 처리할 때 위와 같이 View에서 when을 통해 에러 코드를 분리하고 각각의 경우에 대해 토스트(에러 메시지 팝업)를 띄워줘요. 다른 작업을 하는 경우도 있지만 사실 90% 이상은 이런 토스트를 띄워주고 에러처리가 마무리됩니다.</p>
+
+<p>보면 에러 코드에 따른 메시지가 대부분 비슷하고 나오는 에러 코드도 비슷하기에 요청마다 이런 토스트가 매우 많이 중복되어 있어요. 이 또한 한곳으로 뭉쳐서 제거해 보기로 하였습니다.</p>
+
+<p>그렇지만 한편으로는 토스트가 아닌 일부 다른 처리를 하는 경우 또한 있었기에 이를 잘 살려주어야 했어요.</p>
+
+<pre>
+<code class="kotlin">
+object ErrorCodeExecutor {
+    fun execute(
+        context: Context,
+        code: String,
+        e: Throwable?,
+        otherCase: Map&lt;String, (String, Throwable?) -&gt; Unit&gt; = mapOf()
+    ) {
+        if (otherCase.containsKey(code)) {
+            otherCase[code]!!(code, e)
+            return
+        }
+        when (code) {
+          "MEMBER_400_1" -&gt; {
+            Toast.makeText(
+              context,
+              context.getString(R.string.error_already_sign_up), Toast.LENGTH_SHORT
+            ).show()
+          }
+        }
+    }
+}
+</code>
+</pre>
+
+<p>이에 ErrorCodeExecutor라는 오브젝트 클래스를 만들게 되었어요.</p>
+
+<p>이 실행기는 에러 코드와 일부 특수 예외 케이스를 받아 만약 예외 케이스에 에러 코드가 포함되지 않는다면 <strong>when문에 있는 공통 처리</strong>를(토스트 등) 수행하고 만약 포함된다면 <strong>예외 케이스에 있는 처리</strong>를 수행하도록 구현하였어요.</p>
+
+<p>위와 같이 구현함으로써 토스트를 중복 생성하는 문제를 해결하였고, 일부 예외 케이스 또한 안정적으로 수행할 수 있게 되었습니다.</p>
+
+<div style="text-align: center;">
+    <div style="display: inline-block; text-align: center;">
+        <img src="https://github.com/user-attachments/assets/6e63e124-3bae-4987-9f2f-17f94e7be6eb" alt="모델 컴포넌트를 바꿔 끼는 모습" style="max-width: 100%; height: auto;">
+        <p>MEMBER_400_2 만 다른 기능이 수행된다.</p>
+    </div>
+</div>
+
+<p>이렇게 EATceed의 정신없던 에러처리는 아래와 같은 구조로 마무리되게 됩니다.</p>
+
+<p><img src="https://github.com/user-attachments/assets/4c182b84-b0cc-4401-a45c-2b8721d43036" alt="제목 없는 다이어그램 drawio"></p>
+
+<h2 id="section-5">마무리하며</h2>
+
+<p>상당히 내용이 많은 것 같은데 2주 정도 고민한 내용을 적다 보니 이렇게 길게 된 것 같습니다. 그다지 알찬 내용은 아니지만 코드 한줄 한줄 그리고 하나의 의사결정에 내가 왜 이런 선택을 했는지 고민하고 기록하는 것도 좋은 습관인 것 같아 이렇게 생각하였다.. 하고 적어보았어요!</p>
+
+<p>아! 그리고 본문에 나온 <strong>EATceed는 12월에 출시를 준비</strong>하고 있어요. 많은 관심 부탁드려요!</p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/econo_news/2024/12/02/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-11%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 11월호">에코노 뉴스 11월호</a><a class="next" href="/jekyll-theme-yat/econo_news/2025/01/14/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-12%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 12월호">에코노 뉴스 12월호</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_HOMIS.html" title="[2026 WINTER DEV] 뜨개 도안을 제작하고 판매하는 애플리케이션 '뜨개도아', HOMIS팀">
+            [2026 WINTER DEV] 뜨개 도안을 제작하고 판매하는 애플리케이션 '뜨개도아', HOMIS팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/econo-2021-winter-dev-ea60f7759091" title="❄ ECONO 2021 WINTER DEV ❄">
+            ❄ ECONO 2021 WINTER DEV ❄<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2021-1-econovation-recruit-fba8b9c57db7" title="2021–1 ECONOVATION RECRUIT">
+            2021–1 ECONOVATION RECRUIT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2021-winter-dev-2021-winter-dev-s-bert%EA%B8%B0%EB%B0%98-%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84-book-sementic-search-slack-chatbot-%EC%9D%B4%EB%8F%84%ED%8C%80-9ac287f3a5b2" title="[2021 WINTER DEV] S-BERT기반, 검색엔진(Book Sementic search, Slack Chatbot), 이도팀">
+            [2021 WINTER DEV] S-BERT기반, 검색엔진(Book Sementic search, Slack Chatbot), 이도팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
