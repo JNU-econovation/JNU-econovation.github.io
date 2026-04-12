@@ -32,6 +32,8 @@ sidebar: []
 
 <br/>
 
+---
+
 ### 🎙️ [Speaker] 18기 안서진님 - 공기업 개발자는 어떤 일을 하고, 어떻게 준비해야 할까?
 
 <img src="https://velog.velcdn.com/images/turtlestory/post/68776795-e6bf-4833-bd3d-52ca7e052438/image.png" alt="안서진님" />
