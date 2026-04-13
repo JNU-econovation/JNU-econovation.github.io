@@ -18,12 +18,13 @@ sidebar: []
 
 2023년 2월 19일을 시작으로 이제는 고정 행사가 되어 7회차를 맞이한 Hello, ECONO!가 지난 2026년 2월 28일에 진행되었는데요. 더욱 깊이 있는 교류의 장이 되기 위해 제 7회 Hello, ECONO!는 온라인을 통해 진행되었습니다. 
 
-이번 포스팅에서는 **안서진님**과 **윤효근님**의 발표를 중심으로, 이번 `Hello, ECONO!`에서 어떤 이야기들이 오갔는지 **7회차 `Hello, ECONO!`를 리뷰**해보도록 하겠습니다.
+이번 포스팅에서는 **안서진님**과 **윤효근님**의 발표를 중심으로, 이번 `Hello, ECONO!`에서 어떤 이야기들이 오갔는지 7회차 `Hello, ECONO!`를 리뷰**해보도록 하겠습니다.
 
 - 18기 안서진 님: 공기업 전산직 취업
 - 14기 윤효근 님: 면접관 이야기, 내 손으로 직접 뽑은 채용 경험담
 
 ---
+
 ## 발표 세션 
 | <img src="https://velog.velcdn.com/images/turtlestory/post/c898a23f-13d3-4bc0-9bfe-91418e04d0eb/image.png" alt="안서진님 발표"/> | <img src="https://velog.velcdn.com/images/turtlestory/post/475d1570-7646-4836-a167-dd7627861b61/image.png" alt="윤효근님 발표"/> |
 
