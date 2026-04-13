@@ -1,0 +1,5 @@
+.post-image > div {
+  background-position: top center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
