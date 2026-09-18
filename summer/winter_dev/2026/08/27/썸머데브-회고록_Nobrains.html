@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀">
+<meta name="author" content="sanghyeon">
+<meta property="og:locale" content="ko">
+<meta name="description" content="[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀">
+<meta name="twitter:description" property="og:description" content="[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Nobrains.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Nobrains.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-08-27T00:00:00+09:00">
+<meta property="article:modified_time" content="2026-08-27T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sanghyeon"},"dateModified":"2026-08-27T00:00:00+09:00","datePublished":"2026-08-27T00:00:00+09:00","description":"[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀","headline":"[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Nobrains.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Nobrains.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://velog.velcdn.com/images/sanghyeon1225/post/873f8968-714a-4f59-be68-de5f90a87c8e/image.png)"></div>
+    <img class="img-placeholder" src="https://velog.velcdn.com/images/sanghyeon1225/post/873f8968-714a-4f59-be68-de5f90a87c8e/image.png" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 &#39;게하르방&#39;, NoBrains팀</h1>
+  <h2 class="post-subtitle">[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 &#39;게하르방&#39;, NoBrains팀</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2026-08-27T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Aug 27, 2026
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> sanghyeon</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 23 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#dev">#dev</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="summer-dev------nobrains">[2026 SUMMER DEV] 제주도 게스트하우스 통합 플랫폼 ‘게하르방’, NoBrains팀</h2>
+
+<h3 id="section">프로젝트 소개</h3>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/873f8968-714a-4f59-be68-de5f90a87c8e/image.png" alt="1"></p>
+
+<p>NoBrains팀은 제주 게스트하우스 큐레이션 서비스인 “게하르방”을 개발했습니다.</p>
+
+<p><br></p>
+
+<h3 id="section-1">팀원 소개</h3>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/51c443c2-63e7-4c74-b5b5-8ad4547287d6/image.png" alt="nobrains"></p>
+
+<p>NoBrains팀은 DE 요셉님, BE 성준님, FE 은서님, AI 준현님, AI 지우님으로 구성되어 있습니다.</p>
+
+<p><br></p>
+
+<h3 id="section-2">인터뷰</h3>
+
+<p><strong>Q. 프로젝트를 소개해주세요!</strong></p>
+
+<p>성준 : 안녕하세요 저희는 제주 게스트하우스 큐레이션 서비스를 개발하고 있는 NoBrains 팀으로 디자인에 이요셉, 프론트엔드에 이은서, 백엔드에 안성준, AI 분야의 신준현와 김지우로 총 5명의 팀원으로 구성되어 있습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/1c622eb2-7af3-4622-b9a7-3fe8c8195d1e/image.png" alt="2"></p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/f6662064-1108-45b8-b134-c5a7ef833c24/image.png" alt="3"></p>
+
+<p>저희 게하르방 서비스는 제주 게스트하우스를 한곳에서 탐색하고, 자신의 여행 취향에 맞는 게스트하우스를 찾을 수 있도록 돕는 제주 게스트하우스 큐레이션 플랫폼으로 지난 학기에는 게스트하우스 정보 제공과 스텝 구인·지원 등 서비스의 기본 기능을 구현하였습니다.</p>
+
+<p>이번 학기에는 기존 서비스를 이어서 발전시키며 “사용자가 자신에게 잘 맞는 게스트하우스를 어떻게 더 쉽고 빠르게 찾을 수 있을까?”에 집중했습니다.</p>
+
+<p>그래서 지도로 지역별 숙소 탐색을 할 수 있게 추가 기능을 개발하였고, 게스트하우스의 분위기와 특징을 쉽게 확인할 수 있도록 다양한 카테고리 정보를 개선하였습니다.</p>
+
+<p>또한 리뷰 데이터를 활용해 숙소의 주요 특징을 파악하고, 사용자가 원하는 조건과 분위기를 입력하면 적합한 게스트하우스를 추천받을 수 있도록 AI 기반 추천 및 리뷰 분석 기능도 함께 고도화했습니다. 
+이외에도 여러 채팅기능이나 알람기능, 여러 UI 개선등의 작업도 진행하였습니다 :)</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트 하면서 어떤 문제를 겪었나요?</strong></p>
+
+<p>준현 : 프로젝트를 시작할 때 제가 백엔드 경험이 부족했기 때문에 백엔드 공부를 하면서 백엔드 개발을 맡으려고 했습니다. 하지만 프로젝트를 진행하면서 백엔드를 공부하는 데 생각보다 많은 시간이 필요했고, 프로젝트에서 제가 어떤 역할을 맡아야 하는지도 애매했던 것 같습니다.</p>
+
+<p>그래서 성준, 지우, 저 이렇게 세 명이 따로 시간을 내서 현재 상황과 각자가 하고 싶은 역할에 대해 이야기했습니다. 그 과정에서 저는 백엔드보다는 AI를 활용해 기능을 구축하는 것에 더 관심이 있다는 것을 명확하게 이야기했고, 팀원들과 의견을 조율한 뒤 백엔드에서 AI 개발로 역할을 변경했습니다. 이후에는 RAG 개발에 집중하면서 프로젝트를 진행했습니다.</p>
+
+<p>이 경험을 통해 가장 크게 느낀 것은 내가 어떤 일을 하고 싶은지 명확하게 판단하고, 그것을 팀원들에게 적극적으로 전달하는 것이 중요하다는 점입니다. 만약 당시 팀원들과 직접 이야기하지 않고 애매한 상태로 계속 진행했다면, 백엔드와 AI 어느 쪽에도 제대로 집중하지 못했을 것이라고 생각합니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트를 하기 전 후 달라진 점이 있다면?</strong></p>
+
+<p>지우 : 이전 프로젝트와 비교했을 때 가장 크게 달라진 점은 서비스의 기능과 완성도뿐만 아니라 프로젝트를 바라보는 범위가 넓어졌다는 점입니다. 이번 프로젝트는 지난 프로젝트에 이어 ‘게하르방 v2’로 진행하였으며, 기존 서비스를 바탕으로 전반적인 디자인을 새롭게 구성하고 기능을 추가했습니다.</p>
+
+<p>대표적으로 채팅 기능, AI 기능, 지도 기능이 새롭게 추가되었고, 사용자 경험을 고려한 리디자인도 함께 진행하면서 v1보다 한층 발전된 서비스를 만들 수 있었습니다.</p>
+
+<p>팀적인 부분에서도 변화가 있었습니다. 새로운 팀원들과 프로젝트를 진행하면서 처음에는 서로 맞춰가는 과정이 필요했지만, 개발뿐만 아니라 친목 활동도 함께하면서 자연스럽게 가까워질 수 있었습니다. 그 결과 이전보다 의견을 편하게 주고받을 수 있게 되었고, 팀원 간의 소통과 협업 방식도 더욱 좋아졌다는 점이 달라진 부분이라고 생각합니다.</p>
+
+<p>또한 이전에는 서비스를 개발하고 완성하는 것에 집중했다면, 이번에는 실제 사용자를 유입시키는 과정까지 경험했다는 점도 큰 변화였습니다. 게하르방 v2를 인스타그램을 통해 홍보하면서 어떤 콘텐츠가 사람들의 관심을 끌 수 있는지, 실제 사용자를 확보하기 위해서는 어떤 방식으로 서비스를 알리는 것이 효과적인지 고민하게 되었습니다. 이를 통해 개발과 디자인뿐만 아니라 홍보와 마케팅의 중요성까지 경험하며 서비스 전체를 바라보는 시야가 넓어졌습니다.</p>
+
+<p><br></p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/1a257798-4c2d-4461-a059-612a86577da5/image.png" alt="4"></p>
+
+<p>결과적으로 이번 프로젝트를 통해 단순히 기능을 개발하는 것에서 나아가 사용자 경험, 팀워크, 홍보와 마케팅까지 함께 고민하게 되었다는 점이 이전 프로젝트와 비교했을 때 가장 크게 달라진 점이라고 생각합니다!</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트를 시작하는 팀에게 전해줄 꿀팁을 말해주세요!</strong></p>
+
+<p>은서: 프로젝트 경험이 여러 번 있는 팀이라면, 단순히 개발을 완료하는 것에 그치지 않고 추후 실제 사용자가 서비스를 이용하는 것까지 고려하여 프로젝트를 기획해 보는 것을 추천합니다. 실제 사용자를 생각하며 개발하다 보면 자연스럽게 사용자의 입장에서 기능과 화면을 고민하게 되고, 더욱 편리하고 사용하기 좋은 앱이나 웹을 만들 수 있습니다.</p>
+
+<p>또한 서비스를 직접 사용자에게 제공하고 피드백을 받는 과정을 통해 개발할 때는 미처 발견하지 못했던 문제점이나 개선할 부분을 알 수 있습니다. 이러한 경험을 반복하면서 문제를 해결하는 능력을 기르고, 개발자로서 한 단계 더 성장할 수 있다고 생각합니다.</p>
+
+<p>최근에는 AI를 활용하여 개발하는 경우가 많아지고 있기 때문에 개발 실력뿐만 아니라 어떤 서비스를 만들 것인지 결정하고 프로젝트의 방향을 설정하는 기획 능력도 중요해지고 있다고 생각합니다. 따라서 프로젝트를 시작할 때 어떤 문제를 해결하고 싶은지, 누구를 위한 서비스를 만들 것인지 등을 충분히 고민하여 방향성을 잡는 것이 중요합니다.</p>
+
+<p>반대로 개발 프로젝트가 처음인 팀이라면 완성도 높은 결과물을 만드는 것에 너무 큰 부담을 갖기보다는, 내가 어떤 기술을 사용해 보고 싶은지, 프로젝트를 통해 어떤 역량을 키우고 싶은지를 먼저 생각해 보는 것을 추천합니다. 아직 다양한 개발 기술을 경험해 보지 않은 단계이기 때문에 여러 기술을 직접 사용해 보고 시행착오를 겪는 과정 자체가 좋은 경험이 될 수 있습니다. 처음부터 완벽한 프로젝트를 만들려고 하기보다는 새로운 기술에 도전하고, 직접 부딪히며 배우는 것을 목표로 프로젝트를 진행한다면 이후의 개발에도 큰 도움이 될 것이라고 생각합니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 프로젝트 개발 중 어려움을 겪은 경험이 있나요? 어떻게 해결했으며, 그 과정에서 얻은 교훈은 무엇인가요</strong></p>
+
+<p>준현 : 프로젝트에서 RAG 기반 게스트하우스 추천 시스템을 개발하면서, RAG를 구축하는 것 자체보다 사용자의 질문에 맞는 게스트하우스를 정확하게 추천하는 과정에서 어려움을 겪었습니다.</p>
+
+<p>처음에는 사용자의 질문을 그대로 임베딩하여 유사한 게스트하우스 정보를 검색하는 방식으로 구현했습니다. 예를 들어 “혼자 여행 가도 어색하지 않은 게하 추천해줘”, “자연 속에서 조용히 힐링하기 좋은 숙소 추천해줘”와 같은 질문은 적절한 결과를 가져왔습니다. 하지만 “1박 3만원 이하인 게하 추천해줘”처럼 가격과 같이 명확한 조건이 포함된 질문에서는 조건과 맞지 않는 숙소가 추천되는 문제가 발생했습니다.</p>
+
+<p>이 문제를 해결하기 위해 RAG가 왜 해당 답변을 생성했는지를 분석할 필요가 있다는 강의를 본 기억이 떠올랐습니다. 그래서 한 번에 Top 5까지 추천 결과를 출력하도록 하고, 각각의 결과가 사용자의 질문과 어떤 부분에서 일치하거나 어긋나는지 비교했습니다. 그 과정에서 비정형적인 선호를 묻는 질문과 가격이나 인원 수처럼 명확한 조건을 요구하는 정형적인 질문 사이에 성능 차이가 있다는 것을 발견했습니다.</p>
+
+<p>그래서 사용자의 질문을 정형 조건과 비정형 조건으로 나누어 처리하는 방식으로 로직을 개선했습니다. 예를 들어 “가격이 4만원 이하이고 너무 시끄럽지 않은 게스트하우스 추천해줘”라는 질문이 들어오면, ‘4만원 이하’는 정형 조건으로 추출하고 ‘너무 시끄럽지 않은’은 비정형 조건으로 분류합니다. 이후 가격과 같은 정형 조건에는 명확한 필터를 적용하여 4만원 이하인 숙소만 검색 대상으로 제한했습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/5679e238-946a-4d42-9802-2256a2ab67c4/image.png" alt="5"></p>
+
+<p>이 경험을 통해 RAG를 활용한 서비스에서는 단순히 RAG를 구축하고 답변을 생성하는 것만큼이나, “왜 이런 결과가 나왔는가?”를 분석하는 과정이 중요하다는 것을 배웠습니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 문제에 대한 개선 방향은 어떤 것이 있을까요 ?</strong></p>
+
+<p>은서 : 저희가 프로젝트를 진행하면서 마주한 문제 중 하나는 경쟁 애플리케이션인 ‘게딱지’가 먼저 출시되었다는 점입니다. 게딱지 역시 게하르방과 마찬가지로 제주도 게스트하우스를 소개하고 예약을 도와주는 서비스이기 때문에, 비슷한 목적을 가진 서비스가 먼저 시장에 나왔다는 점에서 저희만의 차별성을 더욱 명확하게 만들어야 할 필요가 있었습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/bbc19f33-e883-49c3-8da7-2fb0b19a443a/image.png" alt="6"></p>
+
+<p>이에 저희는 단순히 게스트하우스를 소개하고 예약할 수 있는 기능에 그치지 않고, 게하르방만의 아이덴티티를 만들기 위해 다양한 기능을 추가하고 고도화하였습니다. 먼저 스텝 지도를 제작하여 여러 게스트하우스의 스텝 모집 공고를 한눈에 확인할 수 있도록 하였습니다.</p>
+
+<p>또한 AI 기능을 활용해 사용자가 궁금한 내용을 바로 질문할 수 있는 챗봇 서비스를 제공하고, 사용자의 조건과 취향에 맞는 게스트하우스를 추천받을 수 있도록 기능을 확장하였습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/ffe5d0f5-2c64-464f-9fdc-ffd6618408ba/image.png" alt="7"></p>
+
+<p>물론 경쟁 서비스가 등장했다는 이유만으로 이러한 기능들을 만든 것은 아니지만, 비슷한 서비스가 존재하는 만큼 이를 무시할 수는 없었습니다. 따라서 기존 서비스와 단순히 비슷한 앱을 만드는 것보다는 사용자가 실제로 필요로 하는 정보가 무엇인지 고민하고, 더 편리하게 이용할 수 있는 서비스를 만드는 방향으로 개선해 나갔습니다.</p>
+
+<p>추후에는 이러한 차별성을 더욱 강화하기 위해 각 게스트하우스의 분위기와 취향, 특징을 담을 수 있는 개별 커뮤니티 공간을 만드는 것을 계획하고 있습니다. 이를 통해 단순히 숙소 정보를 확인하고 예약하는 앱을 넘어, 게스트하우스마다 가진 개성과 문화를 사용자가 미리 경험하고 서로 소통할 수 있는 서비스로 발전시키고자 합니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. Summer Dev 프로젝트에서 개발자로 참여한 경험을 설명해 주세요. 어떤 역할을 맡았고, 주요 기술 스택은 어떻게 구성되었나요?</strong></p>
+
+<p>지우 : 1학기 프로젝트에서는 PM을 맡아 기획과 프로젝트 운영을 중심으로 참여했지만, 이번 Summer Dev 프로젝트에서는 제가 생각한 기획을 직접 개발해보고 싶다는 생각으로 AI 개발 역할에 도전했습니다. 처음 해보는 개발이었지만, 팀 회의 중 리뷰 기능에 AI를 적용해보자는 이야기가 나오면서 해당 기능을 직접 맡아 구현하게 되었습니다.</p>
+
+<p>리뷰 기능을 개발하면서 가장 많이 고민했던 부분은 “리뷰를 어떻게 하면 사용자에게 더 유용하게 보여줄 수 있을까?”였습니다. 그 과정에서 리뷰에서 주요 키워드를 추출하고, 사용자가 특정 키워드를 선택하면 해당 키워드가 언급된 리뷰 본문으로 바로 이동할 수 있는 기능을 기획하고 개발했습니다.</p>
+
+<p>또한 리뷰의 긍정·부정 감정을 분석해 단순히 리뷰를 보여주는 것에서 그치지 않고, 사장님이 고객 반응을 한눈에 파악할 수 있도록 인사이트를 제공하는 기능도 추가로 구현했습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/a94db3c9-b0cf-4a16-8a6e-b5072186ec86/image.png" alt="8"></p>
+
+<p>개발 과정에서는 처음 접하는 부분이 많아 필요한 내용을 직접 공부하면서 하나씩 구현해 나갔습니다. 특히 코드를 작성하는 것뿐만 아니라, 어떤 기준으로 키워드를 추출하고 감정을 판단할지 등 기능의 로직을 직접 설계하는 과정이 생각보다 재미있었습니다.</p>
+
+<p>주요 기술 스택은 Python을 중심으로 구성했습니다. 데이터 처리에는 pandas, 한국어 형태소 분석과 텍스트 전처리에는 Kiwi, 리뷰 키워드 추출에는 TF-IDF를 활용했습니다. 또한 실제 서비스와의 연동을 고려해 API 형태로 사용할 수 있도록 개발 방향을 잡았습니다.</p>
+
+<p>이번 프로젝트를 통해 이전에는 PM의 입장에서 기능을 기획했다면, 이번에는 기획한 아이디어가 실제 기능으로 구현되는 과정까지 직접 경험할 수 있었습니다. 특히 기획과 개발을 모두 경험하면서 서비스의 기능을 조금 더 현실적으로 바라보고 설계할 수 있게 된 점이 가장 큰 경험이었습니다.</p>
+
+<p><br></p>
+
+<p><strong>Q. 사용자 경험을 개선하기 위해 어떤 전략을 사용했나요?</strong></p>
+
+<p>요셉 : 기존 화면에서는 사용자가 어떤 행동을 취해야 하는 지 불명확 했습니다. 사용자가 서비스를 사용하자마자 이 서비스가 어떤 서비스를 제공하고, 어떤 분위기의 서비스인지 직관적으로 인지하는 것에 가장 큰 초점을 맞추고 새롭게 디자인을 진행했습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/f9b68500-64ef-4bb5-b38f-5aadcc4cc5a7/image.png" alt="9"></p>
+
+<p><br></p>
+
+<p>‘안전한 게스트하우스를 찾는다’는 너무나 당연한 소리라고 생각을 했습니다. 그래서 사용자가 여러 게스트하우스 분위기를 찾아야 하는 피로를 줄여주고, 자신에게 어울리는 혹은 이번 여행에 가보고 싶은 재주도 내 안전한 게스트하우스를 큐레이션 해주는 서비스로 사용자가 느끼는 경험을 좀 더 확장하려고 하였습니다</p>
+
+<p><br></p>
+
+<p><strong>Q. 본인 팀만의 특별한 협업 방식이 있나요? 있다면 소개해 주세요.</strong></p>
+
+<p>성준 : 저희 팀의 특별한 협업 방식은 자주 만나고, 즐겁게 놀면서 진행했다는 점입니다.</p>
+
+<p>저희 팀은 AICOSS 창업동아리에 소속되어 활동하면서 정기적인 회의뿐만 아니라 수시로 만나 서비스의 방향과 개발 진행 상황을 공유해왔습니다.</p>
+
+<p>함께 보내는 시간이 많다 보니 각자의 개발 상황이나 고민을 자연스럽게 이야기할 수 있었고, 문제가 생겼을 때도 빠르게 의견을 주고받을 수 있었습니다. 또한 팀원 간의 친밀도를 높이기 위해 회의나 활동에서 정한 벌칙으로 릴스 대결을 여러 차례 진행하기도 했습니다. 함께 영상을 기획하고 촬영하는 과정에서 자연스럽게 웃고
+이야기할 기회가 많아졌고, 덕분에 서로 편하게 의견을 이야기할 수 있는 팀 분위기가 만들어졌습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/02f4d669-12a0-4b16-b562-b211b21c8845/image.png" alt="10"></p>
+
+<p>특히 방학에는 단순히 회의실에서 서비스만 개발하는 데 그치지 않고, 팀원들과 직접 제주도의 게스트하우스를 방문해 실제로 숙박하고 게스트하우스 문화를 경험했습니다. 서비스를 만드는 개발자의 입장이 아니라 실제 여행객의 입장에서 숙소를 이용해보며 어떤 정보가 필요한지, 게스트하우스마다 어떤 분위기와 특징이 다른지를 함께 확인했습니다.</p>
+
+<p><img src="https://velog.velcdn.com/images/sanghyeon1225/post/e6d29ed2-3002-487f-b390-950c3e11e4ae/image.png" alt="11"></p>
+
+<p>이 과정에서 느낀 점들을 팀원들과 공유하면서 기존 기능을 다시 바라보게 되었고, 지역 구분이나 숙소의 분위기, 테마와 같은 요소를 서비스에 어떻게 반영할지 논의할 수 있었습니다.</p>
+
+<p><br></p>
+
+<p>지금까지 사용자 관점에서 서비스를 고민하며 게스트하우스 통합 플랫폼 “게하르방”을 제작한 NoBrains팀이었습니다 !</p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_Keyring.html" title="[2026 SUMMER DEV] 동아리의 모든 서비스를 한 곳에서 보는 플랫폼 'ECO-KNOCK', Keyring팀">[2026 SUMMER DEV] 동아리의 모든 서비스를...</a><a class="next" href="/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%94%8C%EB%A1%9C%EB%B2%84.html" title="[2026 SUMMER DEV] AI 기반 플로깅 경로 추천 서비스 '플로버', 플로버팀">[2026 SUMMER DEV] AI 기반 플로깅...</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/2021-summer-dev-%EC%A3%BC%EA%B0%80-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%B8-%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%8B%A4%EC%9D%8C-%EC%A3%BC%EA%B0%80%EB%A5%BC-%EC%98%88%EC%B8%A1%ED%95%98%EB%8A%94-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%94%94%ED%95%91%EC%86%8C%EC%8A%A4%ED%8C%80-22f4bf4ce551" title="[2021 SUMMER DEV] 주가 데이터인 시계열 데이터를 이용해 다음 주가를 예측하는 인공지능 프로그램, 디핑소스팀">
+            [2021 SUMMER DEV] 주가 데이터인 시계열 데이터를 이용해 다음 주가를 예측하는 인공지능...<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/econo-people-10-%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2020-%ED%9A%8C%EC%9E%A5%EB%8B%A8%EC%9D%84-%EC%86%8C%EA%B0%9C%ED%95%A9%EB%8B%88%EB%8B%A4-%EB%B0%B0%EC%A2%85%EC%A7%84-%EB%8B%98-%EC%9D%B4%EC%A7%80%EC%9C%A8-%EB%8B%98-659d0e69cd0e" title="[ECONO PEOPLE #10] 에코노베이션 2020 회장단을 소개합니다! 배종진 님, 이지율 님">
+            [ECONO PEOPLE #10] 에코노베이션 2020 회장단을 소개합니다! 배종진 님, 이지율 님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/summer/winter_dev/2025/08/12/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_BAP.html" title="[2025 SUMMER DEV] 전남대학교 학생들을 위한 메뉴 추천 서비스 '전맛탱', BAP팀">
+            [2025 SUMMER DEV] 전남대학교 학생들을 위한 메뉴 추천 서비스 '전맛탱', BAP팀<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/%EC%97%90%EC%BD%94%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-2019%EB%85%84-1%ED%95%99%EA%B8%B0-ot-7b9bcfe0672f" title="에코노베이션 2019년 1학기 OT">
+            에코노베이션 2019년 1학기 OT<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

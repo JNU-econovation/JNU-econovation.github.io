@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>트랜스포머 디코더로 GPT-2 구조 이해하기 | ECONOVATION</title>
+<meta name="generator" content="Jekyll v4.4.1">
+<meta property="og:title" content="트랜스포머 디코더로 GPT-2 구조 이해하기">
+<meta name="author" content="안성준">
+<meta property="og:locale" content="ko">
+<meta name="description" content="지난 시간에는 트랜스포머 인코더를 활용해 텍스트를 분류하는 방법을 알아봤습니다. 이번 시간에는 텍스트 생성에 뛰어난 트랜스포머 디코더의 원리를 살펴보고, GPT-2 Base와 유사한 구조의 언어 모델을 직접 구현해보겠습니다.">
+<meta name="twitter:description" property="og:description" content="지난 시간에는 트랜스포머 인코더를 활용해 텍스트를 분류하는 방법을 알아봤습니다. 이번 시간에는 텍스트 생성에 뛰어난 트랜스포머 디코더의 원리를 살펴보고, GPT-2 Base와 유사한 구조의 언어 모델을 직접 구현해보겠습니다.">
+<link rel="canonical" href="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2026/08/26/%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8-%EB%94%94%EC%BD%94%EB%8D%94-%EB%AA%A8%EB%8D%B8%EB%A1%9C-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0.html">
+<meta property="og:url" content="https://jnu-econovation.github.io/jekyll-theme-yat/tech/2026/08/26/%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8-%EB%94%94%EC%BD%94%EB%8D%94-%EB%AA%A8%EB%8D%B8%EB%A1%9C-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0.html">
+<meta property="og:site_name" content="ECONOVATION">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-08-26T00:00:00+09:00">
+<meta property="article:modified_time" content="2026-08-26T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="트랜스포머 디코더로 GPT-2 구조 이해하기">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"안성준"},"dateModified":"2026-08-26T00:00:00+09:00","datePublished":"2026-08-26T00:00:00+09:00","description":"지난 시간에는 트랜스포머 인코더를 활용해 텍스트를 분류하는 방법을 알아봤습니다. 이번 시간에는 텍스트 생성에 뛰어난 트랜스포머 디코더의 원리를 살펴보고, GPT-2 Base와 유사한 구조의 언어 모델을 직접 구현해보겠습니다.","headline":"트랜스포머 디코더로 GPT-2 구조 이해하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2026/08/26/%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8-%EB%94%94%EC%BD%94%EB%8D%94-%EB%AA%A8%EB%8D%B8%EB%A1%9C-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0.html"},"url":"https://jnu-econovation.github.io/jekyll-theme-yat/tech/2026/08/26/%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8-%EB%94%94%EC%BD%94%EB%8D%94-%EB%AA%A8%EB%8D%B8%EB%A1%9C-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="icon" href="/assets/images/favicon.ico">
+  <link rel="canonical" href="https://JNU-econovation.github.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;family=Syne:wght@400..800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="https://jnu-econovation.github.io/jekyll-theme-yat/feed.xml" title="ECONOVATION">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Init highlight js
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var els = document.querySelectorAll("pre code");
+
+    function addLangData(block) {
+      var outer = block.parentElement.parentElement.parentElement;
+      var lang = block.getAttribute("data-lang");
+      for (var i = 0; i < outer.classList.length; i++) {
+        var cls = outer.classList[i];
+        if (cls.startsWith("language-")) {
+          lang = cls;
+          break;
+        }
+      }
+      if (!lang) {
+        cls = block.getAttribute("class");
+        lang = cls ? cls.replace("hljs ", "") : "";
+      }
+      if (lang.startsWith("language-")) {
+        lang = lang.substr(9);
+      }
+      block.setAttribute("class", "hljs " + lang);
+      block.parentNode.setAttribute("data-lang", lang);
+    }
+
+    function addBadge(block) {
+      var enabled = ("true" || "true").toLowerCase();
+      if (enabled == "true") {
+        var pre = block.parentElement;
+        pre.classList.add("badge");
+      }
+    }
+
+    function handle(block) {
+      addLangData(block);
+      addBadge(block);
+      hljs.highlightBlock(block);
+    }
+
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      handle(el);
+    }
+  });
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  /* code > table pre::before {
+    display: none;
+  } */
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe-lightbox.umd.min.js" async></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/umd/photoswipe.umd.min.js" async></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css" rel="stylesheet">
+<style>
+  .pswp .pswp__container .pswp__img {
+    background-color: white;
+  }
+</style>
+
+<script>
+  function initPhotoSwipe() {
+    let customOptions = {};
+
+    try {
+      const data = ``.replaceAll("=>", ":");
+      customOptions = JSON.parse(data);
+    } catch (e) {
+      console.info("Invalid custom photo previewer options! " + e.message);
+    }
+
+    // Define object and gallery options
+    const options = Object.assign(
+      {
+        gallery: "section.main",
+        children: "a.photo-swipe",
+        photo_scale: 2,
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+      },
+      customOptions
+    );
+
+    const galleryEl = document.querySelector(options.gallery);
+    if (!galleryEl) {
+      return;
+    }
+
+    const imgEls = [];
+    const els = galleryEl.querySelectorAll("img:not(.emoji)");
+    els.forEach((el) => {
+      if (el.src.trim() == "") {
+        return;
+      }
+      if (!imgEls.includes(el)) {
+        imgEls.push(el);
+      }
+    });
+
+    if (imgEls.length === 0) {
+      return;
+    }
+
+    imgEls.forEach((imgEl) => {
+      imgEl.outerHTML = `
+      <a class="photo-swipe"
+        href="${imgEl.src}"
+        data-pswp-width="${
+          Math.max(imgEl.naturalWidth, imgEl.width) * options.photo_scale
+        }"
+        data-pswp-height="${
+          Math.max(imgEl.naturalHeight, imgEl.height) * options.photo_scale
+        }"
+        data-pswp-caption="${imgEl.getAttribute("caption") || imgEl.alt}"
+        target="_blank">
+        ${imgEl.outerHTML}
+      </a>`;
+    });
+
+    // Initialize PhotoSwipe 5
+    var lightbox = new PhotoSwipeLightbox(options);
+
+    lightbox.init();
+  }
+
+  window.addEventListener("load", initPhotoSwipe);
+</script>
+
+<link rel="stylesheet" href="/jekyll-theme-yat/assets/css/custom.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="ECONOVATION" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  ECONOVATION
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/">HOME</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<div class="page-link" style="display: inline;">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+</div>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+  <div class="page-banner-img"><div style="background-image: url(https://velog.velcdn.com/images/newkid0714/post/603e1ab6-9c08-474e-a64a-aa74d6dd9eaa/image.png)"></div>
+    <img class="img-placeholder" src="https://velog.velcdn.com/images/newkid0714/post/603e1ab6-9c08-474e-a64a-aa74d6dd9eaa/image.png" /></div>
+  <div class="wrapper">
+    <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">트랜스포머 디코더로 GPT-2 구조 이해하기</h1>
+  <h2 class="post-subtitle">코잘 마스크부터 디코더 전용 언어 모델 구현까지</h2>
+
+  <div class="post-meta">
+    <time class="dt-published" datetime="2026-08-26T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Aug 26, 2026
+    </time><span class="post-author left-vsplit"><i class="fa fa-pencil"></i> 안성준</span>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 48 mins</span>
+  </div><div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#Tech">#Tech</a></div></header>
+</div>
+  </div>
+</section>--><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>지난 시간에는 트랜스포머 인코더를 활용해 텍스트를 분류하는 방법을 알아봤습니다.
+이번 시간에는 텍스트 생성에 뛰어난 <strong>트랜스포머 디코더</strong>의 원리를 살펴보고,
+GPT-2 Base와 유사한 구조의 언어 모델을 직접 구현해보겠습니다.</p>
+
+<p><br></p>
+
+<h2 id="section">1. 원본 트랜스포머의 디코더</h2>
+
+<p>원본 트랜스포머는 입력된 문장을 <strong>인코더</strong>에 넣어 문장의 의미를 표현하고
+이전까지 생성한 단어와 문장의 의미를 가지고 <strong>디코더</strong>가 다음 단어를 예측하는 구조입니다</p>
+
+<p>예를 들어 영어 문장을 한국어로 번역한다고 가정을 하면
+먼저 인코더가 영어 문장을 읽고 단어들의 관계와 문장의 의미를 벡터로 표현합니다
+그 다음 디코더는 인코더가 만든 정보를 참고하면서 번역 문장을 한 토큰씩 생성합니다</p>
+
+<p>이때 디코더는 다음 두 정보를 함께 이용합니다.</p>
+
+<ol>
+  <li>인코더가 이해한 영어 문장의 의미</li>
+  <li>지금까지 생성한 토큰의 정보</li>
+</ol>
+
+<p>이렇게 원본 트랜스포머 디코더는 이를 위해 크게 두 종류의 어텐션이 있습니다</p>
+
+<ul>
+  <li>
+<strong>마스크드 셀프 어텐션</strong>: 이전까지 나온 출력 토큰들의 관계를 확인합니다.</li>
+  <li>
+<strong>크로스 어텐션</strong>: 인코더가 처리한 입력 문장의 정보를 확인합니다.</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="gpt----">2. GPT와 같은 디코더 전용 모델</h2>
+
+<p>GPT 계열 모델은 원본 트랜스포머에서 인코더를 사용하지 않고 
+주로 <strong>디코더 구조만 사용</strong>합니다</p>
+
+<blockquote>
+  <p>프롬프트 → 디코더 → 다음 토큰 예측 → 예측 결과를 다시 입력 → 다음 토큰 예측</p>
+</blockquote>
+
+<p>이러한 방식을 <strong>자기회귀 생성, Autoregressive Generation</strong>이라고 합니다</p>
+
+<p>이러한 디코더 언어 모델은 현재까지 입력된 토큰을 보고 
+바로 다음 토큰을 맞히도록 학습을 합니다</p>
+
+<p>예를 들어 학습 문장이 “나는 학교에 간다” 를 학습시켜본다고 해보겠습니다
+그러면 모델의 입력과 정답은 한 칸씩 밀려 있습니다</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">입력 토큰</th>
+      <th style="text-align: center">맞혀야 하는 다음 토큰</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">나는</td>
+      <td style="text-align: center">학교에</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">나는 학교에</td>
+      <td style="text-align: center">간다</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">나는 학교에 간다</td>
+      <td style="text-align: center">문장 종료</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>실제 학습에서는 문장 전체를 한꺼번에 넣지만, 개념적으로는</p>
+
+<blockquote>
+  <p>입력: 나는 학교에 간다<br>
+정답: 학교에 간다 [종료]</p>
+</blockquote>
+
+<p>이를 <strong>시프트된 타깃, Shifted Target</strong> 이라고 합니다</p>
+
+<p>모델은 자신이 예측한 토큰과 실제 다음 토큰의 차이를 계산하고
+실제 정답의 확률이 높아지도록 학습을 진행합니다</p>
+
+<p>또한 일반적인 지도학습에서는 사람이 직접 정답 레이블을 만들어야 하지만
+특별히 언어 모델에서는 텍스트 자체로부터 입력과 정답을 자동으로 만들 수 있습니다</p>
+
+<p>사람이 별도의 정답을 작성하지 않아도 
+원래 문장에서 다음 토큰을 정답으로 가져올 수 있습니다</p>
+
+<p>이처럼 <strong>데이터 자체에서 학습에 필요한 정답을 만들어 사용하는 방식</strong>을
+<strong>자기지도 학습(Self-supervised Learning)</strong>이라고 합니다.</p>
+
+<p><br></p>
+
+<h2 id="section-1">3. 코잘 언어 모델링</h2>
+
+<p>여기서 <strong>코잘 언어 모델링</strong>이라는 개념이 나오는데
+인과적 언어 모델링, Causal Language Modeling이라고 부릅니다</p>
+
+<p>핵심은 현재 토큰을 예측할 때 이전 토큰만 볼 수 있고
+미래 토큰은 볼 수 없다는 개념입니다</p>
+
+<p>예를 들어 “나는 오늘 학교에 갔다”라는 문장이 있다고 합시다
+이때에 <code class="language-plaintext highlighter-rouge">학교에</code> 라는 토큰을 처리할 때 볼 수 있는 범위는 “나는 오늘 학교에” 입니다
+이를 확률로 표현하면 다음과 같습니다</p>
+
+<blockquote>
+  <p>P(문장)<br>
+= P(나는)<br>
+× P(오늘 | 나는)<br>
+× P(학교에 | 나는, 오늘)<br>
+× P(갔다 | 나는, 오늘, 학교에)</p>
+</blockquote>
+
+<p>각 토큰은 현재 위치까지의 토큰들을 조건으로 다음 토큰의 확률을 계산합니다.</p>
+
+<p>그런데 이런 생각이 들 수 있습니다 왜 마스크드 멀티 헤드 어텐션이 필요할까?</p>
+
+<p>일반적인 셀프 어텐션에서는 문장의 모든 토큰이 서로를 볼 수 있습니다
+그래서 마스크가 없다면 학교에를 처리할 때 뒤에 있는 정답인 갔다까지 볼 수 있습니다
+실제 문장 생성 확인에서 미래 단어가 존재하지 않으므로 잘못된 학습이 됩니다</p>
+
+<p>예를 들어 마스크가 없는 경우는 모든 토큰을 볼 수 있지만
+코잘 마스크를 적용한 경우 한정적으로 볼 수 있게 됩니다</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">현재 토큰</th>
+      <th style="text-align: center">볼 수 있는 토큰</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">나는</td>
+      <td style="text-align: center">나는</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">오늘</td>
+      <td style="text-align: center">나는, 오늘</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">학교에</td>
+      <td style="text-align: center">나는, 오늘, 학교에</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">갔다</td>
+      <td style="text-align: center">나는, 오늘, 학교에, 갔다</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이를 행렬로 표현하면 다음과 같은 삼각형 구조가 됩니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Query / Key</th>
+      <th style="text-align: center">나는</th>
+      <th style="text-align: center">오늘</th>
+      <th style="text-align: center">학교에</th>
+      <th style="text-align: center">갔다</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">나는</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">오늘</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">학교에</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">갔다</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이러한 마스크를 우리는 <strong>코잘 마스크 또는 미래 마스크</strong>라고 합니다
+정확히는 미래 위치의 어텐션 점수에 매우 작은 값인 음의 무한대에 가까운 값을 더합니다
+그 후 소프트맥스 함수를 적용하면 해당 위치의 어텐션 확률이 사실상 0이 됩니다</p>
+
+<p>이렇게 하나의 어텐션만 사용하는 것이 아니라 여러 개의 어텐션 헤드를 동시에
+사용하는데 각 헤드는 문장에서 서로 다른 관계에 집중할 수 있습니다</p>
+
+<p>예를 들어 “성준은 준현에게 책을 주었다” 라는 문장이 있다면</p>
+
+<p>각 헤드는 다음처럼 다른 관계를 학습할 수 있습니다</p>
+
+<ul>
+  <li>헤드 1: 성준 ↔ 주었다 — 주어와 서술어 관계</li>
+  <li>헤드 2: 준현에게 ↔ 주었다 — 대상과 행동 관계</li>
+  <li>헤드 3: 책을 ↔ 주었다 — 목적어와 행동 관계</li>
+</ul>
+
+<p>따라서 <strong>마스크드 멀티 헤드 어텐션</strong>은 
+여러 관점에서 토큰 사이의 관계를 분석하고
+미래 토큰은 보지 못하게 제한을 합니다</p>
+
+<p><br></p>
+
+<h2 id="section-2">4. 학습할 때와 생성할 때의 차이</h2>
+
+<p>학습할 때에는 정답 문장 전체가 이미 존재합니다
+하지만 코잘 마스크를 사용하기 때문에 각 토큰은 미래 토큰을 볼 수 없습니다.</p>
+
+<p>생성할 때에는 미래의 문장이 아직 없으므로 실제로 한 토큰씩 생성을 하게 됩니다
+따라서 일반적으로 학습은 병렬처리가 가능하지만
+생성은 앞 토큰의 결과가 필요하므로 순차적으로 진행되게 됩니다</p>
+
+<blockquote>
+  <p>트랜스포머 디코더는 마스크드 멀티 헤드 어텐션을 사용해 미래의 정답을 보지 않고,
+이전 토큰들의 관계만 분석하면서 다음 토큰을 예측하도록 학습합니다.</p>
+</blockquote>
+
+<p>그러면 이제는 패딩 마스크와 코잘 마스크를 결합해서 모델이 의미 없는 패딩 토큰과
+아직 등장하지 않은 미래 토큰을 모두 참조하지 못하도록 
+최종 어텐션 마스크를 만들어보겠습니다</p>
+
+<p>코잘 마스킹은 입력되는 토큰의 값과 무관하며, 토큰의 길이에 따라 달라집니다
+입력되는 토큰의 개수가 10개이면 (10,10) 크기의 마스크 행렬을 만들어야 합니다</p>
+
+<p>그러면 먼저 마스크 행렬을 하나 만들어 
+행렬의 주 대각선 위쪽에 있는 모든 값을 0으로 만들어보겠습니다</p>
+
+<pre><code class="python">
+import keras
+from keras import layers
+import keras_nlp
+
+def make_causal_mask(seq_len):
+  n_hori = keras.ops.arange(seq_len)
+  n_vert = keras.ops.expand_dims(n_hori,axis=1)
+  mask = n_vert &gt;= n_hori
+  return mask
+</code></pre>
+
+<p>여기에서는 <code class="language-plaintext highlighter-rouge">expand_dims()</code> 함수를 활용해서 2차원 텐서를 바뀐 후 
+비교 연산을 통해서 결과를 얻게 됩니다</p>
+
+<p><img src="https://velog.velcdn.com/images/newkid0714/post/389ae3e2-1a1b-4bed-adad-217765b3f4ca/image.png" alt="길이 5의 코잘 마스크 행렬" width="800"></p>
+
+<p>최대 시퀀스 길이가 5이고 실제 토큰이 3개라면 패딩 마스크는 [1, 1, 1, 0, 0]이 됩니다</p>
+
+<p>여기서 앞의 세 위치는 실제 토큰이고 네 번째와 다섯 번째 위치는 길이를 맞추기 위해 추가한 패딩 토큰입니다 따라서 모든 토큰이 네 번째와 다섯 번째 패딩 위치를 참조하지 못하도록 가려야 합니다</p>
+
+<p>코잘 마스크는 미래 토큰을 가리고 패딩 마스크는 실제 내용이 없는 패딩 토큰을 가립니다 두 마스크는 서로 다른 역할을 하므로 최종 어텐션 마스크에서는 두 조건을 함께 적용해야 합니다</p>
+
+<p>이렇게 코잘 마스크와 패딩 마스크를 합치는 간단한 방법은 
+<code class="language-plaintext highlighter-rouge">keras.ops.minimum()</code> 함수를 사용하는 것입니다.</p>
+
+<pre><code class="python">
+padding_mask = [1,1,1,0,0]
+keras.ops.minimum(causal_mask, padding_mask)
+</code></pre>
+<p>해당 함수를 사용하면 위에서 만들었던 causal_mask의 불리언 값을
+0과 1로 변환하여 각 행마다 padding_mask와 비교합니다</p>
+
+<p><img src="https://velog.velcdn.com/images/newkid0714/post/b7f6003f-64aa-4d25-b1da-7154016527f7/image.png" alt="코잘 마스크와 패딩 마스크를 결합한 결과" width="800"></p>
+
+<p>마지막으로는 배치 차원을 고려하여 최종 어텐션 마스크를 만드는 함수
+<code class="language-plaintext highlighter-rouge">make_attention_mask()</code> 를 살펴보겠습니다</p>
+
+<pre><code class="python">
+def make_attention_mask(padding_mask):
+  # padding_mask의 크기가 (2,5)라고 가정
+  batch_size, seq_len = keras.ops.shape(padding_mask)
+  # causal_mask의 크기는 (5,5)가 된다
+  causal_mask = make_causal_mask(seq_len)
+  # 배치 차원을 추가해 (2,5,5)로 만든다
+  causal_mask = keras.ops.broadcast_to(
+      causal_mask, (batch_size, seq_len, seq_len))
+  # 브로드캐스팅을 위해 padding_mask의 크기를 (2,1,5)로 
+  padding_mask = keras.ops.expand_dims(padding_mask, axis=1)
+  return keras.ops.minimum(causal_mask,padding_mask)
+</code></pre>
+
+<p>쉽게 이해하기 위해서 <code class="language-plaintext highlighter-rouge">padding_mask</code>의 크기를 <code class="language-plaintext highlighter-rouge">(2,5)</code>라고 가정하겠습니다</p>
+
+<p>이는 하나의 배치에 문장 2개가 들어 있고, 
+각 문장의 최대 토큰 길이가 5개라는 의미입니다
+마스크에서 1은 실제 토큰, 0은 패딩 토큰을 나타냅니다</p>
+
+<p>예를 들어 패딩 마스크가 다음과 같습니다</p>
+
+<pre><code class="text">
+[ 
+[1, 1, 1, 0, 0], 
+[1, 1, 1, 1, 0] 
+]
+</code></pre>
+
+<p>첫 번째 문장은 실제 토큰이 3개이고, 뒤의 2개는 패딩 토큰이고
+두 번째 문장은 실제 토큰이 4개이고 마지막 1개가 패딩 토큰입니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">batch_size, seq_len = keras.ops.shape(padding_mask)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">padding_mask</code>의 크기가 <code class="language-plaintext highlighter-rouge">(2,5)</code>이므로 <code class="language-plaintext highlighter-rouge">batch_size</code>는 2
+<code class="language-plaintext highlighter-rouge">seq_len</code>은 5가 됩니다 그 다음 길이가 5인 시퀀스에 적용할 코잘 마스크를 생성합니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">seq_len</code>이 5이므로<code class="language-plaintext highlighter-rouge">(5,5)</code> 크기의 코잘 마스크가 생성됩니다</p>
+
+<p>행은 정보를 찾으려는 현재 토큰인 query의 위치를 의미하고
+열은 현재 토큰이 참조하려는 key의 위치를 의미합니다</p>
+
+<p>코잘 마스크만 적용하면 세 번째 토큰은 첫 번째부터 세 번째 토큰까지만 볼 수 있고
+자신보다 뒤에 있는 네 번째와 다섯 번째 토큰은 미래 위치이므로 볼 수 없습니다</p>
+
+<p>여기에 [1, 1, 1, 0, 0] 형태의 패딩 마스크를 함께 적용하면 모든 토큰은 네 번째와 다섯 번째 위치를 참조할 수 없습니다 첫 번째 문장에서 이 두 위치는 실제 토큰이 아니라 패딩 토큰이기 때문입니다</p>
+
+<p>그러나 현재 코잘 마스크의 크기는 <code class="language-plaintext highlighter-rouge">(5,5)</code>이고 배치에는 문장이 2개 있어서
+따라서 각 문장에 동일한 코잘 마스크를 적용할 수 있도록
+배치 차원을 추가해줘야 합니다</p>
+
+<p>그냥 개념적으로는 동일한 <code class="language-plaintext highlighter-rouge">(5,5)</code> 코잘 마스크가 각 문장에 하나씩 적용됩니다</p>
+
+<p>이어서 다음으로 패딩 마스크에도 차원을 확장하는데 기존 마스크는 <code class="language-plaintext highlighter-rouge">(2,5)</code>입니다</p>
+
+<pre><code class="text">
+[ 
+[1, 1, 1, 0, 0], 
+[1, 1, 1, 1, 0] 
+]
+</code></pre>
+
+<p>하지만 새로운 차원을 추가하면 <code class="language-plaintext highlighter-rouge">(2,1,5)</code>가 됩니다 
+첫 번째 문장을 기준으로 하면 <code class="language-plaintext highlighter-rouge">[[1, 1, 1, 0, 0]]</code>가 됩니다</p>
+
+<p>가운데 크기를 1로 만드는 이유는 코잘 마스크와 결합할 때
+브로드캐스팅을 적용하기 위해서 입니다</p>
+
+<pre><code class="text">
+코잘 마스크: (2, 5, 5) 
+패딩 마스크: (2, 1, 5)
+</code></pre>
+
+<p>패딩 마스크의 가운데 차원인 1이 시퀀스 길이인 5로 확장되면서
+동일한 패딩 정보가 모든 행에 적용됩니다</p>
+
+<p>첫 번째 문장의 패딩 마스크가 다음과 같다면,</p>
+
+<pre><code class="text">
+[1, 1, 1, 0, 0]
+</code></pre>
+
+<p>브로드캐스팅된 형태는 개념적으로 다음과 같습니다</p>
+
+<pre><code class="text">
+[
+ [1, 1, 1, 0, 0],
+ [1, 1, 1, 0, 0],
+ [1, 1, 1, 0, 0],
+ [1, 1, 1, 0, 0],
+ [1, 1, 1, 0, 0]
+]
+</code></pre>
+
+<p>모든 토큰이 네 번째와 다섯 번째 위치의 패딩 토큰을 참조하지 못하도록
+동일한 마스크가 각 행에 적용되는 것입니다
+그리고 <code class="language-plaintext highlighter-rouge">minimum()</code> 연산을 통해서 코잘 마스크와 패딩 마스크를 결합합니다
+같은 위치에 있는 값 중 작은 값을 선택하면 됩니다</p>
+
+<p>그렇게 최종 어텐션 마스크를 생성하게 됩니다 
+이러한 최종 마스크는 현재 토큰보다 뒤에 있는 미래 토큰은 참조할 수 없고
+실제 문장이 포함되지 않은 패딩 토큰도 참조할 수 없습니다</p>
+
+<p>최종 어텐션 마스크의 크기는 <code class="language-plaintext highlighter-rouge">(2,5,5)</code>이며 
+각 차원의 의미는 <code class="language-plaintext highlighter-rouge">(batch_size, query_length, key_length)</code> 입니다</p>
+
+<p>결국 이 함수는 코잘 마스크와 패딩 마스크를 결합하여 각 토큰이 자신보다 
+뒤에 있는 미래 토큰과 실제 내용이 없는 패딩 토큰을 참조하지 못하도록 합니다</p>
+
+<p>이렇게 생성한 최종 어텐션 마스크는 디코더의 마스크드 셀프 어텐션에 전달됩니다</p>
+
+<p><br></p>
+
+<h2 id="section-3">5. 트랜스포머 디코더 모듈 만들기</h2>
+
+<p>앞에서 코잘 마스크와 패딩 마스크를 결합하여 최종 어텐션 마스크를 만들었습니다 
+이제 이 마스크를 사용해 미래 토큰과 패딩 토큰을 참조하지 않는 
+트랜스포머 디코더 모듈을 구현해보겠습니다</p>
+
+<p>이번에 구현할 디코더는 GPT와 같은 <strong>디코더 전용 모델</strong>에 사용되는 구조입니다
+따라서 인코더의 출력을 참고하는 크로스 어텐션은 사용하지 않고 아래와 같은 요소로 구성됩니다</p>
+
+<ol>
+  <li>층 정규화</li>
+  <li>마스크드 멀티 헤드 셀프 어텐션</li>
+  <li>드롭아웃</li>
+  <li>잔차 연결</li>
+  <li>피드 포워드 네트워크</li>
+</ol>
+
+<p>입력은 <strong>층 정규화 → 마스크드 멀티 헤드 셀프 어텐션 → 드롭아웃 → 잔차 연결 →
+층 정규화 → 피드 포워드 네트워크 → 드롭아웃 → 잔차 연결 → 출력</strong> 순서로 처리됩니다.</p>
+
+<p>먼저 어텐션 마스크를 케라스 층으로 만들면 <code class="language-plaintext highlighter-rouge">make_attention_mask()</code> 함수는
+패딩 마스크와 코잘 마스크를 결합하여 최종 어텐션 마스크를 반환합니다</p>
+
+<p>이를 케라스 모델 내부에서 사용하기 위해서 
+간단한 사용자 정의 층으로 만들어보겠습니다</p>
+
+<pre><code class="python">
+class AttentionMask(keras.layers.Layer):
+  def call(self, padding_mask):
+    return make_attention_mask(padding_mask)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">AttentionMask</code> 클래스는 <code class="language-plaintext highlighter-rouge">keras.layers.Layer</code>를 상속받습니다.
+그리고 <code class="language-plaintext highlighter-rouge">call()</code> 메서드에서 앞서 만든 <code class="language-plaintext highlighter-rouge">make_attention_mask()</code> 함수를 호출합니다
+따라서 크기가 <code class="language-plaintext highlighter-rouge">(batch_size, seq_len)</code>인 패딩 마스크를 입력하면
+코잘 마스크와 결합된 <code class="language-plaintext highlighter-rouge">(batch_size, seq_len, seq_len)</code> 
+크기의 최종 어텐션 마스크를 반환합니다.</p>
+
+<pre><code class="text">
+attention_mask = AttentionMask()(padding_mask)
+</code></pre>
+
+<p>이렇게 만든 어텐션 마스크는 뒤에서 <code class="language-plaintext highlighter-rouge">MultiHeadAttention</code> 층의 
+<code class="language-plaintext highlighter-rouge">attention_mask</code> 매개변수로 전달됩니다</p>
+
+<p>이제 트랜스포머 디코더 모듈을 구현해보겠습니다</p>
+
+<pre><code class="python">
+def transformer_decoder(
+    x,
+    padding_mask,
+    dropout,
+    activation="relu",
+    norm_first=True,
+):
+    # 패딩 마스크와 코잘 마스크를 결합
+    attention_mask = AttentionMask()(padding_mask)
+
+    # 첫 번째 잔차 연결을 위해 입력을 저장
+    residual = x
+
+    # 각 어텐션 헤드가 사용할 차원을 계산
+    key_dim = hidden_dim // num_heads
+
+    # Pre-Norm을 사용하는 경우 어텐션 전에 정규화
+    if norm_first:
+        x = layers.LayerNormalization()(x)
+
+    # 마스크드 멀티 헤드 셀프 어텐션
+    x = layers.MultiHeadAttention(
+        num_heads=num_heads,
+        key_dim=key_dim,
+        dropout=dropout,
+    )(
+        query=x,
+        value=x,
+        attention_mask=attention_mask,
+    )
+
+    x = layers.Dropout(dropout)(x)
+
+    # 첫 번째 잔차 연결
+    x = x + residual
+
+    # Post-Norm을 사용하는 경우 잔차 연결 후 정규화
+    if not norm_first:
+        x = layers.LayerNormalization()(x)
+
+    # 두 번째 잔차 연결을 위해 현재 값을 저장
+    residual = x
+
+    # Pre-Norm을 사용하는 경우 피드 포워드 네트워크 전에 정규화
+    if norm_first:
+        x = layers.LayerNormalization()(x)
+
+    # 위치별 피드 포워드 네트워크
+    x = layers.Dense(
+        hidden_dim * 4,
+        activation=activation,
+    )(x)
+
+    x = layers.Dense(hidden_dim)(x)
+    x = layers.Dropout(dropout)(x)
+
+    # 두 번째 잔차 연결
+    x = x + residual
+
+    # Post-Norm을 사용하는 경우 잔차 연결 후 정규화
+    if not norm_first:
+        x = layers.LayerNormalization()(x)
+
+    return x
+</code></pre>
+<p>코드를 설명을 조금 하면 먼저 입력으로 전달된 패딩 마스크를 이용하여
+최종 어텐션 마스크를 만들게 됩니다 이 마스크는 두 가지 조건이 포함되어 있는데</p>
+
+<ul>
+  <li>현재 위치보다 뒤에 있는 미래 토큰을 가리는 코잘 마스크</li>
+  <li>실제 내용이 없는 패딩 토큰을 가리는 패딩 마스크</li>
+</ul>
+
+<p>따라서 디코더는 미래의 정답과 패딩 토큰을 참고하지 않고
+현재까지 등장한 실제 토큰만을 이용해 어텐션을 계산하게 됩니다</p>
+
+<p>그래서 어텐션 연산을 수행하기 전에 현재 입력 <code class="language-plaintext highlighter-rouge">x</code>를 <code class="language-plaintext highlighter-rouge">residual</code>에 저장하고
+이 값은 어텐션 연산이 끝난 뒤 다음과 같이 다시 더해집니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">x = x + residual</code></p>
+
+<p>이러한 구조를 <strong>잔차 연결, Residual Connection</strong>이라고 합니다
+잔차 연결은 층을 통과하기 전의 정보를 이후 출력에 직접 더해주는 방법입니다
+이를 통해 모델이 깊어져도 기존 정보와 기울기가 비교적 안정적으로 전달될 수 있습니다</p>
+
+<p>잔차 연결에서는 두 텐서를 서로 더해야 하므로 입력과 출력의 마지막의 차원이 같아야 합니다
+따라서 디코더의 입력과 출력은 모두 <code class="language-plaintext highlighter-rouge">hidden_dim</code> 크기를 유지합니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">hidden_dim</code>은 하나의 토큰을 표현하는 전체 임베딩 차원이고
+<code class="language-plaintext highlighter-rouge">num_heads</code>는 어텐션 헤드의 개수입니다</p>
+
+<p>예를 들어 각각 768, 12 라고 가정을 하면 각 어텐션 헤드가 처리하는 차원은 
+64차원으로 12개의 어텐션 헤드가 각각 64차원의 정보를 처리하게 됩니다</p>
+
+<p>각 헤드는 서로 다른 관점에서 토큰 사이의 관계를 학습하고 
+마지막에는 각 헤드의 결과가 다시 결합됩니다</p>
+
+<p>또 <code class="language-plaintext highlighter-rouge">norm_first</code>는 층 정규화를 어느 위치에 적용할지 결정하는 매개변수로
+<code class="language-plaintext highlighter-rouge">norm_first=True</code>라면 어텐션이나 피드 포워드 네트워크를 
+통과하기 전에 층 정규화를 적용합니다</p>
+
+<p>층 정규화 -&gt; 어텐션 -&gt; 잔차 연결 이러한 구조를 <strong>Pre-Norm</strong>이라고 합니다
+반대로 False라면 잔차 연결을 수행한 뒤 층 정규화를 적용합니다 
+이러한 구조는 <strong>Post-Norm</strong>이라고 합니다</p>
+
+<p>해당 코드에서는 하나의 함수를 이용해 두 가지 구조를 모두 선택할 수 있도록 만들었습니다</p>
+
+<pre><code class="python">
+    # 마스크드 멀티 헤드 셀프 어텐션
+    x = layers.MultiHeadAttention(
+        num_heads=num_heads,
+        key_dim=key_dim,
+        dropout=dropout,
+    )(
+        query=x,
+        value=x,
+        attention_mask=attention_mask,
+    )
+</code></pre>
+
+<p>여기에서는 멀티 헤드 셀프 어텐션을 수행합니다
+ <code class="language-plaintext highlighter-rouge">query</code>와 <code class="language-plaintext highlighter-rouge">value</code>에 동일한 <code class="language-plaintext highlighter-rouge">x</code>를 전달했기 때문에 입력 문장 내부의 토큰들이
+ 서로의 관계를 계산하는 셀프 어텐션이 됩니다</p>
+
+<p>이때 <code class="language-plaintext highlighter-rouge">key</code>를 별도로 전달하지 않으면 <code class="language-plaintext highlighter-rouge">value</code>가 <code class="language-plaintext highlighter-rouge">key</code>로도 사용됩니다
+따라서 개념적으로 모두 <code class="language-plaintext highlighter-rouge">x</code> 가 됩니다 그리고 <code class="language-plaintext highlighter-rouge">attention_mask</code>에서 
+앞서 만든 최종 어텐션 마스크를 전달합니다</p>
+
+<p>일반적인 셀프 어텐션은 문장의 모든 토큰을 참조할 수 있지만 여기서는
+코잘 마스크가 적용되어 자신보다 뒤에 있는 미래 토큰을 참조할 수 없습니다</p>
+
+<p>또한 패딩 마스크도 함께 적용되므로 실제 내용이 없는 패딩 토큰도 참조하지 않습니다</p>
+
+<p>따라서 해당 층이 디코더의 <strong>마스크드 멀티 헤드 셀프 어텐션</strong> 역할을 합니다</p>
+
+<p>어텐션 결과에는 드롭아웃을 적용합니다
+드롭아웃은 학습 중 일부 값을 무작위로 제외하여 모델이 특정 정보에 지나치게
+의존하는 것을 줄여줍니다 그 다음 어텐션을 통과하기 전의 입력인 <code class="language-plaintext highlighter-rouge">residual</code>를 더합니다</p>
+
+<p>그렇게 하면 어텐션을 통해 새롭게 계산한 정보와 
+기본 입력 정보를 함께 다음 단계로 전하게 됩니다</p>
+
+<p>어텐션 연산이 끝나면 각 토큰은 다른 토큰과의 관계를 반영한 정보를 가지게 됩니다
+이제 각 토큰의 표현을 개별적으로 변환하기 위해 피드 포워드 네트워크를 통과시킵니다</p>
+
+<p>피드 포워드 네트워크는 코드에서 두 개의 밀집층으로 구성되는데 
+차원을 확장했다가 다시 원래 크기로 줄입니다
+중간 차원을 크게 확장하면 모델이 각 토큰의 특징을 더 풍부하게 변환할 수 있습니다</p>
+
+<p>그리고 마지막 차원을 다시 <code class="language-plaintext highlighter-rouge">hidden_dim</code>으로 줄여야 
+기존 입력과 잔차 연결을 수행할 수 있습니다</p>
+
+<p>활성화 함수는 기본적으로 <code class="language-plaintext highlighter-rouge">relu</code>를 사용하게 설정했지만 
+GPT 계열에서는 <code class="language-plaintext highlighter-rouge">gelu</code>를 자주 사용합니다</p>
+
+<p>그 다음에는 두 번째 잔차 연결을 하게 됩니다
+피드 포워드 네트워크 출력에도 드롭아웃을 적용하고 네트워크를 통과하기 전에
+입력을 더합니다 그래서 하나의 디코더 블록에는 총 두 번의 잔차연결이 됩니다
+마지막으로 필요한 위치에 층 정규화를 적용한 뒤 결과를 반환합니다</p>
+
+<p>이렇게 완성된 <code class="language-plaintext highlighter-rouge">transformer_decoder()</code> 함수는 입력과 동일한 형태의 출력을
+반환합니다 입력의 크기가 같다면 디코더를 통과한 출력의 크기도 동일합니다
+그래서 디코더 블록을 여러 개 연속으로 쌓을 수 있습니다</p>
+
+<p>정리를 하면 이번에 만든 트랜스포머 디코더 모듈은 마스크드 멀티 헤드 셀프 어텐션을 
+통해 이전 토큰들의 관계를 분석하고 피드 포워드 네트워크를 통해
+각 토큰의 표현을 변환합니다 그리고 층 정규화와 잔차 연결을 사용하여
+디코더 블록을 안정적으로 쌓을 수 있도록 구성합니다</p>
+
+<p>이제 완성한 디코더 모듈을 여러 층으로 쌓고 토큰 임베딩과 위치 임베딩을 연결하여
+실제 GPT-2 구조의 언어 모델을 만들어보겠습니다</p>
+
+<p><br></p>
+
+<h2 id="gpt-2--">6. GPT-2 모델 만들기</h2>
+
+<p>앞에서 트랜스포머 디코더 모듈을 완성했습니다</p>
+
+<p>이제 토큰 임베딩과 위치 임베딩을 연결하고 디코더 블록을 
+여러 층으로 쌓아 GPT-2 구조의 언어 모델을 만들어보겠습니다</p>
+
+<p>이번에 구현할 모델은 GPT-2 Base와 유사한 하이퍼파라미터를 사용합니다.
+먼저 모델을 만드는 데 필요한 하이퍼파라미터를 설정해야 합니다</p>
+
+<pre><code class="python">
+vocab_size = 50257 
+num_layers = 12 
+num_heads = 12 
+hidden_dim = 768 
+dropout = 0.1 
+activation = "gelu" 
+max_seq_len = 1024
+</code></pre>
+
+<p>GPT-2 Base는 50257개의 토큰으로 구성된 어휘 사전을 사용하고 768차원의
+은닉 표현을 사용합니다 또한 하나의 디코더 블록에는 12개의 어텐션 헤드가 있으며
+이러한 디코더 블록을 12개 쌓습니다. 따라서 각 어텐션 헤드는 64차원을 처리합니다.</p>
+
+<pre><code class="python">
+token_ids = keras.Input(
+    shape=(None,),
+    dtype="int32",
+    name="token_ids",
+)
+
+padding_mask = keras.Input(
+    shape=(None,),
+    dtype="bool",
+    name="padding_mask",
+)
+</code></pre>
+<p>모델은 두 가지 값을 입력으로 받습니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">token_ids</code>는 토큰마다 부여된 정수 형태의 ID인데 
+예를 들어 하나의 문장이 다음과 같이 토큰화 되어 있다고 해보겠습니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">[1024, 35, 827, 91]</code></p>
+
+<p>각 숫자는 GPT-2의 어휘사전에 등록된 특정 토큰을 의미합니다</p>
+
+<p><code class="language-plaintext highlighter-rouge">padding_mask</code>는 입력에서 실제 토큰과 패딩 토큰을 구분하는 역할을 합니다
+<code class="language-plaintext highlighter-rouge">[1,1,1,1,0,0]</code> 있다면 1은 실제 토큰이고 
+0은 문장의 길이를 맞추기 위해 추가한 패딩 토큰입니다</p>
+
+<p>두 입력 모두 문장마다 길이가 달라질 수 있으므로 <code class="language-plaintext highlighter-rouge">shape=(None,)</code>으로 설정됩니다 
+여기서 <code class="language-plaintext highlighter-rouge">None</code>은 모델이 실행될 때 시퀀스 길이가 결정된다는 의미입니다</p>
+
+<p>그 다음은 정수 형태의 토큰 ID를 벡터로 변환하기 위한 토큰 임베딩을 만듭니다</p>
+
+<pre><code class="python">
+from keras_nlp.layers import ReversibleEmbedding
+
+token_embedding_layer = ReversibleEmbedding(
+    input_dim=vocab_size,
+    output_dim=hidden_dim,
+)
+
+token_embedding = token_embedding_layer(token_ids)
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">ReversibleEmbedding</code>은 정수 형태의 토큰 ID를 <code class="language-plaintext highlighter-rouge">hidden_dim</code> 크기의 벡터로 변환합니다
+지금 보면 768이므로 각각의 토큰은 768차원의 벡터로 표현됩니다</p>
+
+<p>입력의 크기가 <code class="language-plaintext highlighter-rouge">(batch_size, seq_len)</code> 이라면 토큰 임베딩을 통과한 결과는 
+<code class="language-plaintext highlighter-rouge">(batch_size, seq_len, 768)</code> 이 됩니다 하지만 셀프 어텐션은 토큰의 순서를
+자체적으로 구분하지 못합니다 그래서 첫 번째 토큰과 두 번째 토큰이 서로 다른 위치에
+있다는 정보를 모델에 전달하기 위해 위치 임베딩을 추가해야 합니다</p>
+
+<pre><code class="python">
+pos_embedding = keras_nlp.layers.PositionEmbedding(
+    sequence_length=max_seq_len,
+)(token_embedding)
+</code></pre>
+
+<p>위치 임베딩 역시 토큰 임베딩과 동일하게 768차원의 벡터를 생성합니다
+이제 토큰의 의미를 나타내는 토큰 임베딩과 토큰의 순서를 나타내는 위치 임베딩을 더합니다</p>
+
+<pre><code class="python">
+x = token_embedding + pos_embedding
+</code></pre>
+
+<p>두 임베딩을 결합하면 각 토큰은 자신의 의미와 문장 안에서의 위치 정보를 함께 가지게 됩니다
+그 다음에는 결합된 임베딩에 드롭아웃을 적용합니다</p>
+
+<pre><code class="python">
+x = layers.Dropout(dropout)(x)
+</code></pre>
+
+<p>이제 앞에서 만든 <code class="language-plaintext highlighter-rouge">transformer_decoder()</code> 함수를 이용해 디코더 블록을 12개 쌓습니다.</p>
+
+<pre><code class="python">
+for _ in range(num_layers):
+    x = transformer_decoder(
+        x,
+        padding_mask,
+        dropout,
+        activation,
+    )
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">num_layers</code>가 12이므로 반복문이 실행되면서 입력은 
+총 12개의 트랜스포머 디코더 블록을 차례대로 통과합니다</p>
+
+<p>각 디코더 블록에서는 마스크드 멀티 헤드 셀프 어텐션을 통해 이전 토큰들과의
+관계를 분석하고 피드 포워드 네트워크를 통해 각 토큰의 표현을 변환합니다</p>
+
+<p>디코더 블록의 입력과 출력은 모두 <code class="language-plaintext highlighter-rouge">(batch_size, seq_len, hidden_dim)</code> 을 유지하며
+따라서 같은 디코더 블록을 여러 번 연속으로 연결할 수 있습니다</p>
+
+<p>모든 디코더 블록을 통과한 결과에는 마지막 층 정규화를 적용합니다</p>
+
+<pre><code class="python">
+x = layers.LayerNormalization()(x)
+</code></pre>
+
+<p>현재 <code class="language-plaintext highlighter-rouge">x</code>의 마지막 차원은 768 이지만 언어 모델이 다음 토큰을 예측하려면
+768차원의 출력을 어휘사전 크기인 50257차원으로 변환해야 합니다</p>
+
+<p>일반적으로는 밀집층을 사용할 수 있지만 우리는 앞에서 
+만든 <code class="language-plaintext highlighter-rouge">ReversibleEmbedding</code>을 반대 방향으로 다시 사용합니다</p>
+
+<pre><code class="python">
+outputs = token_embedding_layer(
+    x,
+    reverse=True,
+)
+</code></pre>
+
+<p>입력 단계에서는 토큰 ID를 768차원의 임베딩으로 썼지만
+마지막 출력 단계에서는 <code class="language-plaintext highlighter-rouge">reverse=True</code>를 사용하여 반대 방향으로 변환합니다</p>
+
+<p>이처럼 입력 임베딩의 가중치를 출력층에서도 다시 사용하는 방식을 
+<strong>가중치 공유</strong> 또는 <strong>Weight Tying</strong>이라고 합니다</p>
+
+<p>입력 임베딩과 출력층이 같은 가중치를 공유하기 때문에 별도의 출력층 가중치를 
+추가하지 않고도 각 위치에서 다음 토큰에 대한 점수를 계산할 수 있습니다</p>
+
+<p>현재 vocab_size가 50,257이므로 각 토큰 위치마다 50,257개의 로짓이 출력됩니다 
+각 위치의 로짓값은 서로 다르며, 어휘사전에 포함된 각 토큰이 
+다음 토큰으로 등장할 가능성을 나타냅니다</p>
+
+<pre><code class="python">
+model = keras.Model(
+    inputs={
+        "token_ids": token_ids,
+        "padding_mask": padding_mask,
+    },
+    outputs=outputs,
+)
+
+model.summary()
+</code></pre>
+
+<p>이제 입력과 출력을 연결하여 전체 GPT-2 모델을 완성합니다</p>
+
+<p><img src="https://velog.velcdn.com/images/newkid0714/post/3a081716-ebb0-43af-805f-89d4f0b8c967/image.png" alt="GPT-2 유사 모델의 Keras 모델 요약" width="800"></p>
+
+<p>이렇게 토큰 임베딩과 위치 임베딩을 결합하고 트랜스포머 디코더 블록을
+12개 쌓아 GPT-2 Base와 유사한 구조의 언어 모델을 만들어봤습니다.</p>
+
+<p>모델에 토큰 ID와 패딩 마스크를 입력하면 각 토큰 위치에서 
+다음에 등장할 수 있는 모든 토큰의 점수가 출력됩니다</p>
+
+<p>학습할 때는 이 출력과 한 칸씩 이동한 정답 토큰을 비교하고
+실제 다음 토큰에 해당하는 확률이 높아지도록 모델의 가중치를 조정합니다</p>
+
+<p><br></p>
+
+<h2 id="section-4">마무리</h2>
+
+<p>이번 시간에는 트랜스포머 디코더가 다음 토큰을 예측하는 원리부터
+코잘 마스크와 패딩 마스크를 결합하는 방법 그리고 디코더 블록을 여러 층으로 쌓아
+GPT-2 구조의 언어 모델을 만드는 과정까지 알아봤습니다</p>
+
+<p>다음 시간에는 인코더가 입력 문장의 핵심 의미를 이해하고
+디코더가 이를 바탕으로 새로운 문장을 생성하는 트랜스포머 인코더-디코더 모델을 만들어
+실제 텍스트를 요약해보도록 하겠습니다</p>
+
+<p>지금까지 에코노베이션 29기 안성준이였습니다</p>
+
+
+    </div>
+
+</article>
+
+    <div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/econo_news/2026/06/29/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-6%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 6월호">에코노 뉴스 6월호</a><a class="next" href="/jekyll-theme-yat/summer/winter_dev/2026/08/27/%EC%8D%B8%EB%A8%B8%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_ECOLUTION.html" title="[2026 SUMMER DEV] 서울시 열섬 완화를 위한 AI 기반 녹지 분석 프로젝트 'SEOULution', ECOLUTION팀">[2026 SUMMER DEV] 서울시 열섬 완화를...</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        
+        <li class="">
+          <a class="post-link" href="https://medium.com/econovation/econo-people-6-%EC%97%90%EC%BD%94%EB%85%B8%EA%B0%80-%EC%A3%BC%EB%AA%A9%ED%95%98%EB%8A%94-her-%EC%84%9C%EC%9D%B8%ED%95%98%EB%8B%98-9e52b7b42ce6" title="[ECONO PEOPLE #6] 에코노가 주목하는 Her, 서인하님">
+            [ECONO PEOPLE #6] 에코노가 주목하는 Her, 서인하님<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/econo_news/2025/12/03/%EC%97%90%EC%BD%94%EB%85%B8-%EB%89%B4%EC%8A%A4-11%EC%9B%94%ED%98%B8.html" title="에코노 뉴스 11월호">
+            에코노 뉴스 11월호<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/summer/winter_dev/2026/02/12/%EC%9C%88%ED%84%B0%EB%8D%B0%EB%B8%8C-%ED%9A%8C%EA%B3%A0%EB%A1%9D_%ED%95%9C%EC%96%91.html" title="[2026 Winter DEV] 버려진 미래 시설을 배경으로, 봉인된 AI를 해방시키는 소울라이크 액션 게임  'SOUL STEEL', 한양팀">
+            [2026 Winter DEV] 버려진 미래 시설을 배경으로, 봉인된 AI를 해방시키는 소울라이크 액션...<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+        <li class="">
+          <a class="post-link" href="/hello_econo/2025/03/11/%EC%A0%9C5%ED%9A%8C-Hello,-ECONO!-%EB%A6%AC%EB%B7%B0.html" title="제5회 Hello, ECONO! 리뷰">
+            제5회 Hello, ECONO! 리뷰<span class="post-badges">
+  <span class="post-badge badge-top">TOP</span>
+  <span class="post-badge badge-new">NEW</span>
+</span>
+</a>
+        </li>
+</ul>
+    </div>
+<div class="giscus"></div>
+    <script src="https://giscus.app/client.js" data-repo="JNU-econovation/JNU-econovation.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkyMjE0NzM4NTY=" data-category="Show and tell" data-category-id="DIC_kwDODTNsQM4Cglnj" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="ko" crossorigin="anonymous" async></script>
+    <!-- <div class="post-comments">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="JNU-econovation/JNU-econovation.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async
+      ></script></div> --></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjnu-econovation.github.io&count_bg=%234D84F1&title_bg=%23848484&icon=micro-dot-blog.svg&icon_color=%23FFFFFF&title=Visitors&edge_flat=true"></a><div>Unpublished Work <span class="copyleft">©</span> 2017-2026 JNU-econovation</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
